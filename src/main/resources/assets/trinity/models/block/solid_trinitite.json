@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "trinity:blocks/trinitite_top",
+		"down": "trinity:blocks/trinitite_top",
+		"north": "trinity:blocks/trinitite_top",
+		"south": "trinity:blocks/trinitite_top",
+		"east": "trinity:blocks/trinitite_top",
+		"west": "trinity:blocks/trinitite_top",
+		"particle": "trinity:blocks/trinitite_top"
+	}
+}

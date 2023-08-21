@@ -1,0 +1,6 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "trinity:items/cf_251_core"
+	}
+}

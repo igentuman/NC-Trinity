@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "trinity:blocks/block_lithium_deuteride",
+    "down": "trinity:blocks/block_lithium_deuteride",
+    "up": "trinity:blocks/block_lithium_deuteride",
+    "east": "trinity:blocks/block_lithium_deuteride",
+    "west": "trinity:blocks/block_lithium_deuteride",
+    "north": "trinity:blocks/thermonuclear_core_pu239",
+    "south": "trinity:blocks/thermonuclear_core_pu239"
+  }
+}

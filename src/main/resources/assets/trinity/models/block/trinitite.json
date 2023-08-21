@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "trinity:blocks/trinitite_top",
+		"down": "minecraft:blocks/sand",
+		"north": "trinity:blocks/trinitite_side",
+		"south": "trinity:blocks/trinitite_side",
+		"east": "trinity:blocks/trinitite_side",
+		"west": "trinity:blocks/trinitite_side",
+		"particle": "trinity:blocks/trinitite_top"
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "trinity:blocks/atomic_bomb_top",
+		"down": "trinity:blocks/atomic_bomb_top",
+		"north": "trinity:blocks/salted_bomb_side",
+		"south": "trinity:blocks/salted_bomb_side",
+		"east": "trinity:blocks/salted_bomb_side",
+		"west": "trinity:blocks/salted_bomb_side",
+		"particle": "trinity:blocks/atomic_bomb_top"
+	}
+}

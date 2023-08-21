@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "trinity:blocks/baratol",
+    "down": "trinity:blocks/charge_side_down",
+    "up": "trinity:blocks/charge_side_up",
+    "east": "trinity:blocks/charge_side_east",
+    "west": "trinity:blocks/charge_side_west",
+    "north": "trinity:blocks/charge_front",
+    "south": "trinity:blocks/charge_back"
+  }
+}

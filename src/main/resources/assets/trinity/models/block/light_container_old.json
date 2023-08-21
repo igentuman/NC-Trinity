@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "trinity:blocks/light_shielded_top",
+		"down": "trinity:blocks/light_shielded_top",
+		"north": "trinity:blocks/light_shielded_side",
+		"south": "trinity:blocks/light_shielded_side",
+		"east": "trinity:blocks/light_shielded_side",
+		"west": "trinity:blocks/light_shielded_side",
+		"particle": "trinity:blocks/light_shielded_top"
+	}
+}

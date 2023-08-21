@@ -1,0 +1,42 @@
+{
+    "forge_marker": 1,
+    "variants": {
+        "fluid_witherite_water": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "witherite_water"
+            }
+        },
+        "fluid_nitric_oxide": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "nitric_oxide"
+            }
+        },
+        "fluid_nitrogen_dioxide": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "nitrogen_dioxide"
+            }
+        },
+        "fluid_nitric_acid": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "nitric_acid"
+            }
+        },
+        "fluid_barium_nitrate_solution": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "barium_nitrate_solution"
+            }
+        },        
+        "fluid_deuterium-tritium_mixture": {
+            "model": "forge:fluid",
+            "custom": {
+                "fluid": "deuterium-tritium_mixture"
+            }
+        }
+    }
+}
+

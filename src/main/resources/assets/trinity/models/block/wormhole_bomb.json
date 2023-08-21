@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube_all",
+	"textures": {
+		"up": "nuclearcraft:blocks/atomic_bomb_top",
+		"down": "nuclearcraft:blocks/atomic_bomb_top",
+		"north": "trinity:blocks/wormhole_bomb_side",
+		"south": "trinity:blocks/wormhole_bomb_side",
+		"east": "trinity:blocks/wormhole_bomb_side",
+		"west": "trinity:blocks/wormhole_bomb_side",
+		"particle": "nuclearcraft:blocks/atomic_bomb_top"
+	}
+}
