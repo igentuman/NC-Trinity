@@ -1,6 +1,10 @@
 package trinity.util;
 
+import java.util.List;
+import java.util.Set;
+
 import com.google.common.collect.Sets;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -12,208 +16,279 @@ import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import trinity.blocks.ThermonuclearCore;
 
-import java.util.List;
-import java.util.Set;
-
-public class ThermonuclearBomb{
-
-public int blastRadius;
-
-public boolean salted;
+public class ThermonuclearBomb {
 	
-private static Set<Block> lead = null;
-//private static Set<Block> uranium = null;
-private static Set<Block> uranium238 = null;
-private static Set<Block> neptunium = null;
-private static Set<Block> plutonium = null;
-private static Set<Block> salt = null;;
+	public int blastRadius;
+	
+	public boolean salted;
+	
+	private static Set<Block> lead = null;
+	// private static Set<Block> uranium = null;
+	private static Set<Block> uranium238 = null;
+	private static Set<Block> neptunium = null;
+	private static Set<Block> plutonium = null;
+	private static Set<Block> salt = null;;
+	
+	/*public static double SaltingMultiplier() {
+	
+		List <ItemStack> zinc = OreDictionary.getOres("blockZinc");
+		for (ItemStack blocks : zinc) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.05;
+		}
+		List <ItemStack> cobalt = OreDictionary.getOres("blockCobalt");
+		for (ItemStack blocks : cobalt) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.05;
+		}
+		List <ItemStack> gold = OreDictionary.getOres("blockGold");
+		for (ItemStack blocks : gold) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.05;
+		}
+		return 1;
+	}
+	
+	public static double RegularMultiplier() {
+	
+		List <ItemStack> lead = OreDictionary.getOres("blockLead");
+		for (ItemStack blocks : lead) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.1;
+		}
+		return 1;
+	}
+	
+	public static double FissionMultiplier() {
+	
+		List <ItemStack> pu242 = OreDictionary.getOres("blockPlutonium242");
+		for (ItemStack blocks : pu242) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.2;
+		}
+		List <ItemStack> np237 = OreDictionary.getOres("blockNeptunium237");
+		for (ItemStack blocks : np237) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.2;
+		}
+		List <ItemStack> uranium238 = OreDictionary.getOres("blockUranium238");
+		for (ItemStack blocks : uranium238) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.2;
+		}
+		List <ItemStack> uranium = OreDictionary.getOres("blockUranium");
+		for (ItemStack blocks : uranium) {
+			Block block = Block.getBlockFromItem(blocks.getItem());
+			return 1.2;
+		}
+		return 1;
+	}*/
 	
 	public static Set<Block> getSaltingBlocks() {
 		
-        if (salt != null) {
-            return salt;
-        }
-        salt = Sets.newHashSet();
-        List<ItemStack> zinc = OreDictionary.getOres("blockZinc");
-        for (ItemStack stack : zinc) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    salt.add(itemBlock.getBlock());
-                }
-            }
-        }
-        List<ItemStack> cobalt = OreDictionary.getOres("blockCobalt");
-        for (ItemStack stack : cobalt) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    salt.add(itemBlock.getBlock());
-                }
-            }
-        }
-        List<ItemStack> gold = OreDictionary.getOres("blockGold");
-        for (ItemStack stack : gold) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    salt.add(itemBlock.getBlock());
-                }
-            }
-        }
+		if (salt != null) {
+			return salt;
+		}
+		salt = Sets.newHashSet();
+		List<ItemStack> zinc = OreDictionary.getOres("blockZinc");
+		for (ItemStack stack : zinc) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					salt.add(itemBlock.getBlock());
+				}
+			}
+		}
+		List<ItemStack> cobalt = OreDictionary.getOres("blockCobalt");
+		for (ItemStack stack : cobalt) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					salt.add(itemBlock.getBlock());
+				}
+			}
+		}
+		List<ItemStack> gold = OreDictionary.getOres("blockGold");
+		for (ItemStack stack : gold) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					salt.add(itemBlock.getBlock());
+				}
+			}
+		}
 		return null;
 	}
-
+	
 	public static Set<Block> getPlutoniumBlocks() {
 		
-        if (plutonium != null) {
-            return plutonium;
-        }
-        plutonium = Sets.newHashSet();
-        List<ItemStack> stacks = OreDictionary.getOres("blockPlutonium242");
-        for (ItemStack stack : stacks) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    plutonium.add(itemBlock.getBlock());
-                }
-            }
-        }
-
-        return plutonium;
+		if (plutonium != null) {
+			return plutonium;
+		}
+		plutonium = Sets.newHashSet();
+		List<ItemStack> stacks = OreDictionary.getOres("blockPlutonium242");
+		for (ItemStack stack : stacks) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					plutonium.add(itemBlock.getBlock());
+				}
+			}
+		}
+		
+		return plutonium;
 	}
 	
 	public static Set<Block> getNeptuniumBlocks() {
 		
-        if (neptunium != null) {
-            return neptunium;
-        }
-        neptunium = Sets.newHashSet();
-        List<ItemStack> stacks = OreDictionary.getOres("blockNeptunium237");
-        for (ItemStack stack : stacks) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    neptunium.add(itemBlock.getBlock());
-                }
-            }
-        }
-
-        return neptunium;
+		if (neptunium != null) {
+			return neptunium;
+		}
+		neptunium = Sets.newHashSet();
+		List<ItemStack> stacks = OreDictionary.getOres("blockNeptunium237");
+		for (ItemStack stack : stacks) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					neptunium.add(itemBlock.getBlock());
+				}
+			}
+		}
+		
+		return neptunium;
 	}
-
+	
+	/*public static Set<Block> getUraniumBlocks() {
+	
+	    if (uranium != null) {
+	        return uranium;
+	    }
+	    uranium = Sets.newHashSet();
+	    List<ItemStack> stacks = OreDictionary.getOres("blockUranium");
+	    for (ItemStack stack : stacks) {
+	        Item item = stack.getItem();
+	        if (item instanceof ItemBlock) {
+	            ItemBlock itemBlock = (ItemBlock) item;
+	            if (itemBlock.getBlock() != null) {
+	                uranium.add(itemBlock.getBlock());
+	            }
+	        }
+	    }
+		return uranium;
+	}*/
 	
 	public static Set<Block> getUranium238Blocks() {
-
-        if (uranium238 != null) {
-            return uranium238;
-        }
-        uranium238 = Sets.newHashSet();
-        List<ItemStack> stacks2 = OreDictionary.getOres("blockUranium238");
-        for (ItemStack stack : stacks2) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    uranium238.add(itemBlock.getBlock());
-                }
-            }
-        }
+		
+		if (uranium238 != null) {
+			return uranium238;
+		}
+		uranium238 = Sets.newHashSet();
+		List<ItemStack> stacks2 = OreDictionary.getOres("blockUranium238");
+		for (ItemStack stack : stacks2) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					uranium238.add(itemBlock.getBlock());
+				}
+			}
+		}
 		return uranium238;
 	}
 	
 	public static Set<Block> getLeadBlocks() {
 		
-        if (lead != null) {
-            return lead;
-        }
-        lead = Sets.newHashSet();
-        List<ItemStack> stacks = OreDictionary.getOres("blockLead");
-        for (ItemStack stack : stacks) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    lead.add(itemBlock.getBlock());
-                }
-            }
-        }
-        return lead;
+		if (lead != null) {
+			return lead;
+		}
+		lead = Sets.newHashSet();
+		List<ItemStack> stacks = OreDictionary.getOres("blockLead");
+		for (ItemStack stack : stacks) {
+			Item item = stack.getItem();
+			if (item instanceof ItemBlock) {
+				ItemBlock itemBlock = (ItemBlock) item;
+				if (itemBlock.getBlock() != null) {
+					lead.add(itemBlock.getBlock());
+				}
+			}
+		}
+		return lead;
 	}
-
-	public static boolean isSaltingAgent(World world, BlockPos pos)
-	{
+	
+	public static boolean isSaltingAgent(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
-		if(getSaltingBlocks()!=null && getSaltingBlocks().contains(block))
-		{
+		if (getSaltingBlocks() != null && getSaltingBlocks().contains(block)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean isFissionable(World world, BlockPos pos)
-	{
+	public static boolean isFissionable(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
-
-		if((getUranium238Blocks()!=null && getUranium238Blocks().contains(block)))
-		{
+		// if((getUraniumBlocks()!=null && getUraniumBlocks().contains(block)))
+		// {
+		// return true;
+		// }
+		if ((getUranium238Blocks() != null && getUranium238Blocks().contains(block))) {
 			return true;
 		}
-		if((getNeptuniumBlocks()!=null && getNeptuniumBlocks().contains(block)))
-		{
+		if ((getNeptuniumBlocks() != null && getNeptuniumBlocks().contains(block))) {
 			return true;
 		}
-		if((getPlutoniumBlocks()!=null && getPlutoniumBlocks().contains(block)))
-		{
+		if ((getPlutoniumBlocks() != null && getPlutoniumBlocks().contains(block))) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static boolean isLead(World world, BlockPos pos)
-	{
+	public static boolean isLead(World world, BlockPos pos) {
 		Block block = world.getBlockState(pos).getBlock();
-		if(getLeadBlocks()!=null && getLeadBlocks().contains(block))
-		{
-			return true;
-		}
-		return false;
-	}
-
-	public static boolean isValidTamper(World world, BlockPos pos)
-	{
-		Block block = world.getBlockState(pos).getBlock();
-		if(getLeadBlocks()!=null && getLeadBlocks().contains(block))
-		{
-			return true;
-		}
-
-		if(getUranium238Blocks()!=null && getUranium238Blocks().contains(block))
-		{
-			return true;
-		}
-		if(getNeptuniumBlocks()!=null && getNeptuniumBlocks().contains(block))
-		{
-			return true;
-		}
-		if(getPlutoniumBlocks()!=null && getPlutoniumBlocks().contains(block))
-		{
-			return true;
-		}
-		if(getSaltingBlocks()!=null && getSaltingBlocks().contains(block))
-		{
+		if (getLeadBlocks() != null && getLeadBlocks().contains(block)) {
 			return true;
 		}
 		return false;
 	}
 	
-	public static double ThermonuclearMultiplier(World world, BlockPos pos, boolean salt)
+	public static boolean isValidTamper(World world, BlockPos pos) {
+		Block block = world.getBlockState(pos).getBlock();
+		if (getLeadBlocks() != null && getLeadBlocks().contains(block)) {
+			return true;
+		}
+		// if(getUraniumBlocks()!=null && getUraniumBlocks().contains(block))
+		// {
+		// return true;
+		// }
+		if (getUranium238Blocks() != null && getUranium238Blocks().contains(block)) {
+			return true;
+		}
+		if (getNeptuniumBlocks() != null && getNeptuniumBlocks().contains(block)) {
+			return true;
+		}
+		if (getPlutoniumBlocks() != null && getPlutoniumBlocks().contains(block)) {
+			return true;
+		}
+		if (getSaltingBlocks() != null && getSaltingBlocks().contains(block)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/*public static boolean isValidTamper(World world, BlockPos pos)
 	{
+		Block block = world.getBlockState(pos).getBlock();
+		if((getLeadBlocks()!=null && getLeadBlocks().contains(block)) || (getUraniumBlocks()!=null && getUraniumBlocks().contains(block)) || (getNeptuniumBlocks()!=null && getNeptuniumBlocks().contains(block)) || (getPlutoniumBlocks()!=null && getPlutoniumBlocks().contains(block)) || (getSaltingBlocks()!=null && getSaltingBlocks().contains(block)))
+		{
+			return true;
+		}
+		return false;
+	}*/
+	
+	public static double ThermonuclearMultiplier(World world, BlockPos pos, boolean salt) {
 		int fission1 = 0;
 		int inert1 = 0;
 		int salted1 = 0;
@@ -234,666 +309,534 @@ private static Set<Block> salt = null;;
 		int inert = 0;
 		int salted = 0;
 		
-		int startpoint = pos.getY()+1;
-		int endpoint = pos.getY()+3;
-
-		int startpoint2 = pos.getY()-1;
-		int endpoint2 = pos.getY()-3;
+		int startpoint = pos.getY() + 1;
+		int endpoint = pos.getY() + 3;
 		
-		int startpoint3 = pos.getX()+1;
-		int endpoint3 = pos.getX()+3;
+		int startpoint2 = pos.getY() - 1;
+		int endpoint2 = pos.getY() - 3;
 		
-		int startpoint4 = pos.getX()-1;
-		int endpoint4 = pos.getX()-3;
+		int startpoint3 = pos.getX() + 1;
+		int endpoint3 = pos.getX() + 3;
 		
-		int startpoint5 = pos.getZ()+1;
-		int endpoint5 = pos.getZ()+3;
+		int startpoint4 = pos.getX() - 1;
+		int endpoint4 = pos.getX() - 3;
 		
-		int startpoint6 = pos.getZ()-1;
-		int endpoint6 = pos.getZ()-3;
+		int startpoint5 = pos.getZ() + 1;
+		int endpoint5 = pos.getZ() + 3;
+		
+		int startpoint6 = pos.getZ() - 1;
+		int endpoint6 = pos.getZ() - 3;
 		
 		int depth1 = 0;
 		int depth2 = 0;
 		int depth3 = 0;
 		int depth4 = 0;
-		for(int y = startpoint;y<=endpoint;y++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),y,pos.getZ());
-			BlockPos p2 = new BlockPos(pos.getX()+1,y,pos.getZ());
-			BlockPos p3 = new BlockPos(pos.getX()-1,y,pos.getZ());
-			BlockPos p4 = new BlockPos(pos.getX(),y,pos.getZ()+1);
-			BlockPos p5 = new BlockPos(pos.getX(),y,pos.getZ()-1);
+		for (int y = startpoint; y <= endpoint; y++) {
+			BlockPos p1 = new BlockPos(pos.getX(), y, pos.getZ());
+			BlockPos p2 = new BlockPos(pos.getX() + 1, y, pos.getZ());
+			BlockPos p3 = new BlockPos(pos.getX() - 1, y, pos.getZ());
+			BlockPos p4 = new BlockPos(pos.getX(), y, pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(pos.getX(), y, pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.DOWN);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.DOWN);
 			Block block = world.getBlockState(pos).getBlock();
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-
-			if(t1)
-			{				
+			
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				inert = (inert1+inert2+inert3+inert4);
-				fission = (fission1+fission2+fission3+fission4);
-				salted = (salted1+salted2+salted3+salted4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
 		}
-		for(int y = endpoint2;y<=startpoint2;y++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),y,pos.getZ());
-			BlockPos p2 = new BlockPos(pos.getX()+1,y,pos.getZ());
-			BlockPos p3 = new BlockPos(pos.getX()-1,y,pos.getZ());
-			BlockPos p4 = new BlockPos(pos.getX(),y,pos.getZ()+1);
-			BlockPos p5 = new BlockPos(pos.getX(),y,pos.getZ()-1);
+		for (int y = endpoint2; y <= startpoint2; y++) {
+			BlockPos p1 = new BlockPos(pos.getX(), y, pos.getZ());
+			BlockPos p2 = new BlockPos(pos.getX() + 1, y, pos.getZ());
+			BlockPos p3 = new BlockPos(pos.getX() - 1, y, pos.getZ());
+			BlockPos p4 = new BlockPos(pos.getX(), y, pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(pos.getX(), y, pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.DOWN);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.DOWN);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(t1)
-			{				
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				fission = (fission1+fission2+fission3+fission4);
-				inert = (inert1+inert2+inert3+inert4);
-				salted = (salted1+salted2+salted3+salted4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
 		}
 		
-		for(int x = startpoint3;x<=endpoint3;x++)
-		{
-			BlockPos p1 = new BlockPos(x,pos.getY(),pos.getZ());
-			BlockPos p2 = new BlockPos(x,pos.getY()+1,pos.getZ());
-			BlockPos p3 = new BlockPos(x,pos.getY()-1,pos.getZ());
-			BlockPos p4 = new BlockPos(x,pos.getY(),pos.getZ()+1);
-			BlockPos p5 = new BlockPos(x,pos.getY(),pos.getZ()-1);
+		for (int x = startpoint3; x <= endpoint3; x++) {
+			BlockPos p1 = new BlockPos(x, pos.getY(), pos.getZ());
+			BlockPos p2 = new BlockPos(x, pos.getY() + 1, pos.getZ());
+			BlockPos p3 = new BlockPos(x, pos.getY() - 1, pos.getZ());
+			BlockPos p4 = new BlockPos(x, pos.getY(), pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(x, pos.getY(), pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.EAST);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.EAST);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(t1)
-			{				
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				fission = (fission1+fission2+fission3+fission4);
-				inert = (inert1+inert2+inert3+inert4);
-				salted = (salted1+salted2+salted3+salted4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
 		}
 		
-		for(int x = endpoint4;x<=startpoint4;x++)
-		{
-			BlockPos p1 = new BlockPos(x,pos.getY(),pos.getZ());
-			BlockPos p2 = new BlockPos(x,pos.getY()+1,pos.getZ());
-			BlockPos p3 = new BlockPos(x,pos.getY()-1,pos.getZ());
-			BlockPos p4 = new BlockPos(x,pos.getY(),pos.getZ()+1);
-			BlockPos p5 = new BlockPos(x,pos.getY(),pos.getZ()-1);
+		for (int x = endpoint4; x <= startpoint4; x++) {
+			BlockPos p1 = new BlockPos(x, pos.getY(), pos.getZ());
+			BlockPos p2 = new BlockPos(x, pos.getY() + 1, pos.getZ());
+			BlockPos p3 = new BlockPos(x, pos.getY() - 1, pos.getZ());
+			BlockPos p4 = new BlockPos(x, pos.getY(), pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(x, pos.getY(), pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.EAST);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.EAST);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(t1)
-			{				
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				fission = (fission1+fission2+fission3+fission4);
-				inert = (inert1+inert2+inert3+inert4);
-				salted = (salted1+salted2+salted3+salted4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
 		}
 		
-		for(int z = startpoint5;z<=endpoint5;z++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),pos.getY(),z);
-			BlockPos p2 = new BlockPos(pos.getX(),pos.getY()+1,z);
-			BlockPos p3 = new BlockPos(pos.getX(),pos.getY()-1,z);
-			BlockPos p4 = new BlockPos(pos.getX()+1,pos.getY(),z);
-			BlockPos p5 = new BlockPos(pos.getX(),pos.getY(),z);
+		for (int z = startpoint5; z <= endpoint5; z++) {
+			BlockPos p1 = new BlockPos(pos.getX(), pos.getY(), z);
+			BlockPos p2 = new BlockPos(pos.getX(), pos.getY() + 1, z);
+			BlockPos p3 = new BlockPos(pos.getX(), pos.getY() - 1, z);
+			BlockPos p4 = new BlockPos(pos.getX() + 1, pos.getY(), z);
+			BlockPos p5 = new BlockPos(pos.getX(), pos.getY(), z);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.SOUTH);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.SOUTH);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(t1)
-			{				
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				fission = (fission1+fission2+fission3+fission4);
-				inert = (inert1+inert2+inert3+inert4);
-				salted = (salted1+salted2+salted3+salted4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
 		}
 		
-		for(int z = endpoint6;z<=startpoint6;z++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),pos.getY(),z);
-			BlockPos p2 = new BlockPos(pos.getX(),pos.getY()+1,z);
-			BlockPos p3 = new BlockPos(pos.getX(),pos.getY()-1,z);
-			BlockPos p4 = new BlockPos(pos.getX()+1,pos.getY(),z);
-			BlockPos p5 = new BlockPos(pos.getX(),pos.getY(),z);
+		for (int z = endpoint6; z <= startpoint6; z++) {
+			BlockPos p1 = new BlockPos(pos.getX(), pos.getY(), z);
+			BlockPos p2 = new BlockPos(pos.getX(), pos.getY() + 1, z);
+			BlockPos p3 = new BlockPos(pos.getX(), pos.getY() - 1, z);
+			BlockPos p4 = new BlockPos(pos.getX() + 1, pos.getY(), z);
+			BlockPos p5 = new BlockPos(pos.getX(), pos.getY(), z);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.SOUTH);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.SOUTH);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(t1)
-			{				
+			if (t1) {
 				depth1++;
-				if(depth1<=3)
-				{
-					if(isLead(world, p2))
-					{
+				if (depth1 <= 3) {
+					if (isLead(world, p2)) {
 						inert1++;
 					}
-					if(isFissionable(world, p2))
-					{
+					if (isFissionable(world, p2)) {
 						fission1++;
 					}
-					if(isSaltingAgent(world, p2))
-					{
+					if (isSaltingAgent(world, p2)) {
 						salted1++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t2)
-			{				
+			if (t2) {
 				depth2++;
-				if(depth2<=3)
-				{
-					if(isLead(world, p3))
-					{
+				if (depth2 <= 3) {
+					if (isLead(world, p3)) {
 						inert2++;
 					}
-					if(isFissionable(world, p3))
-					{
+					if (isFissionable(world, p3)) {
 						fission2++;
 					}
-					if(isSaltingAgent(world, p3))
-					{
+					if (isSaltingAgent(world, p3)) {
 						salted2++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t3)
-			{				
+			if (t3) {
 				depth3++;
-				if(depth3<=3)
-				{
-					if(isLead(world, p4))
-					{
+				if (depth3 <= 3) {
+					if (isLead(world, p4)) {
 						inert3++;
 					}
-					if(isFissionable(world, p4))
-					{
+					if (isFissionable(world, p4)) {
 						fission3++;
 					}
-					if(isSaltingAgent(world, p4))
-					{
+					if (isSaltingAgent(world, p4)) {
 						salted3++;
 					}
 				}
-				//continue;
+				// continue;
 			}
-			if(t4)
-			{				
+			if (t4) {
 				depth4++;
-				if(depth4<=3)
-				{
-					if(isLead(world, p5))
-					{
+				if (depth4 <= 3) {
+					if (isLead(world, p5)) {
 						inert4++;
 					}
-					if(isFissionable(world, p5))
-					{
+					if (isFissionable(world, p5)) {
 						fission4++;
 					}
-					if(isSaltingAgent(world, p5))
-					{
+					if (isSaltingAgent(world, p5)) {
 						salted4++;
 					}
 				}
-				fission = (fission1+fission2+fission3+fission4);
-				inert = (inert1+inert2+inert3+inert4);
-				salted = (salted1+salted2+salted3+salted4);
+				fission = (fission1 + fission2 + fission3 + fission4);
+				inert = (inert1 + inert2 + inert3 + inert4);
+				salted = (salted1 + salted2 + salted3 + salted4);
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return 0;
@@ -906,71 +849,64 @@ private static Set<Block> salt = null;;
 		fM = Math.pow(1.2, fission);
 		sM = Math.pow(1.05, salted);
 		
-		if(inert<1)
-		{
-			iM=0;
+		if (inert < 1) {
+			iM = 0;
 		}
-		if(fission<1)
-		{
-			fM=0;
+		if (fission < 1) {
+			fM = 0;
 		}
-		if(salted<1)
-		{
-			sM=0;
+		if (salted < 1) {
+			sM = 0;
 		}
-		//System.out.println(inert);
-		//System.out.println(fission);
-		//System.out.println(salted);
+		// System.out.println(inert);
+		// System.out.println(fission);
+		// System.out.println(salted);
 		
-		//System.out.println(iM);
-		//System.out.println(fM);
-		//System.out.println(sM);
-		double total = (iM+fM+sM);
-		//System.out.println(" iM: "+iM+" fM: "+fM+" sM: "+sM+" total: "+total);		
-		//System.out.println("Total: "+Math.max(1,total));
-		if(salt)
-		{
+		// System.out.println(iM);
+		// System.out.println(fM);
+		// System.out.println(sM);
+		double total = (iM + fM + sM);
+		// System.out.println(" iM: "+iM+" fM: "+fM+" sM: "+sM+" total: "+total);
+		// System.out.println("Total: "+Math.max(1,total));
+		if (salt) {
 			return salted;
 		}
 		return Math.max(1, total);
 	}
 	
-	@SuppressWarnings("unused")
-	public static boolean ThermonuclearCheck(World world, BlockPos pos)
-	{
-		//System.out.println("Checking thermonuclear status.");
-		int startpoint = pos.getY()+1;
-		int endpoint = pos.getY()+3;
-
-		int startpoint2 = pos.getY()-1;
-		int endpoint2 = pos.getY()-3;
+	public static boolean ThermonuclearCheck(World world, BlockPos pos) {
+		// System.out.println("Checking thermonuclear status.");
+		int startpoint = pos.getY() + 1;
+		int endpoint = pos.getY() + 3;
 		
-		int startpoint3 = pos.getX()+1;
-		int endpoint3 = pos.getX()+3;
+		int startpoint2 = pos.getY() - 1;
+		int endpoint2 = pos.getY() - 3;
 		
-		int startpoint4 = pos.getX()-1;
-		int endpoint4 = pos.getX()-3;
+		int startpoint3 = pos.getX() + 1;
+		int endpoint3 = pos.getX() + 3;
 		
-		int startpoint5 = pos.getZ()+1;
-		int endpoint5 = pos.getZ()+3;
+		int startpoint4 = pos.getX() - 1;
+		int endpoint4 = pos.getX() - 3;
 		
-		int startpoint6 = pos.getZ()-1;
-		int endpoint6 = pos.getZ()-3;
+		int startpoint5 = pos.getZ() + 1;
+		int endpoint5 = pos.getZ() + 3;
+		
+		int startpoint6 = pos.getZ() - 1;
+		int endpoint6 = pos.getZ() - 3;
 		
 		int depth = 0;
-		for(int y = startpoint;y<=endpoint;y++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),y,pos.getZ());
-			BlockPos p2 = new BlockPos(pos.getX()+1,y,pos.getZ());
-			BlockPos p3 = new BlockPos(pos.getX()-1,y,pos.getZ());
-			BlockPos p4 = new BlockPos(pos.getX(),y,pos.getZ()+1);
-			BlockPos p5 = new BlockPos(pos.getX(),y,pos.getZ()-1);
+		for (int y = startpoint; y <= endpoint; y++) {
+			BlockPos p1 = new BlockPos(pos.getX(), y, pos.getZ());
+			BlockPos p2 = new BlockPos(pos.getX() + 1, y, pos.getZ());
+			BlockPos p3 = new BlockPos(pos.getX() - 1, y, pos.getZ());
+			BlockPos p4 = new BlockPos(pos.getX(), y, pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(pos.getX(), y, pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
-			//IBlockState s2 = world.getBlockState(p1);
-			//IBlockState s3 = world.getBlockState(p1);
-			//IBlockState s4 = world.getBlockState(p1);
-			//IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.DOWN);
+			// IBlockState s2 = world.getBlockState(p1);
+			// IBlockState s3 = world.getBlockState(p1);
+			// IBlockState s4 = world.getBlockState(p1);
+			// IBlockState s5 = world.getBlockState(p1);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.DOWN);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
@@ -980,187 +916,164 @@ private static Set<Block> salt = null;;
 			System.out.println("is this a valid T3 tamper? "+t3);
 			System.out.println("is this a valid T4 tamper? "+t4);
 			System.out.println("Checking thermonuclear status 2.");*/
-			if(b1 && t1 && t2 && t3 && t4)
-			{
-				//System.out.println("Checking thermonuclear status 3.");
+			if (b1 && t1 && t2 && t3 && t4) {
+				// System.out.println("Checking thermonuclear status 3.");
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		
-		for(int y = endpoint2;y<=startpoint2;y++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),y,pos.getZ());
-			BlockPos p2 = new BlockPos(pos.getX()+1,y,pos.getZ());
-			BlockPos p3 = new BlockPos(pos.getX()-1,y,pos.getZ());
-			BlockPos p4 = new BlockPos(pos.getX(),y,pos.getZ()+1);
-			BlockPos p5 = new BlockPos(pos.getX(),y,pos.getZ()-1);
+		for (int y = endpoint2; y <= startpoint2; y++) {
+			BlockPos p1 = new BlockPos(pos.getX(), y, pos.getZ());
+			BlockPos p2 = new BlockPos(pos.getX() + 1, y, pos.getZ());
+			BlockPos p3 = new BlockPos(pos.getX() - 1, y, pos.getZ());
+			BlockPos p4 = new BlockPos(pos.getX(), y, pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(pos.getX(), y, pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.DOWN);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.UP || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.DOWN);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(b1 && t1 && t2 && t3 && t4)
-			{
+			if (b1 && t1 && t2 && t3 && t4) {
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		
-		for(int x = startpoint3;x<=endpoint3;x++)
-		{
-			BlockPos p1 = new BlockPos(x,pos.getY(),pos.getZ());
-			BlockPos p2 = new BlockPos(x,pos.getY()+1,pos.getZ());
-			BlockPos p3 = new BlockPos(x,pos.getY()-1,pos.getZ());
-			BlockPos p4 = new BlockPos(x,pos.getY(),pos.getZ()+1);
-			BlockPos p5 = new BlockPos(x,pos.getY(),pos.getZ()-1);
+		for (int x = startpoint3; x <= endpoint3; x++) {
+			BlockPos p1 = new BlockPos(x, pos.getY(), pos.getZ());
+			BlockPos p2 = new BlockPos(x, pos.getY() + 1, pos.getZ());
+			BlockPos p3 = new BlockPos(x, pos.getY() - 1, pos.getZ());
+			BlockPos p4 = new BlockPos(x, pos.getY(), pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(x, pos.getY(), pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.EAST);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.EAST);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(b1 && t1 && t2 && t3 && t4)
-			{
+			if (b1 && t1 && t2 && t3 && t4) {
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		
-		for(int x = endpoint4;x<=startpoint4;x++)
-		{
-			BlockPos p1 = new BlockPos(x,pos.getY(),pos.getZ());
-			BlockPos p2 = new BlockPos(x,pos.getY()+1,pos.getZ());
-			BlockPos p3 = new BlockPos(x,pos.getY()-1,pos.getZ());
-			BlockPos p4 = new BlockPos(x,pos.getY(),pos.getZ()+1);
-			BlockPos p5 = new BlockPos(x,pos.getY(),pos.getZ()-1);
+		for (int x = endpoint4; x <= startpoint4; x++) {
+			BlockPos p1 = new BlockPos(x, pos.getY(), pos.getZ());
+			BlockPos p2 = new BlockPos(x, pos.getY() + 1, pos.getZ());
+			BlockPos p3 = new BlockPos(x, pos.getY() - 1, pos.getZ());
+			BlockPos p4 = new BlockPos(x, pos.getY(), pos.getZ() + 1);
+			BlockPos p5 = new BlockPos(x, pos.getY(), pos.getZ() - 1);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.EAST);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.WEST || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.EAST);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(b1 && t1 && t2 && t3 && t4)
-			{
+			if (b1 && t1 && t2 && t3 && t4) {
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		
-		for(int z = startpoint5;z<=endpoint5;z++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),pos.getY(),z);
-			BlockPos p2 = new BlockPos(pos.getX(),pos.getY()+1,z);
-			BlockPos p3 = new BlockPos(pos.getX(),pos.getY()-1,z);
-			BlockPos p4 = new BlockPos(pos.getX()+1,pos.getY(),z);
-			BlockPos p5 = new BlockPos(pos.getX(),pos.getY(),z);
+		for (int z = startpoint5; z <= endpoint5; z++) {
+			BlockPos p1 = new BlockPos(pos.getX(), pos.getY(), z);
+			BlockPos p2 = new BlockPos(pos.getX(), pos.getY() + 1, z);
+			BlockPos p3 = new BlockPos(pos.getX(), pos.getY() - 1, z);
+			BlockPos p4 = new BlockPos(pos.getX() + 1, pos.getY(), z);
+			BlockPos p5 = new BlockPos(pos.getX(), pos.getY(), z);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.SOUTH);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.SOUTH);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(b1 && t1 && t2 && t3 && t4)
-			{
+			if (b1 && t1 && t2 && t3 && t4) {
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		
-		for(int z = endpoint6;z<=startpoint6;z++)
-		{
-			BlockPos p1 = new BlockPos(pos.getX(),pos.getY(),z);
-			BlockPos p2 = new BlockPos(pos.getX(),pos.getY()+1,z);
-			BlockPos p3 = new BlockPos(pos.getX(),pos.getY()-1,z);
-			BlockPos p4 = new BlockPos(pos.getX()+1,pos.getY(),z);
-			BlockPos p5 = new BlockPos(pos.getX(),pos.getY(),z);
+		for (int z = endpoint6; z <= startpoint6; z++) {
+			BlockPos p1 = new BlockPos(pos.getX(), pos.getY(), z);
+			BlockPos p2 = new BlockPos(pos.getX(), pos.getY() + 1, z);
+			BlockPos p3 = new BlockPos(pos.getX(), pos.getY() - 1, z);
+			BlockPos p4 = new BlockPos(pos.getX() + 1, pos.getY(), z);
+			BlockPos p5 = new BlockPos(pos.getX(), pos.getY(), z);
 			IBlockState s1 = world.getBlockState(p1);
 			IBlockState s2 = world.getBlockState(p1);
 			IBlockState s3 = world.getBlockState(p1);
 			IBlockState s4 = world.getBlockState(p1);
 			IBlockState s5 = world.getBlockState(p1);
-			boolean b1 = s1.getBlock()instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING)==EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING)==EnumFacing.SOUTH);
+			boolean b1 = s1.getBlock() instanceof ThermonuclearCore && (s1.getValue(ThermonuclearCore.FACING) == EnumFacing.NORTH || s1.getValue(ThermonuclearCore.FACING) == EnumFacing.SOUTH);
 			boolean t1 = isValidTamper(world, p2);
 			boolean t2 = isValidTamper(world, p3);
 			boolean t3 = isValidTamper(world, p4);
 			boolean t4 = isValidTamper(world, p5);
-			if(b1 && t1 && t2 && t3 && t4)
-			{
+			if (b1 && t1 && t2 && t3 && t4) {
 				depth++;
-				if(depth==3)
-				{
+				if (depth == 3) {
 					return true;
 				}
 				continue;
 			}
-			if(!(b1 && t1 && t2 && t3 && t4))
-			{
+			if (!(b1 && t1 && t2 && t3 && t4)) {
 				break;
 			}
 			return false;
 		}
 		return false;
-	}	
+	}
 }

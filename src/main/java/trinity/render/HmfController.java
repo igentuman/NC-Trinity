@@ -14,5 +14,5 @@ public class HmfController {
 		modoloMod = 100000D;
 		quotientMod = 5000D;
 	}
-
+	
 }

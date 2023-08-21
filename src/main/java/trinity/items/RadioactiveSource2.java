@@ -1,5 +1,9 @@
 package trinity.items;
 
+import java.util.List;
+
+import javax.annotation.Nullable;
+
 import nc.capability.radiation.source.IRadiationSource;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
@@ -11,11 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import trinity.Global;
 
-import javax.annotation.Nullable;
-import java.util.List;
-
-public class RadioactiveSource2 extends Item{
-
+public class RadioactiveSource2 extends Item {
+	
 	public double rads;
 	
 	private static final String RADIATION = Lang.localise("item.nuclearcraft.rads");
@@ -27,14 +28,11 @@ public class RadioactiveSource2 extends Item{
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
-	{
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 		IRadiationSource stackSource = RadiationHelper.getRadiationSource(stack);
-		if(stackSource==null)
-		{
-			if(this.rads>NCConfig.radiation_lowest_rate)
-			{
-				tooltip.add(RadiationHelper.getRadiationTextColor(this.rads*stack.getCount()) + RADIATION + " " + RadiationHelper.radsPrefix(this.rads*stack.getCount(), true));
+		if (stackSource == null) {
+			if (this.rads > NCConfig.radiation_lowest_rate) {
+				tooltip.add(RadiationHelper.getRadiationTextColor(this.rads * stack.getCount()) + RADIATION + " " + RadiationHelper.radsPrefix(this.rads * stack.getCount(), true));
 			}
 		}
 	}

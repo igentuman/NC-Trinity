@@ -1,15 +1,15 @@
 package trinity.explosion;
 
+import java.util.Random;
+
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
 
-import java.util.Random;
-
 public class ExplosionThermonuclear {
-
+	
 	private final static Random random = new Random();
-
+	
 	public int posX;
 	public int posY;
 	public int posZ;
@@ -53,10 +53,8 @@ public class ExplosionThermonuclear {
 		leg = nbt.getInteger(name + "leg");
 		element = nbt.getInteger(name + "element");
 	}
-
 	
-	public ExplosionThermonuclear(int x, int y, int z, World world, int rad)
-	{
+	public ExplosionThermonuclear(int x, int y, int z, World world, int rad) {
 		this.posX = x;
 		this.posY = y;
 		this.posZ = z;
@@ -65,12 +63,11 @@ public class ExplosionThermonuclear {
 		
 		this.radius = rad;
 		this.radius2 = this.radius * this.radius;
-
+		
 		this.nlimit = this.radius2 * 4;
 	}
 	
-	public boolean update()
-	{
+	public boolean update() {
 		breakColumn(this.lastposX, this.lastposZ);
 		this.shell = (int) Math.floor((Math.sqrt(n) + 1) / 2);
 		int shell2 = this.shell * 2;
@@ -81,9 +78,8 @@ public class ExplosionThermonuclear {
 		this.n++;
 		return this.n > this.nlimit;
 	}
-
-	private void breakColumn(int x, int z)
-	{
+	
+	private void breakColumn(int x, int z) {
 		int dist = (int) (radius - Math.sqrt(x * x + z * z));
 		
 		if (dist > 0) {
@@ -91,24 +87,32 @@ public class ExplosionThermonuclear {
 			int pX = posX + x;
 			int pZ = posZ + z;
 			
-			int y  = worldObj.getHeight(pX, pZ);
+			int y = worldObj.getHeight(pX, pZ);
 			pos.setPos(pX, y, pZ);
 			int maxdepth = (int) (10 + radius * 0.0625);
 			int depth = (int) ((maxdepth * dist / radius) + (Math.sin(dist * 0.15 + 2) * 2));//
 			
 			depth = Math.max(y - depth, 0);
 			
-			while(y > depth) {
-
+			while (y > depth) {
 				
 				worldObj.setBlockToAir(pos);
 				
 				y--;
 			}
-
+			
+			/*if(worldObj.rand.nextInt(10) == 0) {
+				worldObj.setBlock(pX, depth + 1, pZ, ModBlocks.balefire);
+				
+				if(worldObj.getBlock(pX, y, pZ) == ModBlocks.block_schrabidium_cluster)
+					worldObj.setBlock(pX, y, pZ, ModBlocks.block_euphemium_cluster, worldObj.getBlockMetadata(pX, y, pZ), 3);
+			}
+			
+			for(int i = depth; i > depth - 5; i--) {
+				if(worldObj.getBlock(pX, i, pZ) == Blocks.stone)
+					worldObj.setBlock(pX, i, pZ, ModBlocks.sellafield_slaked);
+			}*/
 		}
 	}
-
-
-
+	
 }

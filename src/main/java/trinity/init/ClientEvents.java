@@ -9,8 +9,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import trinity.Global;
 import trinity.util.Reference;
 
-@Mod.EventBusSubscriber(modid= Reference.MODID)
+@Mod.EventBusSubscriber(modid = Reference.MODID)
 public class ClientEvents {
+	
 	@SubscribeEvent
 	@SideOnly(Side.CLIENT)
 	public void textureStitch(TextureStitchEvent.Pre evt) {
@@ -18,6 +19,3 @@ public class ClientEvents {
 		evt.getMap().registerSprite(new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"));
 	}
 }
-
-
-

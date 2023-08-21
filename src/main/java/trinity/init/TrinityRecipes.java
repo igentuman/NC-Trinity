@@ -1,6 +1,7 @@
 package trinity.init;
 
 import com.google.common.collect.Lists;
+
 import nc.init.NCItems;
 import nc.recipe.NCRecipes;
 import nc.recipe.ingredient.FluidIngredient;
@@ -17,27 +18,29 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinity.config.TrinityConfig;
 
 public class TrinityRecipes {
-
+	
 	private static boolean initialized = false;
 	
 	public static FluidIngredient fluidStack(String fluidName, int stackSize) {
-		if (!FluidRegHelper.fluidExists(fluidName)) return null;
+		if (!FluidRegHelper.fluidExists(fluidName))
+			return null;
 		return new FluidIngredient(fluidName, stackSize);
 	}
-
+	
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-		if (initialized) return;
-
-		NCRecipes.chemical_reactor.addRecipe(fluidStack("witherite_water", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_acid", FluidStackHelper.BUCKET_VOLUME*2), fluidStack("barium_nitrate_solution", FluidStackHelper.BUCKET_VOLUME), fluidStack("carbon_dioxide", FluidStackHelper.BUCKET_VOLUME), 1D, 1D);
-		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitrogen", FluidStackHelper.BUCKET_VOLUME), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME*2), NCRecipes.chemical_reactor.emptyFluidStack(), 1D, 1D);
-		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME*2), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitrogen_dioxide", FluidStackHelper.BUCKET_VOLUME*2), NCRecipes.chemical_reactor.emptyFluidStack(), 1D, 1D);
-		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitrogen_dioxide", FluidStackHelper.BUCKET_VOLUME*3), fluidStack("water", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_acid", FluidStackHelper.BUCKET_VOLUME*2),fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME), 1D, 1D);
-		NCRecipes.electrolyzer.addRecipe(fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitrogen", FluidStackHelper.BUCKET_VOLUME/2), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME/2), NCRecipes.electrolyzer.emptyFluidStack(), NCRecipes.electrolyzer.emptyFluidStack(), 1D, 0.5D);
+		if (initialized)
+			return;
+		
+		NCRecipes.chemical_reactor.addRecipe(fluidStack("witherite_water", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_acid", FluidStackHelper.BUCKET_VOLUME * 2), fluidStack("barium_nitrate_solution", FluidStackHelper.BUCKET_VOLUME), fluidStack("carbon_dioxide", FluidStackHelper.BUCKET_VOLUME), 1D, 1D);
+		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitrogen", FluidStackHelper.BUCKET_VOLUME), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME * 2), NCRecipes.chemical_reactor.emptyFluidStack(), 1D, 1D);
+		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME * 2), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitrogen_dioxide", FluidStackHelper.BUCKET_VOLUME * 2), NCRecipes.chemical_reactor.emptyFluidStack(), 1D, 1D);
+		NCRecipes.chemical_reactor.addRecipe(fluidStack("nitrogen_dioxide", FluidStackHelper.BUCKET_VOLUME * 3), fluidStack("water", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitric_acid", FluidStackHelper.BUCKET_VOLUME * 2), fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME), 1D, 1D);
+		NCRecipes.electrolyzer.addRecipe(fluidStack("nitric_oxide", FluidStackHelper.BUCKET_VOLUME), fluidStack("nitrogen", FluidStackHelper.BUCKET_VOLUME / 2), fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME / 2), NCRecipes.electrolyzer.emptyFluidStack(), NCRecipes.electrolyzer.emptyFluidStack(), 1D, 0.5D);
 		NCRecipes.enricher.addRecipe("dustWitherite", fluidStack("water", FluidStackHelper.BUCKET_VOLUME), fluidStack("witherite_water", FluidStackHelper.GEM_VOLUME), 1D, 1D);
-		NCRecipes.enricher.addRecipe("dustBariumOxide", fluidStack("nitric_acid", FluidStackHelper.GEM_VOLUME*2), fluidStack("barium_nitrate_solution", FluidStackHelper.GEM_VOLUME*2), 1D, 1D);
+		NCRecipes.enricher.addRecipe("dustBariumOxide", fluidStack("nitric_acid", FluidStackHelper.GEM_VOLUME * 2), fluidStack("barium_nitrate_solution", FluidStackHelper.GEM_VOLUME * 2), 1D, 1D);
 		NCRecipes.enricher.addRecipe("dustBariumNitrate", fluidStack("water", FluidStackHelper.BUCKET_VOLUME), fluidStack("barium_nitrate_solution", FluidStackHelper.GEM_VOLUME), 1D, 1D);
-		NCRecipes.enricher.addRecipe("dustBariumNitrate", fluidStack("tnt", FluidStackHelper.BUCKET_VOLUME/5), fluidStack("baratol", FluidStackHelper.BUCKET_VOLUME/5), 1D, 1D);
+		NCRecipes.enricher.addRecipe("dustBariumNitrate", fluidStack("tnt", FluidStackHelper.BUCKET_VOLUME / 5), fluidStack("baratol", FluidStackHelper.BUCKET_VOLUME / 5), 1D, 1D);
 		NCRecipes.infuser.addRecipe("ingotLithium6", fluidStack("deuterium", FluidStackHelper.BUCKET_VOLUME), "ingotLithium6Deuteride", 1D, 1D);
 		NCRecipes.infuser.addRecipe("dustBarium", fluidStack("oxygen", FluidStackHelper.BUCKET_VOLUME), "dustBariumOxide", 1D, 1D);
 		NCRecipes.infuser.addRecipe(ModBlocks.empty_fusion_bomb, fluidStack("deuterium-tritium_mixture", FluidStackHelper.BUCKET_VOLUME), ModBlocks.fusion_bomb, 1D, 1D);
@@ -45,34 +48,33 @@ public class TrinityRecipes {
 		NCRecipes.crystallizer.addRecipe(fluidStack("witherite_water", FluidStackHelper.GEM_VOLUME), "dustWitherite", 1D, 1D);
 		NCRecipes.ingot_former.addRecipe(fluidStack("baratol", FluidStackHelper.BUCKET_VOLUME), ModBlocks.baratol, 1D, 1D);
 		NCRecipes.fission_irradiator.addRecipe(Lists.newArrayList("ingotGold", "dustGold"), "dustGold198", 1600000, 0, 0);
-		NCRecipes.salt_mixer.addRecipe(fluidStack("deuterium", FluidStackHelper.BUCKET_VOLUME/2), fluidStack("tritium", FluidStackHelper.BUCKET_VOLUME/2), fluidStack("deuterium-tritium_mixture", FluidStackHelper.BUCKET_VOLUME), 0.5D, 0.5D);
+		NCRecipes.salt_mixer.addRecipe(fluidStack("deuterium", FluidStackHelper.BUCKET_VOLUME / 2), fluidStack("tritium", FluidStackHelper.BUCKET_VOLUME / 2), fluidStack("deuterium-tritium_mixture", FluidStackHelper.BUCKET_VOLUME), 0.5D, 0.5D);
 		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.light_container, 1, 0), new Object[] {"SSS", "SCS", "SSS", 'S', new ItemStack(NCItems.rad_shielding, 1, 0), 'C', Blocks.CHEST});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.medium_container, 1, 0), new Object[] {"SSS", "SCS", "SSS", 'S', new ItemStack(NCItems.rad_shielding, 1, 1), 'C', Blocks.CHEST});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.heavy_container, 1, 0), new Object[] {"SSS", "SCS", "SSS", 'S', new ItemStack(NCItems.rad_shielding, 1, 2), 'C', Blocks.CHEST});
 		
-		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.solid_trinitite, 1, 0), new Object[] {"TTT", "TTT", "TTT", 'T', ModItems.trinitite});		
+		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.solid_trinitite, 1, 0), new Object[] {"TTT", "TTT", "TTT", 'T', ModItems.trinitite});
 		
-		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.detonator, 1, 0), new Object[] {"TP ", "PBP", " P ", 'T', Blocks.REDSTONE_TORCH, 'P', "ingotPlutonium242", 'B', Blocks.STONE_BUTTON});		
+		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.detonator, 1, 0), new Object[] {"TP ", "PBP", " P ", 'T', Blocks.REDSTONE_TORCH, 'P', "ingotPlutonium242", 'B', Blocks.STONE_BUTTON});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.compression_charge, 1, 0), new Object[] {"STB", "TB ", "STB", 'S', "ingotLead", 'T', Blocks.TNT, 'B', ModBlocks.baratol});
 		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.neutron_initiator, 1, 0), new Object[] {" B ", "BPB", " B ", 'P', "dustPolonium", 'B', "ingotBeryllium"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.neutron_initiator, 1, 0), new Object[] {" B ", "BPB", " B ", 'P', "ingotPolonium", 'B', "ingotBeryllium"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.neutron_initiator, 1, 0), new Object[] {" B ", "BPB", " B ", 'P', "dustPolonium210", 'B', "ingotBeryllium"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.neutron_initiator, 1, 0), new Object[] {" B ", "BPB", " B ", 'P', "ingotPolonium210", 'B', "ingotBeryllium"});
-
+		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.empty_fusion_bomb, 1, 0), new Object[] {"CCC", "M M", "CCC", 'C', ModBlocks.compression_charge, 'M', "solenoidCopper"});
 		
-		//CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.source_au_198, 1, 0), new Object[] {"BBB", "BSB", "BBB", 'S', "ingotGold198",'B', "bioplastic"});
-		//CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.source_au_198, 1, 0), new Object[] {"BBB", "BSB", "BBB", 'S', "dustGold198",'B', "bioplastic"});
+		// CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.source_au_198, 1, 0), new Object[] {"BBB", "BSB", "BBB", 'S', "ingotGold198",'B', "bioplastic"});
+		// CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.source_au_198, 1, 0), new Object[] {"BBB", "BSB", "BBB", 'S', "dustGold198",'B', "bioplastic"});
 		
-		//if(Trinity.QMDLoaded)
-		//{
-		//	QMDRecipes.irradiator_fuel.addRecipe(new ItemStack(ModItems.source_au_198, 1, 0), 20D);
-		//}
+		// if(Trinity.QMDLoaded)
+		// {
+		// QMDRecipes.irradiator_fuel.addRecipe(new ItemStack(ModItems.source_au_198, 1, 0), 20D);
+		// }
 		
-		if(TrinityConfig.thermonuclear)
-		{
+		if (TrinityConfig.thermonuclear) {
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.thermonuclear_core_pu239, 1, 0), new Object[] {"LLL", "PPP", "LLL", 'L', "ingotLithium6Deuteride", 'P', "ingotPlutonium239"});
 		}
 		
@@ -87,7 +89,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_bk248, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_bk248});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_cf249, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_cf249});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_cf251, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_cf251});
-
+		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_u233, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_u233});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_u235, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_u235});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_np237, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_np237});
@@ -107,7 +109,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_bk248, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotBerkelium248", 'N', ModItems.neutron_initiator});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_cf249, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotCalifornium249", 'N', ModItems.neutron_initiator});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_cf251, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotCalifornium251", 'N', ModItems.neutron_initiator});
-
+		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_u233, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u233, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_u235, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u235, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_np237, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_np237, 'F', "ingotUranium238"});
@@ -117,7 +119,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_bk248, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_bk248, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_cf249, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_cf249, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_cf251, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_cf251, 'F', "ingotUranium238"});
-
+		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_u233, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u233, 'F', "ingotGold"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_u235, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u235, 'F', "ingotGold"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_np237, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_np237, 'F', "ingotGold"});
@@ -138,13 +140,12 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapelessOreRecipe(new ItemStack(ModBlocks.gold_bomb, 1, 0), Blocks.TNT, "dustGold198");
 		CraftingRecipeHandler.addShapelessOreRecipe(new ItemStack(ModBlocks.gold_bomb, 1, 0), Blocks.TNT, "ingotGold198");
 		GameRegistry.addSmelting(ModItems.dust_au_198, new ItemStack(ModItems.ingot_au_198, 1, 0), 0);
-		if(TrinityConfig.custom_nukes)
-		{
+		if (TrinityConfig.custom_nukes) {
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom1, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_1});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom2, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_2});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom3, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_3});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom4, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_4});
-
+			
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom1, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_1});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom2, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_2});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom3, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_3});
@@ -162,7 +163,7 @@ public class TrinityRecipes {
 		
 		initialized = true;
 	}
-//
+	//
 	/*public static void init() {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.solid_trinitite, 1, 0), new Object[] {"TTT", "TTT", "TTT", 'T', ModItems.trinitite});		
 		
@@ -190,7 +191,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_bk248, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_bk248});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_cf249, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_cf249});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_cf251, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_cf251});
-
+	
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_u233, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_u233});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_u235, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_u235});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_np237, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_np237});
@@ -210,7 +211,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_bk248, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotBerkelium248", 'N', ModItems.neutron_initiator});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_cf249, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotCalifornium249", 'N', ModItems.neutron_initiator});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bomb_pit_cf251, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'F', "ingotCalifornium251", 'N', ModItems.neutron_initiator});
-
+	
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_u233, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u233, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_u235, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u235, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_np237, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_np237, 'F', "ingotUranium238"});
@@ -220,7 +221,7 @@ public class TrinityRecipes {
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_bk248, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_bk248, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_cf249, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_cf249, 'F', "ingotUranium238"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.core_cf251, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_cf251, 'F', "ingotUranium238"});
-
+	
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_u233, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u233, 'F', "ingotGold"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_u235, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_u235, 'F', "ingotGold"});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_core_np237, 1, 0), new Object[] {"FFF", "FNF", "FFF", 'N', ModItems.bomb_pit_np237, 'F', "ingotGold"});
@@ -245,7 +246,7 @@ public class TrinityRecipes {
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom2, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_2});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom3, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_3});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bomb_custom4, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.core_custom_4});
-
+	
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom1, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_1});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom2, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_2});
 			CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.salted_bomb_custom3, 1, 0), new Object[] {"CCC", "CNC", "CCC", 'C', ModBlocks.compression_charge, 'N', ModBlocks.salted_core_custom_3});

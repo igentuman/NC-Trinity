@@ -1,5 +1,9 @@
 package trinity.config;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import nc.util.Lang;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
@@ -10,33 +14,30 @@ import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import trinity.util.Reference;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 public class TrinityConfig {
+	
 	private static Configuration config = null;
-
+	
 	private static double salted = 50;
 	
-	private static int u233 = 130/2;
-	private static int u235 = 108/2;
-	private static int np237 = 81/2;
-	private static int pu239 = 140/2;
-	private static int am242 = 173/2;
-	private static int cm247 = 124/2;
-	private static int bk248 = 122/2;
-	private static int cf249 = 194/2;
-	private static int cf251 = 203/2;
-	private static int cust1 = 100/2;
-	private static int cust2 = 100/2;
-	private static int cust3 = 100/2;
-	private static int cust4 = 100/2;
-	private static int icbm = 100/2;
-	private static int anti = 50/2;
+	private static int u233 = 130 / 2;
+	private static int u235 = 108 / 2;
+	private static int np237 = 81 / 2;
+	private static int pu239 = 140 / 2;
+	private static int am242 = 173 / 2;
+	private static int cm247 = 124 / 2;
+	private static int bk248 = 122 / 2;
+	private static int cf249 = 194 / 2;
+	private static int cf251 = 203 / 2;
+	private static int cust1 = 100 / 2;
+	private static int cust2 = 100 / 2;
+	private static int cust3 = 100 / 2;
+	private static int cust4 = 100 / 2;
+	private static int icbm = 100 / 2;
+	private static int anti = 50 / 2;
 	private static int max = 1000;
 	private static int speed = 512;
-	//private static int cap = 300;
+	// private static int cap = 300;
 	private static float multiplier = 5;
 	private static boolean render = true;
 	
@@ -45,7 +46,7 @@ public class TrinityConfig {
 	private static boolean custom = false;
 	
 	public static final String CATEGORY_NAME_OTHER = "Nuclear Weapons";
-
+	
 	public static double salted_burst;
 	
 	public static int u233_radius;
@@ -90,44 +91,44 @@ public class TrinityConfig {
 	
 	public static boolean custom_nukes;
 	
-	//public static int capacity;
+	// public static int capacity;
 	
 	public static void preInit() {
 		File configFile = new File(Loader.instance().getConfigDir(), "trinity.cfg");
 		config = new Configuration(configFile);
 		syncFromFiles();
-
+		
 	}
-
+	
 	public static Configuration getConfig() {
 		return config;
-
+		
 	}
-
+	
 	public static void clientPreInit() {
 		MinecraftForge.EVENT_BUS.register(new ConfigEventHandler());
-
+		
 	}
-
+	
 	public static void syncFromFiles() {
 		syncConfig(true, true);
-
+		
 	}
-
+	
 	public static void syncFromGui() {
 		syncConfig(false, true);
-
+		
 	}
-
+	
 	public static void syncFromFields() {
 		syncConfig(false, false);
-
+		
 	}
-
+	
 	private static void syncConfig(boolean loadFromFile, boolean setFromConfig) {
 		if (loadFromFile)
 			config.load();
-
+		
 		Property propertyCustom = config.get(CATEGORY_NAME_OTHER, "custom_nukes", new Boolean(custom), Lang.localise("gui.config.nuke.custom_nukes.comment"));
 		propertyCustom.setLanguageKey("gui.config.nuke.custom_nukes");
 		
@@ -145,34 +146,34 @@ public class TrinityConfig {
 		
 		Property propertyU233Radius = config.get(CATEGORY_NAME_OTHER, "u233_radius", new Integer(u233), Lang.localise("gui.config.nuke.u233_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.u233_radius");
-
+		
 		Property propertyU235Radius = config.get(CATEGORY_NAME_OTHER, "u235_radius", new Integer(u235), Lang.localise("gui.config.nuke.u235_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.u235_radius");
 		
 		Property propertyNp237Radius = config.get(CATEGORY_NAME_OTHER, "np237_radius", new Integer(np237), Lang.localise("gui.config.nuke.np237_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyNp237Radius.setLanguageKey("gui.config.nuke.np237_radius");
-
+		
 		Property propertyPu239Radius = config.get(CATEGORY_NAME_OTHER, "pu239_radius", new Integer(pu239), Lang.localise("gui.config.nuke.pu239_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyPu239Radius.setLanguageKey("gui.config.nuke.pu239_radius");
-
+		
 		Property propertyAm242Radius = config.get(CATEGORY_NAME_OTHER, "am242_radius", new Integer(am242), Lang.localise("gui.config.nuke.am242_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyPu239Radius.setLanguageKey("gui.config.nuke.am242_radius");
 		
 		Property propertyCm247Radius = config.get(CATEGORY_NAME_OTHER, "cm247_radius", new Integer(cm247), Lang.localise("gui.config.nuke.cm247_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCm247Radius.setLanguageKey("gui.config.nuke.cm247_radius");
-
+		
 		Property propertyBk248Radius = config.get(CATEGORY_NAME_OTHER, "bk248_radius", new Integer(bk248), Lang.localise("gui.config.nuke.bk248_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyBk248Radius.setLanguageKey("gui.config.nuke.bk248_radius");
 		
 		Property propertyCf249Radius = config.get(CATEGORY_NAME_OTHER, "cf249_radius", new Integer(cf249), Lang.localise("gui.config.nuke.cf249_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCf249Radius.setLanguageKey("gui.config.nuke.cf249_radius");
-
+		
 		Property propertyCf251Radius = config.get(CATEGORY_NAME_OTHER, "cf251_radius", new Integer(cf251), Lang.localise("gui.config.nuke.cf251_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCf251Radius.setLanguageKey("gui.config.nuke.cf251_radius");
-
+		
 		Property propertyCustom1Radius = config.get(CATEGORY_NAME_OTHER, "custom1_radius", new Integer(cust1), Lang.localise("gui.config.nuke.cust1_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom1Radius.setLanguageKey("gui.config.nuke.cust1_radius");
-
+		
 		Property propertyCustom2Radius = config.get(CATEGORY_NAME_OTHER, "custom2_radius", new Integer(cust2), Lang.localise("gui.config.nuke.cust2_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom2Radius.setLanguageKey("gui.config.nuke.cust2_radius");
 		
@@ -194,12 +195,11 @@ public class TrinityConfig {
 		Property propertySpeed = config.get(CATEGORY_NAME_OTHER, "speed", new Integer(speed), Lang.localise("gui.config.nuke.speed.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.speed");
 		
-		//Property propertyCapacity = config.get(CATEGORY_NAME_OTHER, "capacity", new Integer(cap), Lang.localise("gui.config.nuke.capacity.comment"), 1, Integer.MAX_VALUE);
-		//propertyU233Radius.setLanguageKey("gui.config.nuke.capacity");
+		// Property propertyCapacity = config.get(CATEGORY_NAME_OTHER, "capacity", new Integer(cap), Lang.localise("gui.config.nuke.capacity.comment"), 1, Integer.MAX_VALUE);
+		// propertyU233Radius.setLanguageKey("gui.config.nuke.capacity");
 		
 		List<String> propertyOrderOther = new ArrayList<String>();
 		config.setCategoryPropertyOrder(CATEGORY_NAME_OTHER, propertyOrderOther);
-
 		
 		if (setFromConfig) {
 			custom_nukes = propertyCustom.getBoolean();
@@ -224,7 +224,7 @@ public class TrinityConfig {
 			antimatter_radius = propertyAntimatterRadius.getInt();
 			max_radius = propertyMaxRadius.getInt();
 			fallout_speed = propertySpeed.getInt();
-			//capacity = propertyCapacity.getInt();
+			// capacity = propertyCapacity.getInt();
 		}
 		propertyCustom.set(custom_nukes);
 		propertyThermonuclear.set(thermonuclear);
@@ -248,13 +248,13 @@ public class TrinityConfig {
 		propertyAntimatterRadius.set(antimatter_radius);
 		propertyMaxRadius.set(max_radius);
 		propertySpeed.set(fallout_speed);
-		//propertyCapacity.set(capacity);
+		// propertyCapacity.set(capacity);
 		
 		if (config.hasChanged())
 			config.save();
-
+		
 	}
-
+	
 	private static double[] readDoubleArrayFromConfig(Property property) {
 		int currentLength = property.getDoubleList().length;
 		int defaultLength = property.getDefaults().length;
@@ -266,7 +266,8 @@ public class TrinityConfig {
 			for (int i = 0; i < defaultLength; i++) {
 				newArray[i] = property.getDoubleList()[i];
 			}
-		} else {
+		}
+		else {
 			for (int i = 0; i < currentLength; i++) {
 				newArray[i] = property.getDoubleList()[i];
 			}
@@ -276,15 +277,14 @@ public class TrinityConfig {
 		}
 		return newArray;
 	}
-
 	
 	public static class ConfigEventHandler {
-
+		
 		@SubscribeEvent(priority = EventPriority.LOWEST)
 		public void onEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
 			if (event.getModID().equals(Reference.MODID)) {
 				syncFromGui();
-			
+				
 			}
 		}
 	}
