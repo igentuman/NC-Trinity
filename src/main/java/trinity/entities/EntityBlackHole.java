@@ -1,50 +1,17 @@
 package trinity.entities;
 
-import java.util.List;
-import java.util.Random;
-
-import nc.init.NCBlocks;
-//import com.hbm.explosion.NukeEnvironmentalEffect;
-//import com.hbm.lib.Library;
-//import com.hbm.main.MainRegistry;
-//import com.hbm.potion.HbmPotion;
-//import com.hbm.saveddata.AuxSavedData;
-import nc.worldgen.biome.NCBiomes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCactus;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityFallingBlock;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-//import net.minecraft.util.AxisAlignedBB;
-//import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-//import net.minecraftforge.common.util.ForgeDirection;
-import trinity.handler.Vec3;
-import trinity.init.ModBlocks;
+
+import java.util.List;
+import java.util.Random;
 
 public class EntityBlackHole extends Entity {
 	
@@ -56,9 +23,6 @@ public class EntityBlackHole extends Entity {
     
     private final static Random random = new Random();
     
-//	public int revProgress;
-//	public int radProgress;
-
 	public EntityBlackHole(World worldIn) {
 		super(worldIn);
 		this.ignoreFrustumCheck = true;
@@ -74,79 +38,11 @@ public class EntityBlackHole extends Entity {
 		this.getDataManager().set(DIM, dim);
 	}
 
-	/*@Override
-    @SideOnly(Side.CLIENT)
-    public AxisAlignedBB getRenderBoundingBox()
-    {
-		double X = this.posX;
-		double X2 = MathHelper.floor(X - getScale() - 1.0D);
-		double X3 = MathHelper.floor(X + getScale() - 1.0D);
-		double Y = this.posY;
-		double Y2 = MathHelper.floor(Y - getScale() - 1.0D);
-		double Y3 = MathHelper.floor(Y + getScale() - 1.0D);
-		double Z = this.posZ;
-		double Z2 = MathHelper.floor(Z - getScale() - 1.0D);
-		double Z3 = MathHelper.floor(Z + getScale() - 1.0D);
-		AxisAlignedBB bb = new AxisAlignedBB(X2,Y2,Z2,X3,Y3,Z3);
-		return bb;
-        //return this.getEntityBoundingBox();
-    }*/
 	
     @Override
 	public void onUpdate() {
     	float scale = this.getDataManager().get(SCALE);
-        /*if(!world.isRemote) {
-        	MutableBlockPos pos = new BlockPos.MutableBlockPos();
-        	MutableBlockPos pos2 = new BlockPos.MutableBlockPos();
-        	MutableBlockPos pos3 = new BlockPos.MutableBlockPos();
-        	MutableBlockPos pos4 = new BlockPos.MutableBlockPos();
-        	MutableBlockPos pos5 = new BlockPos.MutableBlockPos();
-        	for(int i = 0; i < 512; i++) {
-        		
-	        	Vec3 vec = Vec3.createVectorHelper(radProgress * 0.5, 0, 0);
-	        	Vec3 vec2 = Vec3.createVectorHelper(0, radProgress * 0.5, 0);
-	        	double circum = radProgress * 2 * Math.PI * 2;
-	        	
-	        	///
-	        	if(circum == 0)
-	        		circum = 1;
-	        	///
-	        	
-	        	double part = 360D / circum;
-	        	
-	        	vec.rotateAroundY((float) (part * revProgress));
-	        	vec2.rotateAroundZ((float) (part * revProgress));
-	        	
-	        	int x = (int) (posX + vec.xCoord);
-	        	int y = (int) (posY + vec2.yCoord);
-	        	int z = (int) (posZ + vec.zCoord);
-	        	
-	        	double dist = radProgress * 100 / getScale() * 0.5;
-	        	pos.setPos(x, y, z);
-	        	/*pos2.setPos(x-1, posY, z);
-	        	pos3.setPos(x+1, posY, z);
-	        	pos4.setPos(x, posY, z-1);
-	        	pos5.setPos(x, posY, z-1);
-	        	blast(pos, dist);
-	        	/*blast(pos2, dist);
-	        	blast(pos3, dist);
-	        	blast(pos4, dist);
-	        	blast(pos5, dist);
-	        	
-	        	revProgress++;
-	        	
-	        	if(revProgress > circum) {
-	        		revProgress = 0;
-	        		radProgress++;
-	        	}
-	        	
-	        	if(radProgress > getScale() * 2D) {
-	        		
-	        		this.setDead();
-	        	}
-        	}
-        }*/
-	    		gravity(world, (int)this.posX, (int)this.posY, (int)this.posZ, (int)Math.ceil(scale * 15));
+	    gravity(world, (int)this.posX, (int)this.posY, (int)this.posZ, (int)Math.ceil(scale * 15));
     }
     
     public static void gravity(World world, int x, int y, int z, int radius) {
@@ -212,8 +108,6 @@ public class EntityBlackHole extends Entity {
 		setScale(p_70037_1_.getInteger("X"));
 		setScale(p_70037_1_.getInteger("Y"));
 		setScale(p_70037_1_.getInteger("Z"));
-		//revProgress = p_70037_1_.getInteger("revProgress");
-		//radProgress = p_70037_1_.getInteger("radProgress");
 	}
 
 	@Override
@@ -223,9 +117,7 @@ public class EntityBlackHole extends Entity {
 		p_70014_1_.setInteger("X", getX());
 		p_70014_1_.setInteger("Y", getY());
 		p_70014_1_.setInteger("Z", getZ());
-		//p_70014_1_.setInteger("revProgress", revProgress);
-		//p_70014_1_.setInteger("radProgress", radProgress);
-		
+
 	}
 	public void setScale(float i) {
 

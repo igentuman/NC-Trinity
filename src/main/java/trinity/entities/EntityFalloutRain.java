@@ -1,58 +1,35 @@
 package trinity.entities;
 
-import java.util.List;
-
 import nc.init.NCBlocks;
-//import com.hbm.explosion.NukeEnvironmentalEffect;
-//import com.hbm.lib.Library;
-//import com.hbm.main.MainRegistry;
-//import com.hbm.potion.HbmPotion;
-//import com.hbm.saveddata.AuxSavedData;
 import nc.worldgen.biome.NCBiomes;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockCactus;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.BlockMobSpawner;
-import net.minecraft.block.BlockSilverfish;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-//import net.minecraft.util.AxisAlignedBB;
-//import net.minecraft.util.Vec3;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeOcean;
 import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.common.ForgeChunkManager;
-//import thaumcraft.api.aura.AuraHelper;
-//import thaumcraft.api.blocks.BlocksTC;
-import trinity.Trinity;
 import trinity.config.TrinityConfig;
-//import net.minecraftforge.common.util.ForgeDirection;
-import trinity.handler.Vec3;
 import trinity.handler.INuclearEffect;
+import trinity.handler.Vec3;
 import trinity.init.ModBlocks;
 import trinity.world.TrinityBiomes;
 
@@ -62,8 +39,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
     private static final DataParameter<Boolean> SALTED = EntityDataManager.<Boolean>createKey(EntityFalloutRain.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> THERMONUCLEAR = EntityDataManager.<Boolean>createKey(EntityFalloutRain.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Integer> INTENSITY = EntityDataManager.<Integer>createKey(EntityFalloutRain.class, DataSerializers.VARINT);
-    //private static final DataParameter<Boolean> RADIOACTIVE = EntityDataManager.<Boolean>createKey(EntityFalloutRain.class, DataSerializers.BOOLEAN);
-    
+
 	public int revProgress;
 	public int radProgress;
 	private boolean salted;
@@ -120,20 +96,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
     @Override
 	public void onUpdate() {
 
-        /*if (this.world.isRemote)
-        {
-            for (int x = (int) (this.posX-getScale()); this.posX < (int) (this.posX+getScale()); ++x)
-            {
-                for (int z = (int) (this.posZ-getScale()); this.posZ < (int) (this.posZ+getScale()); ++x)
-                {
-                    for (int y = 0; this.posY < 256; ++x)
-                    {
-                    	this.world.spawnParticle(EnumParticleTypes.PORTAL, (double)x, (double)y, (double)z, x, y-0.5, z);
-                    }
-                }
-            }
-        }*/
-
         if(!world.isRemote) {
         	MutableBlockPos pos = new BlockPos.MutableBlockPos();
         	for(int i = 0; i < TrinityConfig.fallout_speed; i++) {
@@ -155,7 +117,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 	        	
 	        	double dist = radProgress * 100 / getScale() * 0.5;
 	        	pos.setPos(x, posY, z);
-	        	//System.out.println("Is this radioactive? "+getRadioactive());
 	        	contaminate(pos, dist);
 	        	
 	        	revProgress++;
@@ -243,10 +204,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 				{
 					world.setBlockToAir(up);
 				}
-    			/*if(!getRadioactive())
-    			{
-    				world.setBlockState(pos, Blocks.DIRT.getDefaultState());
-    			}*/
+
 				if(getThermonuclear())
 				{
 					if(getIntensity()>0)
@@ -256,7 +214,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 						{
 							world.setBlockState(pos, ModBlocks.radioactive_earth2.getDefaultState());
 						}
-						else
 						world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					}
 				}
@@ -265,10 +222,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 					world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					return;
 				}
-				//if(getRadioactive())
-				//{
-					world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
-				//}
+				world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
     			return;
     			
     		} else if(b.getBlock() == Blocks.MYCELIUM) {
@@ -281,7 +235,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 						{
 							world.setBlockState(pos, ModBlocks.radioactive_earth2.getDefaultState());
 						}
-						else
 						world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					}
 				}
@@ -290,10 +243,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 					world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					return;
 				}
-				//if(getRadioactive())
-				//{
-					world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
-				//}
+				world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
     			return;
     		} else if(b.getMaterial() == Material.GROUND) {
     			depth++;
@@ -313,7 +263,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 						{
 							world.setBlockState(pos, ModBlocks.radioactive_earth2.getDefaultState());
 						}
-						else
 						world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					}
 				}
@@ -322,10 +271,8 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
     					world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
     					return;
     				}
-    				//if(getRadioactive())
-    				//{
-    					world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
-    				//}
+				world.setBlockState(pos, NCBlocks.wasteland_earth.getDefaultState());
+
     			return;
     		} else if(b.getBlock() == Blocks.SAND) {   					    			
     			if(dist<30)
@@ -347,7 +294,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 						{
 							world.setBlockState(pos, ModBlocks.salted_sand2.getDefaultState());
 						}
-						else
 						world.setBlockState(pos, ModBlocks.salted_sand.getDefaultState());
 					}
 				}
@@ -371,7 +317,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 						{
 							world.setBlockState(pos, ModBlocks.radioactive_earth2.getDefaultState());
 						}
-						else
 						world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
 					}
 				}
@@ -382,19 +327,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
     			return;
 			}
 			
-			/*if(Trinity.TCLoaded)
-			{
-				float vis=AuraHelper.getVis(world, pos);
-				float flux=AuraHelper.getFlux(world, pos);
-				AuraHelper.drainVis(world, pos, vis, false);
-				AuraHelper.drainFlux(world, pos, flux, false);
-				Block block = b.getBlock();
-				if(block==BlocksTC.crystalAir||block==BlocksTC.crystalEarth||block==BlocksTC.crystalEntropy||block==BlocksTC.crystalFire||block==BlocksTC.crystalOrder||block==BlocksTC.crystalTaint||block==BlocksTC.crystalWater)
-				{
-					world.setBlockToAir(pos);
-				}
-			}*/
-			
 			else if (b.getBlock() instanceof BlockFluidClassic) {
 				//world.setBlockState(pos, ModBlocks.radioactive_earth.getDefaultState());
     			break;
@@ -404,29 +336,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 				world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState());
     			return;
 			}
-
-			/*else if (b.getBlock() == Blocks.MONSTER_EGG) {
-				if(b.getValue(BlockSilverfish.VARIANT)==BlockSilverfish.EnumType.COBBLESTONE)
-				{
-					world.setBlockState(pos, Blocks.COBBLESTONE.getDefaultState());
-					return;
-				}
-				if(b.getValue(BlockSilverfish.VARIANT)==BlockSilverfish.EnumType.STONE)
-				{
-					world.setBlockState(pos, Blocks.STONE.getDefaultState());
-					return;
-				}
-				if(b.getValue(BlockSilverfish.VARIANT)==BlockSilverfish.EnumType.STONEBRICK)
-				{
-					world.setBlockState(pos, Blocks.STONEBRICK.getDefaultState());
-					return;
-				}
-				if(b.getValue(BlockSilverfish.VARIANT)==BlockSilverfish.EnumType.MOSSY_STONEBRICK)
-				{
-					world.setBlockState(pos, Blocks.STONEBRICK.getDefaultState());
-					return;
-				}
-			}*/
 			
 			else if (b.getMaterial()==Material.WOOD) {							
 				if(dist<65)
@@ -443,19 +352,16 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 					world.setBlockToAir(pos);
 					return;
 				}
-				continue;
 			}
 
 			else if (b.getMaterial()==Material.CACTUS && dist<65) {							
 				world.setBlockState(pos, Blocks.FIRE.getDefaultState());
-				continue;
 			}
 
 			else if (b.getMaterial()==Material.GOURD) {
 				if(dist<65)
 				{
 					world.setBlockState(pos, Blocks.FIRE.getDefaultState());
-					continue;
 				}
 				else
 				{
@@ -465,22 +371,19 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 			
 			else if (b.getBlock() instanceof BlockCactus && dist<65) {							
 				world.setBlockState(pos, Blocks.FIRE.getDefaultState());
-				continue;
 			}
 			
 			else if (b.getBlock() ==Blocks.STONE && dist<(100/TrinityConfig.fallout_multiplier) && getThermonuclear()) {							
-				if(rand.nextInt((int)((dist+1)*10))<=1)
-				world.setBlockState(pos, Blocks.LAVA.getDefaultState());
-				continue;
+				if(rand.nextInt((int)((dist+1)*10))<=1) {
+					world.setBlockState(pos, Blocks.LAVA.getDefaultState());
+				}
 			}
 			
 			else if (b.getBlock() == Blocks.BROWN_MUSHROOM_BLOCK || b.getBlock() == Blocks.RED_MUSHROOM_BLOCK) {
 				world.setBlockToAir(pos);
-				continue;
 			}
 			
 			else if(b.getBlock().isNormalCube(world.getBlockState(pos))) {
-
 				return;
 			}
     	}
@@ -491,7 +394,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 		this.dataManager.register(SCALE, Integer.valueOf(0));
 		this.dataManager.register(SALTED, Boolean.valueOf(false));
 		this.dataManager.register(THERMONUCLEAR, Boolean.valueOf(false));
-		//this.dataManager.register(RADIOACTIVE, Boolean.valueOf(false));
 		this.dataManager.register(INTENSITY, Integer.valueOf(0));
 	}
 
@@ -500,7 +402,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 		setScale(p_70037_1_.getInteger("scale"));
 		setSalted(p_70037_1_.getBoolean("salted"));
 		setThermonuclear(p_70037_1_.getBoolean("thermonuclear"));
-		//setRadioactive(p_70037_1_.getBoolean("radioactive"));
 		setIntensity(p_70037_1_.getInteger("intensity"));
 		revProgress = p_70037_1_.getInteger("revProgress");
 		radProgress = p_70037_1_.getInteger("radProgress");
@@ -511,7 +412,6 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 		p_70014_1_.setInteger("scale", getScale());
 		p_70014_1_.setBoolean("salted", getSalted());
 		p_70014_1_.setBoolean("thermonuclear", getThermonuclear());
-		//p_70014_1_.setBoolean("radioactive", getRadioactive());
 		p_70014_1_.setInteger("intensity", getIntensity());
 		p_70014_1_.setInteger("revProgress", revProgress);
 		p_70014_1_.setInteger("radProgress", radProgress);
@@ -541,19 +441,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 		
 		return thermo == false ? false : thermo;
 	}
-	
-	/*public void setRadioactive(boolean i) {
 
-		this.dataManager.set(RADIOACTIVE, Boolean.valueOf(i));
-	}
-
-	public boolean getRadioactive() {
-
-		boolean thermo = this.dataManager.get(RADIOACTIVE);
-		
-		return thermo == false ? false : thermo;
-	}*/
-	
 	public void setIntensity(int i) {
 
 		this.dataManager.set(INTENSITY, Integer.valueOf(i));

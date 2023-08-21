@@ -1,21 +1,5 @@
 package trinity;
 
-import java.util.Comparator;
-import java.util.List;
-
-import com.google.common.collect.Ordering;
-
-import nc.handler.GuiHandler;
-import trinity.config.TrinityConfig;
-import trinity.gui.GuiHandlerRegistry;
-import trinity.init.ModBlocks;
-import trinity.init.TrinityRecipes;
-import trinity.radiation.RadiationHandler;
-import trinity.world.ChunkLoader;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-//import nca.worldgen.OreGen;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Loader;
@@ -28,8 +12,9 @@ import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import scala.actors.threadpool.Arrays;
+import trinity.config.TrinityConfig;
+import trinity.gui.GuiHandlerRegistry;
+import trinity.world.ChunkLoader;
 
 
 

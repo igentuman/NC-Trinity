@@ -1,7 +1,5 @@
 package trinity.entities;
 
-import trinity.handler.INuclearEffect;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinity.handler.INuclearEffect;
 
 public class EntityNuclearCloud extends Entity implements INuclearEffect {
 
@@ -38,10 +37,6 @@ public class EntityNuclearCloud extends Entity implements INuclearEffect {
 		this.age = 0;
 
 	}
-//	@Override
-//	public boolean shouldRenderInPass() {
-//		
-//	}
 	
 	@Override
     @SideOnly(Side.CLIENT)
@@ -58,7 +53,6 @@ public class EntityNuclearCloud extends Entity implements INuclearEffect {
 		double Z3 = MathHelper.floor(Z + 200 - 1.0D);
 		AxisAlignedBB bb = new AxisAlignedBB(X2,Y2,Z2,X3,Y3,Z3);
 		return bb;
-        //return this.getEntityBoundingBox();
     }
 	
 	@Override

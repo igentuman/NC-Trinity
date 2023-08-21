@@ -1,15 +1,14 @@
 package trinity.render;
 // TODO: Move this package to net.minecraftforge.model in 1.8
 
-import java.util.Collection;
-import java.util.Map;
-
+import com.google.common.collect.Maps;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLLog;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import com.google.common.collect.Maps;
+import java.util.Collection;
+import java.util.Map;
 
 /**
  * Common interface for advanced model loading from files, based on file suffix

@@ -1,24 +1,16 @@
 package trinity.radiation;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
 import nc.config.NCConfig;
-
-//import com.hbm.config.GeneralConfig;
-//import com.hbm.config.RadiationConfig;
-//import com.hbm.packet.AuxParticlePacket;
-//import com.hbm.packet.PacketDispatcher;
-
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.storage.WorldSavedData;
-import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class FalloutSavedData extends WorldSavedData {
 	public Map<ChunkPos, FalloutSaveStructure> contamination = new HashMap<ChunkPos, FalloutSaveStructure>();

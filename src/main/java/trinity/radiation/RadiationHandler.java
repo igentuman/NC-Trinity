@@ -1,14 +1,10 @@
 package trinity.radiation;
 
-import nc.radiation.RadArmor;
 import nc.radiation.RadBiomes;
 import nc.radiation.RadSources;
 import trinity.init.ModBlocks;
 import trinity.init.ModItems;
 import trinity.world.TrinityBiomes;
-import net.minecraft.client.util.RecipeItemHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class RadiationHandler {
 	

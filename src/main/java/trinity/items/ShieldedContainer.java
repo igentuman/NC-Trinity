@@ -1,23 +1,17 @@
 package trinity.items;
 
-import trinity.Global;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import nc.capability.radiation.entity.IEntityRads;
 import nc.config.NCConfig;
-import nc.radiation.RadiationHandler;
 import nc.radiation.RadiationHelper;
 import nc.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import trinity.Global;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ShieldedContainer extends Item{
 
@@ -40,21 +34,4 @@ public class ShieldedContainer extends Item{
 			tooltip.add(RadiationHelper.getRadiationTextColor(this.rads*stack.getCount()) + RADIATION + " " + RadiationHelper.radsPrefix(this.rads*stack.getCount(), true));
 		}
 	}
-	
-   /* public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected)
-    {
-		EntityLivingBase living = ((EntityLivingBase)entity);
-		IEntityRads playerRads = RadiationHelper.getEntityRadiation(living);
-		playerRads.setRadiationLevel(RadiationHelper.addRadsToEntity(playerRads, living, playerRads.getRawRadiationLevel()+(this.rads*stack.getCount()), false, false, NCConfig.radiation_player_tick_rate/4));
-		//if(!world.isRemote)
-    	//{
-    	//RadiationHelper.transferRadsFromInventoryToPlayer(arg0, arg1, arg2)
-    		//RadiationHelper.addRadsToEntity(playerRads, living, this.rads*stack.getCount(), false, false, NCConfig.radiation_player_tick_rate/4);
-    	//RadiationHelper.addRadsToEntity(playerRads, living, this.rads, false, false, NCConfig.radiation_player_tick_rate/2));
-    	//}
-    	//if(world.isRemote)
-    	//{
-    		//playerRads.setRadiationLevel(this.rads*stack.getCount());
-    	//}
-    }*/
 }

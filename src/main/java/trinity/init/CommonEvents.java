@@ -1,32 +1,31 @@
 package trinity.init;
 
 
-import java.util.List;
-
-import net.minecraftforge.fml.common.Mod;
-
 import nc.capability.radiation.entity.IEntityRads;
 import nc.config.NCConfig;
 import nc.network.PacketHandler;
 import nc.network.radiation.PlayerRadsUpdatePacket;
 import nc.radiation.RadSources;
 import nc.radiation.RadiationHelper;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinity.items.RadioactiveSource2;
-import trinity.items.ShieldedContainerItem;
-import trinity.radiation.FalloutSavedData;
-import trinity.tiles.TileEntityShieldedContainer;
-import trinity.util.Reference;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import trinity.items.RadioactiveSource2;
+import trinity.items.ShieldedContainerItem;
+import trinity.radiation.FalloutSavedData;
+import trinity.tiles.TileEntityShieldedContainer;
+import trinity.util.Reference;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid=Reference.MODID)
 public class CommonEvents {
@@ -76,7 +75,6 @@ public class CommonEvents {
 					double Z = player.posZ;
 					double dist = te.getDistanceSq(X, Y, Z);
 					radiationLevel += Math.min(te.getRadiation(), (te.getRadiation()/dist));
-					//System.out.println("Radioactivity: "+te.getRadioactivity()+" Rad/t");
 				}
 			}
 			if (!player.getUniqueID().toString().equals(Pu_238))
@@ -100,18 +98,10 @@ public class CommonEvents {
 			for (ItemStack stack : inventory.mainInventory) {
 				if (!stack.isEmpty()) {
 					Item item = stack.getItem();
-					/*if(Trinity.QMDLoaded)
-					{
-						if(item instanceof RadioactiveSource)
-						{
-							radiationLevel += (((RadioactiveSource)item).rads)*stack.getCount();
-							//System.out.println("Radioactivity: "+radiationLevel);
-						}
-					}*/
+
 					if(item instanceof RadioactiveSource2)
 					{
 						radiationLevel += (((RadioactiveSource2)item).rads)*stack.getCount();
-						//System.out.println("Radioactivity: "+radiationLevel);
 					}
 
 					if(item instanceof ShieldedContainerItem)
@@ -122,8 +112,6 @@ public class CommonEvents {
 			}
 			double appliedRads = RadiationHelper.addRadsToEntity(playerRads, player, radiationLevel, false, false, NCConfig.radiation_player_tick_rate);
 			playerRads.setRadiationLevel(playerRads.getRadiationLevel() + appliedRads);
-			//System.out.println("Radiation: "+playerRads.getRadiationLevel()+" Rad/t");
-			//System.out.println("Adjusted Radiation: "+playerRads.getRadiationLevel()/3+" Rad/t");
 			PacketHandler.instance.sendTo(new PlayerRadsUpdatePacket(playerRads), player);
 		}
 	}

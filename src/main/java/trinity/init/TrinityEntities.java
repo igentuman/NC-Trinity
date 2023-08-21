@@ -1,18 +1,10 @@
 package trinity.init;
 
-import trinity.Global;
-import trinity.Trinity;
-import trinity.entities.EntityBlackHole;
-import trinity.entities.EntityDirtyBomb;
-import trinity.entities.EntityFalloutRain;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
-import trinity.entities.EntityShockwave;
-import trinity.entities.EntityThermalBlast;
-import trinity.entities.EntityThermonuclearBlast;
-import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
+import trinity.Global;
+import trinity.Trinity;
+import trinity.entities.*;
 
 public class TrinityEntities {
 	

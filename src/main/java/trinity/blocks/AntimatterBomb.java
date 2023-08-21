@@ -1,51 +1,25 @@
 package trinity.blocks;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
-import io.netty.util.internal.ThreadLocalRandom;
-import nc.capability.radiation.source.IRadiationSource;
-import nc.init.NCBlocks;
-import nc.radiation.RadSources;
-import nc.radiation.RadiationHelper;
-import trinity.Global;
-import trinity.config.TrinityConfig;
-import trinity.entities.EntityFalloutRain;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
-import trinity.entities.EntityThermonuclearBlast;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.init.ModBlocks;
-//import nca.handler.NuclearExplosion;
-//import nca.handler.ProcessHandler;
-import trinity.tabs.TrinityTab;
-import trinity.util.ThermonuclearBomb;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.oredict.OreDictionary;
+import trinity.Global;
+import trinity.config.TrinityConfig;
+import trinity.entities.EntityNuclearCloud;
+import trinity.entities.EntityNuclearExplosion;
+import trinity.explosion.ExplosionNukeGeneric;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 public class AntimatterBomb extends Block {
 

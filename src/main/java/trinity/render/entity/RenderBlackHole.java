@@ -1,35 +1,17 @@
 package trinity.render.entity;
 
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-
-import trinity.Global;
-import trinity.entities.EntityBlackHole;
-import trinity.entities.EntityNuclearCloud;
-import trinity.handler.Vec3;
-//import trinity.util.IConstantRenderer;
-//import trinity.util.Reference;
-import trinity.util.ResourceManager;
-import trinity.render.AdvancedModelLoader;
-import trinity.render.IModelCustom;
-import trinity.render.Tessellator;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.GlStateManager.DestFactor;
-import net.minecraft.client.renderer.GlStateManager.SourceFactor;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-//import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
+import org.lwjgl.opengl.GL11;
+import trinity.Global;
+import trinity.entities.EntityBlackHole;
+import trinity.render.AdvancedModelLoader;
+import trinity.render.IModelCustom;
+import trinity.render.Tessellator;
 
 public class RenderBlackHole extends Render<EntityBlackHole> {
 

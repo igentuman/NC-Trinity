@@ -1,42 +1,20 @@
 package trinity.init;
 
-import static nc.config.NCConfig.fission_irradiator_efficiency;
-import static nc.config.NCConfig.fission_irradiator_heat_per_flux;
-import static nc.util.FluidStackHelper.INGOT_VOLUME;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.google.common.collect.Lists;
-
-//import lach_01298.qmd.recipes.QMDRecipes;
-import nc.init.NCBlocks;
 import nc.init.NCItems;
-import nc.radiation.RadSources;
 import nc.recipe.NCRecipes;
-import nc.recipe.RecipeHelper;
 import nc.recipe.ingredient.FluidIngredient;
-import nc.recipe.ingredient.OreIngredient;
 import nc.recipe.vanilla.CraftingRecipeHandler;
 import nc.util.FluidRegHelper;
 import nc.util.FluidStackHelper;
-import nc.util.NCUtil;
-import trinity.Global;
-import trinity.Trinity;
-import trinity.config.TrinityConfig;
-import trinity.fluid.TrinityFluids;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.ShapedOreRecipe;
+import trinity.config.TrinityConfig;
 
 public class TrinityRecipes {
 

@@ -1,38 +1,10 @@
 package trinity.explosion;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
-import nc.capability.radiation.entity.IEntityRads;
-import nc.config.NCConfig;
-import nc.radiation.RadiationHelper;
-import nc.util.DamageSources;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentProtection;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityOcelot;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinity.handler.Vec3;
-import trinity.init.ModDamageSources;
+
+import java.util.Random;
 
 public class ExplosionThermonuclear {
 
@@ -133,18 +105,7 @@ public class ExplosionThermonuclear {
 				
 				y--;
 			}
-			
-			/*if(worldObj.rand.nextInt(10) == 0) {
-				worldObj.setBlock(pX, depth + 1, pZ, ModBlocks.balefire);
-				
-				if(worldObj.getBlock(pX, y, pZ) == ModBlocks.block_schrabidium_cluster)
-					worldObj.setBlock(pX, y, pZ, ModBlocks.block_euphemium_cluster, worldObj.getBlockMetadata(pX, y, pZ), 3);
-			}
 
-			for(int i = depth; i > depth - 5; i--) {
-				if(worldObj.getBlock(pX, i, pZ) == Blocks.stone)
-					worldObj.setBlock(pX, i, pZ, ModBlocks.sellafield_slaked);
-			}*/
 		}
 	}
 

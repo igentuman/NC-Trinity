@@ -1,20 +1,9 @@
 package trinity.util;
 
-import java.io.FileNotFoundException;
-
-import org.apache.logging.log4j.Level;
-
-import trinity.util.Reference;
+import net.minecraft.util.ResourceLocation;
 import trinity.Global;
 import trinity.render.AdvancedModelLoader;
 import trinity.render.IModelCustom;
-
-import net.minecraft.client.renderer.block.model.IBakedModel;
-import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.IModel;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.obj.OBJLoader;
 
 public class ResourceManager {
 

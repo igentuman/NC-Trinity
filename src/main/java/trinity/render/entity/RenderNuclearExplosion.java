@@ -1,22 +1,18 @@
 package trinity.render.entity;
 
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-
-import trinity.Global;
-import trinity.entities.EntityNuclearCloud;
-//import trinity.util.IConstantRenderer;
-//import trinity.util.Reference;
-import trinity.util.ResourceManager;
-import trinity.render.AdvancedModelLoader;
-import trinity.render.IModelCustom;
-import trinity.render.Tessellator;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+import trinity.entities.EntityNuclearCloud;
+import trinity.render.AdvancedModelLoader;
+import trinity.render.IModelCustom;
+import trinity.render.Tessellator;
+import trinity.util.ResourceManager;
+
+import java.util.Random;
 
 public class RenderNuclearExplosion extends Render<EntityNuclearCloud> {	
 		private IModelCustom blastModel;		

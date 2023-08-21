@@ -1,12 +1,8 @@
 package trinity.render;
 
-import trinity.render.Tessellator;
-import trinity.render.TextureCoordinate;
-import trinity.handler.Vec3;
-import trinity.render.Vertex;
-
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinity.handler.Vec3;
 
 public class Face2 {
     public Vertex[] vertices;

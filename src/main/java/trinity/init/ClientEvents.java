@@ -1,12 +1,12 @@
 package trinity.init;
 
-import net.minecraftforge.fml.common.Mod;
-import trinity.Global;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinity.Global;
 import trinity.util.Reference;
 
 @Mod.EventBusSubscriber(modid= Reference.MODID)

@@ -1,18 +1,6 @@
 package trinity.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import nc.network.PacketHandler;
-import nc.radiation.RadSources;
 import nc.util.Lang;
-import nc.util.NCMath;
-import trinity.blocks.NuclearCore;
-import trinity.radiation.RadiationHandler;
-import trinity.util.Reference;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.common.config.Property;
@@ -20,7 +8,11 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import trinity.util.Reference;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TrinityConfig {
 	private static Configuration config = null;

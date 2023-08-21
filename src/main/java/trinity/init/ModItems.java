@@ -1,31 +1,17 @@
 package trinity.init;
 
-import trinity.Global;
-import trinity.Trinity;
-import nc.config.NCConfig;
-//import nc.enumm.MetaEnums;
-import nc.init.NCItems;
-import nc.item.NCItemMeta;
-import nc.radiation.RadSources;
-import nc.tab.NCTabs;
-import nc.util.Lang;
-import trinity.items.BasicItem;
-import trinity.items.ItemDetonator;
-//import trinity.items.RadioactiveSource;
-import trinity.items.RadioactiveSource2;
-import trinity.items.ShieldedContainer;
-import trinity.radiation.RadiationHandler;
-//import trinity.items.RadioactiveSource;
-import trinity.tabs.TrinityTab;
-import trinity.util.Reference;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import trinity.items.BasicItem;
+import trinity.items.ItemDetonator;
+import trinity.items.RadioactiveSource2;
+import trinity.items.ShieldedContainer;
+import trinity.radiation.RadiationHandler;
+import trinity.tabs.TrinityTab;
+import trinity.util.Reference;
 
 @Mod.EventBusSubscriber(modid = Reference.MODID)
 public class ModItems {
@@ -97,16 +83,8 @@ public class ModItems {
 		
 		ingot_au_198 = new BasicItem("ingot_au_198");		
 		ingot_au_198.setCreativeTab(TrinityTab.TRINITY_TAB);
-		//if(Trinity.QMDLoaded)
-		//{
-		//	source_au_198 = new RadioactiveSource("source_au_198", RadiationHandler.GOLD_198/2);		
-		//	source_au_198.setCreativeTab(TrinityTab.TRINITY_TAB);
-		//}
-		//else if(!Trinity.QMDLoaded)
-		//{
-			source_au_198 = new RadioactiveSource2("source_au_198", RadiationHandler.GOLD_198/2);		
-			source_au_198.setCreativeTab(TrinityTab.TRINITY_TAB);
-		//}
+		source_au_198 = new RadioactiveSource2("source_au_198", RadiationHandler.GOLD_198/2);
+		source_au_198.setCreativeTab(TrinityTab.TRINITY_TAB);
 		bomb_pit_u233 = new BasicItem("u233_pit");		
 		bomb_pit_u233.setCreativeTab(TrinityTab.TRINITY_TAB);
 		bomb_pit_u233.setMaxStackSize(1);

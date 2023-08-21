@@ -1,8 +1,5 @@
 package trinity.items;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
 import nc.util.Lang;
@@ -14,6 +11,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import trinity.blocks.ShieldedContainer;
 
+import java.util.List;
+
 public class ShieldedContainerItem extends ItemBlock {
 
 	//public double rads;
@@ -22,23 +21,15 @@ public class ShieldedContainerItem extends ItemBlock {
 		super(block);
 	}
 	
-	//@Override
-	//public int getItemBurnTime(ItemStack itemStack) {
-	//	return 4000;
-	//}
 
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-		//rads = ShieldedContainer.rads;
 		double rads = getRadiation(stack);
 		if(rads > 0 && rads >= NCConfig.radiation_lowest_rate)
 		{
 			tooltip.add(RadiationHelper.getRadiationTextColor(rads*stack.getCount()) + RADIATION + " " + RadiationHelper.radsPrefix(rads*stack.getCount(), true));
 		}
-			//tooltip.add("Light Shielding: "+NCConfig.radiation_shielding_level[0]);	
-			//tooltip.add("Medium Shielding: "+NCConfig.radiation_shielding_level[1]);
-			//tooltip.add("Heavy Shielding: "+NCConfig.radiation_shielding_level[2]);	
 	}
 	
 	public void setRadioactivity(ItemStack stack, double radioactivity)
@@ -78,7 +69,6 @@ public class ShieldedContainerItem extends ItemBlock {
 		double rads = getRadioactivity(stack);
 		double shieldedRads = 0D;
 		shieldedRads = NCMath.sq(rads) / (rads + (Math.exp(getShielding())-1));
-		//System.out.println("Emitted Radiation: "+shieldedRads+" Rad/t");
-		return shieldedRads;	
+		return shieldedRads;
 	}
 }

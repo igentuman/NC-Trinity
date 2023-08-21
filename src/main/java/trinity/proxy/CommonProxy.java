@@ -1,16 +1,5 @@
 package trinity.proxy;
 
-import java.util.Locale;
-
-import trinity.Trinity;
-import trinity.init.*;
-import trinity.fluid.TrinityFluids;
-import trinity.gui.GuiHandlerRegistry;
-import trinity.gui.GuiHandlerTrinity;
-import trinity.handler.OredictHandler;
-import trinity.radiation.RadiationHandler;
-import trinity.tiles.TileEntityShieldedContainer;
-import trinity.world.TrinityBiomes;
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -18,6 +7,17 @@ import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import trinity.Trinity;
+import trinity.fluid.TrinityFluids;
+import trinity.gui.GuiHandlerRegistry;
+import trinity.gui.GuiHandlerTrinity;
+import trinity.handler.OredictHandler;
+import trinity.init.*;
+import trinity.radiation.RadiationHandler;
+import trinity.tiles.TileEntityShieldedContainer;
+import trinity.world.TrinityBiomes;
+
+import java.util.Locale;
 
 public class CommonProxy {
 

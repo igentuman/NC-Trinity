@@ -1,31 +1,19 @@
 package trinity.items;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-import org.apache.logging.log4j.Level;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-//import net.minecraft.util.ChatComponentText;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import trinity.Global;
-import trinity.blocks.AntimatterBomb;
-import trinity.blocks.DirtyBomb;
-import trinity.blocks.ExoticBomb;
-import trinity.blocks.ExplosiveCharge;
-import trinity.blocks.NuclearCore;
+import trinity.blocks.*;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ItemDetonator extends Item {
 
@@ -54,7 +42,6 @@ public class ItemDetonator extends Item {
 		{
 			stack.setTagCompound(new NBTTagCompound());
 		}
-		//player.sendMessage(new TextComponentString("hitX: "+pos.getX()+"hitY: "+pos.getY()+"hitZ: "+pos.getZ()));
 		if(player.isSneaking())
 		{
 			stack.getTagCompound().setInteger("x", pos.getX());
@@ -67,7 +54,7 @@ public class ItemDetonator extends Item {
 			}
 			
 	        //world.playSoundAtEntity(player, "hbm:item.techBoop", 2.0F, 1.0F);
-        	
+
 			return EnumActionResult.SUCCESS;
 		}
 		

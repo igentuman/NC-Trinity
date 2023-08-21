@@ -1,26 +1,5 @@
 package trinity.proxy;
 
-import java.util.List;
-
-import trinity.Global;
-import trinity.config.TrinityConfig;
-import trinity.entities.EntityBlackHole;
-import trinity.entities.EntityDirtyBomb;
-import trinity.entities.EntityFalloutRain;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityThermalBlast;
-import trinity.fluid.TrinityFluids;
-import trinity.handler.INuclearEffect;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
-import trinity.init.ClientEvents;
-import trinity.render.AdvancedModelLoader;
-import trinity.render.HmfModelLoader;
-import trinity.render.entity.RenderBlackHole;
-import trinity.render.entity.RenderFalloutRainFactory;
-import trinity.render.entity.RenderNuclearExplosion;
-import trinity.render.entity.RenderPrimedDirtyBomb;
-import trinity.render.entity.RenderThermalBlastFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
@@ -43,6 +22,19 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import trinity.Global;
+import trinity.config.TrinityConfig;
+import trinity.entities.*;
+import trinity.fluid.TrinityFluids;
+import trinity.handler.INuclearEffect;
+import trinity.init.ClientEvents;
+import trinity.init.ModBlocks;
+import trinity.init.ModItems;
+import trinity.render.AdvancedModelLoader;
+import trinity.render.HmfModelLoader;
+import trinity.render.entity.*;
+
+import java.util.List;
 
 public class ClientProxy extends CommonProxy {
 

@@ -1,58 +1,26 @@
 package trinity.explosion;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
 import nc.capability.radiation.entity.IEntityRads;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
 import nc.util.DamageSources;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockStairs;
-import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentProtection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityOcelot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import trinity.handler.Vec3;
 import trinity.init.ModDamageSources;
-//import net.minecraft.world.WorldSettings.GameType;
-//import net.minecraftforge.common.util.ForgeDirection;
 
-/*import com.hbm.blocks.ModBlocks;
-import com.hbm.blocks.generic.DecoBlockAlt;
-import com.hbm.entity.effect.EntityBlackHole;
-import com.hbm.entity.effect.EntityNukeCloudSmall;
-import com.hbm.entity.grenade.EntityGrenadeASchrab;
-import com.hbm.entity.grenade.EntityGrenadeNuclear;
-import com.hbm.entity.missile.EntityMIRV;
-import com.hbm.entity.projectile.EntityExplosiveBeam;
-import com.hbm.entity.projectile.EntityMiniMIRV;
-import com.hbm.entity.projectile.EntityMiniNuke;*/
-//import com.hbm.interfaces.IConsumer;
-//import com.hbm.interfaces.ISource;
-//import com.hbm.items.ModItems;
-//import com.hbm.lib.Library;
-//import com.hbm.lib.ModDamageSource;
-//import com.hbm.tileentity.bomb.TileEntityTurretBase;
-//import com.hbm.tileentity.machine.TileEntityDummy;
-
-//import cofh.api.energy.IEnergyProvider;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
 
 public class ExplosionNukeGeneric {
 
@@ -86,7 +54,6 @@ public class ExplosionNukeGeneric {
 		;
 		boolean isOccupied = false;
 
-		// bombStartStrength *= 2.0F;
 		i = MathHelper.floor(x - wat - 1.0D);
 		j = MathHelper.floor(x + wat + 1.0D);
 		k = MathHelper.floor(y - wat - 1.0D);
@@ -111,23 +78,15 @@ public class ExplosionNukeGeneric {
 				if(!isObstructed(world, pos1, pos2))
 				{
 					if (d9 < wat && !(entity instanceof EntityPlayer)) {
-/*
- 						&& !(entity instanceof EntityPlayer	&& Library.checkArmor((EntityPlayer) entity, ModItems.euphemium_helmet,
-										ModItems.euphemium_plate, ModItems.euphemium_legs, ModItems.euphemium_boots))) {
- */
-					
+
 						d5 /= d9;
 						d6 /= d9;
 						d7 /= d9;
 						double d11 = (1.0D - d4);// * d10;
 						if (!(entity instanceof EntityPlayerMP) || (entity instanceof EntityPlayerMP
 								&& !((EntityPlayerMP) entity).isCreative())) {
-						// entity.attackEntityFrom(DamageSource.generic,
-						// ((int)((d11 * d11 + d11) / 2.0D * 8.0D *
-						// bombStartStrength + 1.0D)));
 							double realisticDamage = 4*(bombStartStrength*bombStartStrength)/entity.getDistance(x, y, z);
 							double damage = entity.getDistance(x, y, z) / bombStartStrength * 250;
-//						entity.attackEntityFrom(ModDamageSource.nuclearBlast, (float)damage);
 							entity.attackEntityFrom(ModDamageSources.NUCLEAR_EXPLOSION, (float)damage);
 							entity.setFire(5);
 							if(entity instanceof EntityLivingBase)
@@ -196,9 +155,6 @@ public class ExplosionNukeGeneric {
 							{
 								entity.setEntityInvulnerable(false);
 								entity.attackEntityFrom(DamageSources.FATAL_RADS, Float.MAX_VALUE);
-								//((EntityLivingBase) entity).onDeath(DamageSources.FATAL_RADS);								
-								//((EntityLivingBase) entity).setHealth(0);
-								//entity.attackEntityFrom(DamageSources.FATAL_RADS, Float.MAX_VALUE);								
 							}
 						}
 				}

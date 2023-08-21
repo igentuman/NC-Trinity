@@ -1,8 +1,8 @@
 package trinity.items;
 
-import trinity.Global;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import trinity.Global;
 
 public class BasicItem extends Item{
 

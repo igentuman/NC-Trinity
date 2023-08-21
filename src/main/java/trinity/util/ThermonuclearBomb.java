@@ -1,56 +1,19 @@
 package trinity.util;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
 import com.google.common.collect.Sets;
-
-import io.netty.util.internal.ThreadLocalRandom;
-import nc.capability.radiation.source.IRadiationSource;
-import nc.init.NCBlocks;
-import nc.radiation.RadSources;
-import nc.radiation.RadiationHelper;
-import trinity.Global;
-import trinity.blocks.ThermonuclearCore;
-import trinity.config.TrinityConfig;
-import trinity.entities.EntityFalloutRain;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
-import trinity.entities.EntityShockwave;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.init.ModBlocks;
-//import nca.handler.NuclearExplosion;
-//import nca.handler.ProcessHandler;
-import trinity.tabs.TrinityTab;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.oredict.OreDictionary;
+import trinity.blocks.ThermonuclearCore;
+
+import java.util.List;
+import java.util.Set;
 
 public class ThermonuclearBomb{
 
@@ -64,61 +27,6 @@ private static Set<Block> uranium238 = null;
 private static Set<Block> neptunium = null;
 private static Set<Block> plutonium = null;
 private static Set<Block> salt = null;;
-
-	/*public static double SaltingMultiplier() {
-
-		List <ItemStack> zinc = OreDictionary.getOres("blockZinc");
-		for (ItemStack blocks : zinc) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.05;
-		}
-		List <ItemStack> cobalt = OreDictionary.getOres("blockCobalt");
-		for (ItemStack blocks : cobalt) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.05;
-		}
-		List <ItemStack> gold = OreDictionary.getOres("blockGold");
-		for (ItemStack blocks : gold) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.05;
-		}
-		return 1;
-	}
-	
-	public static double RegularMultiplier() {
-
-		List <ItemStack> lead = OreDictionary.getOres("blockLead");
-		for (ItemStack blocks : lead) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.1;
-		}
-		return 1;
-	}
-	
-	public static double FissionMultiplier() {
-
-		List <ItemStack> pu242 = OreDictionary.getOres("blockPlutonium242");
-		for (ItemStack blocks : pu242) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.2;
-		}
-		List <ItemStack> np237 = OreDictionary.getOres("blockNeptunium237");
-		for (ItemStack blocks : np237) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.2;
-		}
-		List <ItemStack> uranium238 = OreDictionary.getOres("blockUranium238");
-		for (ItemStack blocks : uranium238) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.2;
-		}
-		List <ItemStack> uranium = OreDictionary.getOres("blockUranium");
-		for (ItemStack blocks : uranium) {
-			Block block = Block.getBlockFromItem(blocks.getItem());
-			return 1.2;
-		}
-		return 1;
-	}*/
 	
 	public static Set<Block> getSaltingBlocks() {
 		
@@ -198,25 +106,7 @@ private static Set<Block> salt = null;;
 
         return neptunium;
 	}
-	
-	/*public static Set<Block> getUraniumBlocks() {
 
-        if (uranium != null) {
-            return uranium;
-        }
-        uranium = Sets.newHashSet();
-        List<ItemStack> stacks = OreDictionary.getOres("blockUranium");
-        for (ItemStack stack : stacks) {
-            Item item = stack.getItem();
-            if (item instanceof ItemBlock) {
-                ItemBlock itemBlock = (ItemBlock) item;
-                if (itemBlock.getBlock() != null) {
-                    uranium.add(itemBlock.getBlock());
-                }
-            }
-        }
-		return uranium;
-	}*/
 	
 	public static Set<Block> getUranium238Blocks() {
 
@@ -269,10 +159,7 @@ private static Set<Block> salt = null;;
 	public static boolean isFissionable(World world, BlockPos pos)
 	{
 		Block block = world.getBlockState(pos).getBlock();
-		//if((getUraniumBlocks()!=null && getUraniumBlocks().contains(block)))
-		//{
-		//	return true;
-		//}
+
 		if((getUranium238Blocks()!=null && getUranium238Blocks().contains(block)))
 		{
 			return true;
@@ -305,10 +192,7 @@ private static Set<Block> salt = null;;
 		{
 			return true;
 		}
-		//if(getUraniumBlocks()!=null && getUraniumBlocks().contains(block))
-		//{
-		//	return true;
-		//}
+
 		if(getUranium238Blocks()!=null && getUranium238Blocks().contains(block))
 		{
 			return true;
@@ -327,16 +211,6 @@ private static Set<Block> salt = null;;
 		}
 		return false;
 	}
-	
-	/*public static boolean isValidTamper(World world, BlockPos pos)
-	{
-		Block block = world.getBlockState(pos).getBlock();
-		if((getLeadBlocks()!=null && getLeadBlocks().contains(block)) || (getUraniumBlocks()!=null && getUraniumBlocks().contains(block)) || (getNeptuniumBlocks()!=null && getNeptuniumBlocks().contains(block)) || (getPlutoniumBlocks()!=null && getPlutoniumBlocks().contains(block)) || (getSaltingBlocks()!=null && getSaltingBlocks().contains(block)))
-		{
-			return true;
-		}
-		return false;
-	}*/
 	
 	public static double ThermonuclearMultiplier(World world, BlockPos pos, boolean salt)
 	{

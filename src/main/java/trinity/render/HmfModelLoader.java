@@ -1,9 +1,5 @@
 package trinity.render;
 
-import trinity.render.IModelCustom;
-import trinity.render.IModelCustomLoader;
-import trinity.render.ModelFormatException;
-
 import net.minecraft.util.ResourceLocation;
 
 public class HmfModelLoader implements IModelCustomLoader {

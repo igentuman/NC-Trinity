@@ -1,5 +1,9 @@
 package trinity.tiles;
 
+import nc.capability.radiation.resistance.IRadiationResistance;
+import nc.capability.radiation.source.IRadiationSource;
+import nc.radiation.RadiationHelper;
+import nc.util.NCMath;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -10,17 +14,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
-import trinity.Trinity;
 import trinity.blocks.ShieldedContainer;
-//import trinity.items.RadioactiveSource;
 import trinity.items.RadioactiveSource2;
 
 import java.util.Arrays;
-
-import nc.capability.radiation.resistance.IRadiationResistance;
-import nc.capability.radiation.source.IRadiationSource;
-import nc.radiation.RadiationHelper;
-import nc.util.NCMath;
 
 /**
  * User: brandon3055

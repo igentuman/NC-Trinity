@@ -1,33 +1,18 @@
 package trinity.items;
 
-import trinity.Global;
-import trinity.config.TrinityConfig;
-import trinity.init.ModItems;
-
-import java.util.List;
-
-import javax.annotation.Nullable;
-
-//import lach_01298.qmd.enums.MaterialTypes.SourceType;
-//import lach_01298.qmd.item.IItemAmount;
-//import lach_01298.qmd.item.ItemSource;
-import nc.capability.radiation.entity.IEntityRads;
 import nc.capability.radiation.source.IRadiationSource;
 import nc.config.NCConfig;
-import nc.item.NCItem;
-import nc.radiation.RadiationHandler;
 import nc.radiation.RadiationHelper;
 import nc.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import trinity.Global;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class RadioactiveSource2 extends Item{
 

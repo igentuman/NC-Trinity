@@ -1,20 +1,12 @@
 package trinity.init;
 
 
-import java.util.List;
-
 import icbm.classic.api.EnumTier;
 import icbm.classic.content.blast.BlastEMP;
 import icbm.classic.content.blast.threaded.BlastAntimatter;
 import icbm.classic.content.blast.threaded.BlastNuclear;
 import icbm.classic.content.blocks.explosive.ItemBlockExplosive;
 import icbm.classic.content.items.ItemMissile;
-import trinity.Trinity;
-import trinity.config.TrinityConfig;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.util.Reference;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Vec3d;
@@ -27,6 +19,14 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import trinity.Trinity;
+import trinity.config.TrinityConfig;
+import trinity.entities.EntityNuclearCloud;
+import trinity.entities.EntityNuclearExplosion;
+import trinity.explosion.ExplosionNukeGeneric;
+import trinity.util.Reference;
+
+import java.util.List;
 
 import static icbm.classic.api.ExplosiveRefs.EMP;
 import static icbm.classic.api.ExplosiveRefs.NUCLEAR;
@@ -49,7 +49,6 @@ public class ICBMEvents {
 				}
 			}
 		}
-
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -75,14 +74,12 @@ public class ICBMEvents {
 				entity2.posY = position.y;
 				entity2.posZ = position.z;
 				world.spawnEntity(entity2);
-			//	world.setBlockToAir(pos);
 				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z())
 				.setBlastSize(((BlastNuclear) exp).getBlastRadius()*2)
 				.setExplosiveData(EMP)
 				.buildBlast().runBlast();
 				ExplosionNukeGeneric.irradiate(world, (int)position.x, (int)position.y, (int)position.z, Math.min(TrinityConfig.icbm_radius,TrinityConfig.max_radius)*2);
 				world.spawnEntity(EntityNuclearExplosion.statFac(world, Math.min(TrinityConfig.icbm_radius,TrinityConfig.max_radius), position.x, position.y, position.z));
-				//System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 			}
 		}
 		else if(exp instanceof BlastAntimatter)
@@ -95,14 +92,12 @@ public class ICBMEvents {
 				entity2.posY = position.y;
 				entity2.posZ = position.z;
 				world.spawnEntity(entity2);
-			//	exp.world.setBlockToAir(pos);
 				ExplosionNukeGeneric.irradiate(world, (int)position.x, (int)position.y, (int)position.z, Math.min(TrinityConfig.antimatter_radius,TrinityConfig.max_radius)*6);
 				world.spawnEntity(EntityNuclearExplosion.statFacAntimatter(world, Math.min(TrinityConfig.antimatter_radius,TrinityConfig.max_radius), position.x, position.y, position.z));
 				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z())
 				.setBlastSize(((BlastNuclear) exp).getBlastRadius()*2)
 				.setExplosiveData(EMP)
 				.buildBlast().runBlast();
-				//System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 			}
 		}
 	}

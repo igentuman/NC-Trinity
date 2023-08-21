@@ -1,10 +1,9 @@
 package trinity.render;
-import java.util.ArrayList;
 
-import trinity.render.Tessellator;
-import trinity.render.Face;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
 
 public class GroupObject
 {

@@ -1,10 +1,10 @@
 package trinity.radiation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import nc.init.NCBlocks;
 import nc.recipe.ProcessorRecipeHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FalloutEffects extends ProcessorRecipeHandler {
 		

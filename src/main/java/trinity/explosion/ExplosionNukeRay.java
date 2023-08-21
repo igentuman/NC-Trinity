@@ -1,24 +1,14 @@
 package trinity.explosion;
 
+import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.world.World;
+import trinity.handler.Vec3;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import nc.capability.radiation.source.IRadiationSource;
-import nc.radiation.RadSources;
-
-//import com.hbm.main.MainRegistry;
-
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-//import net.minecraft.util.Vec3;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-//import net.minecraft.world.ChunkPosition;
-import net.minecraft.world.World;
-import net.minecraft.world.chunk.Chunk;
-import trinity.handler.Vec3;
 
 public class ExplosionNukeRay {
 	
@@ -48,9 +38,6 @@ public class ExplosionNukeRay {
 		this.speed = speed;
 		this.length = length;
 		this.hyperspace = hyperspace;
-		//Ausf3, must be double
-		//this.startY = strength;
-		//Mk 4.5, must be int32
 		this.startY = 0;
 		this.startCir = 0;
 	}	
@@ -93,20 +80,7 @@ public class ExplosionNukeRay {
 				int z0 = (int)(posZ + pZ * i);
 				pos.setPos(x0, y0, z0);
 				if(!world.isAirBlock(pos)) {
-					//Chunk chunk = world.getChunk(pos);
-				       /*if (chunk != null || chunk.hasCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null))
-				        {
-				            IRadiationSource chunkRadation = chunk.getCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null);
-				            if (chunkRadation != null)
-				            {
-				            	double promptRads = 0.001;
-				                if (chunkRadation.getRadiationBuffer() < (promptRads)) {
-				                    chunkRadation.setRadiationBuffer(promptRads);
-				                } else {
-				                    chunkRadation.setRadiationBuffer(chunkRadation.getRadiationLevel() + promptRads);
-				                }
-				            }
-				        }*/
+
 					world.setBlockToAir(pos);
 					processedBlocks++;
 				}

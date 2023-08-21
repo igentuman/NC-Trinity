@@ -1,27 +1,17 @@
 package trinity.entities;
 
-import org.apache.logging.log4j.Level;
-
-import trinity.Trinity;
-import trinity.config.TrinityConfig;
-import trinity.entities.EntityFalloutRain;
-//import trinity.explosion.ExplosionHyperspace;
-//import com.hbm.explosion.ExplosionLarge;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.explosion.ExplosionNukeRay;
-//import com.hbm.main.MainRegistry;
-//import com.hbm.saveddata.RadiationSavedData;
-
 import net.minecraft.entity.Entity;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
+import trinity.Trinity;
+import trinity.config.TrinityConfig;
+import trinity.explosion.ExplosionNukeGeneric;
+import trinity.explosion.ExplosionNukeRay;
 
 public class EntityNuclearExplosion extends Entity {
 	
@@ -69,13 +59,11 @@ public class EntityNuclearExplosion extends Entity {
             int chunkZ = (int)Math.floor(this.posZ) >> 4;
             ticket = ForgeChunkManager.requestTicket(Trinity.instance, this.world, ForgeChunkManager.Type.NORMAL);
             if(ticket != null) {
-                // System.out.println(ticket + " being loaded for " + chunkX + ", " + chunkZ);
                 ForgeChunkManager.forceChunk(ticket, new ChunkPos(chunkX, chunkZ));
                 isChunkLoaded = true;
             }
         }
 
-		BlockPos pos = new BlockPos(this.posX, this.posY, this.posZ);
     	this.world.playSound(this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.AMBIENT, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F, false);
     	
     	if(rand.nextInt(5) == 0)
@@ -85,7 +73,7 @@ public class EntityNuclearExplosion extends Entity {
     	{
     		ExplosionNukeGeneric.dealDamage(this.world, (int)this.posX, (int)this.posY, (int)this.posZ, this.length * 10);	
     	}
-    	else if(!thermal)
+    	else
     	{
     		ExplosionNukeGeneric.dealDamage(this.world, (int)this.posX, (int)this.posY, (int)this.posZ, this.length * 2);
     	}
@@ -105,50 +93,17 @@ public class EntityNuclearExplosion extends Entity {
 			shock.posZ = this.posZ;
 			shock.setScale((int)(this.length * 2) * 100 / 100);
 			this.world.spawnEntity(shock);
-			if(thermonuclear)
-			{
-				EntityFalloutRain fallout = new EntityFalloutRain(this.world);
-                fallout.setChunkTicket(ticket);
-				fallout.posX = this.posX;
-				fallout.posY = this.posY;
-				fallout.posZ = this.posZ;
-				fallout.setScale((int)(this.length * TrinityConfig.fallout_multiplier) * 100 / 100);
-				fallout.setThermonuclear(true);
-				fallout.setIntensity(chance);
-				this.world.spawnEntity(fallout);
-			}
-			if(salted)
-			{
-				EntityFalloutRain fallout = new EntityFalloutRain(this.world);
-                fallout.setChunkTicket(ticket);
-				fallout.posX = this.posX;
-				fallout.posY = this.posY;
-				fallout.posZ = this.posZ;
-				fallout.setScale((int)(this.length * TrinityConfig.fallout_multiplier) * 100 / 100);
-				fallout.setSalted(true);
-				this.world.spawnEntity(fallout);
-			}
-			else if(!salted)
-			{
-				EntityFalloutRain fallout = new EntityFalloutRain(this.world);
-                fallout.setChunkTicket(ticket);
-				fallout.posX = this.posX;
-				fallout.posY = this.posY;
-				fallout.posZ = this.posZ;
-				fallout.setScale((int)(this.length * TrinityConfig.fallout_multiplier) * 100 / 100);
-				fallout.setSalted(false);
-				this.world.spawnEntity(fallout);
-			}
-			/*if(!radioactive)
-			{
-				//System.out.println("should this be radioactive? "+radioactive);
-				EntityThermalBlast fallout = new EntityThermalBlast(this.world);
-				fallout.posX = this.posX;
-				fallout.posY = this.posY;
-				fallout.posZ = this.posZ;
-				fallout.setScale((int)(this.length * TrinityConfig.fallout_multiplier) * 100 / 100);
-				this.world.spawnEntity(fallout);
-			}*/
+
+			EntityFalloutRain fallout = new EntityFalloutRain(this.world);
+			fallout.setChunkTicket(ticket);
+			fallout.posX = this.posX;
+			fallout.posY = this.posY;
+			fallout.posZ = this.posZ;
+			fallout.setThermonuclear(thermonuclear);
+			fallout.setScale((int)(this.length * TrinityConfig.fallout_multiplier) * 100 / 100);
+			fallout.setSalted(salted);
+			this.world.spawnEntity(fallout);
+
 			this.setDead();
 		} else {
 			EntityShockwave shock = new EntityShockwave(this.world);
@@ -187,8 +142,7 @@ public class EntityNuclearExplosion extends Entity {
 	
 	public static EntityNuclearExplosion statFac(World world, int r, double x, double y, double z) {
 		
-		if(r == 0)
-			r = 25;
+		r = r == 0 ? 25 : r;
 		
 		r *= 2;
 		
