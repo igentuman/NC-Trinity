@@ -18,6 +18,7 @@ public class TrinityBiomes {
 	
 	@Mod.EventBusSubscriber(modid = Global.MOD_ID)
 	public static class RegistrationHandler {
+		
 		@SubscribeEvent
 		public static void onEvent(final RegistryEvent.Register<Biome> event) {
 			final IForgeRegistry<Biome> registry = event.getRegistry();
@@ -27,12 +28,12 @@ public class TrinityBiomes {
 	}
 	
 	public static void initBiomeManagerAndDictionary() {
-		//if (NCConfig.wasteland_biome) {
-			//zBiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(NUCLEAR_WASTELAND, NCConfig.wasteland_biome_weight));
-			//BiomeManager.addSpawnBiome(NUCLEAR_WASTELAND);
-			//BiomeManager.addStrongholdBiome(NUCLEAR_WASTELAND);
-			BiomeDictionary.addTypes(NUCLEAR_CRATER, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.HOT, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.WASTELAND);
-			BiomeDictionary.addTypes(CONTAMINATED_OCEAN, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.OCEAN);
-			//}
+		// if (NCConfig.wasteland_biome) {
+		// zBiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(NUCLEAR_WASTELAND, NCConfig.wasteland_biome_weight));
+		// BiomeManager.addSpawnBiome(NUCLEAR_WASTELAND);
+		// BiomeManager.addStrongholdBiome(NUCLEAR_WASTELAND);
+		BiomeDictionary.addTypes(NUCLEAR_CRATER, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.DRY, BiomeDictionary.Type.HOT, BiomeDictionary.Type.SPARSE, BiomeDictionary.Type.WASTELAND);
+		BiomeDictionary.addTypes(CONTAMINATED_OCEAN, BiomeDictionary.Type.DEAD, BiomeDictionary.Type.OCEAN);
+		// }
 	}
 }

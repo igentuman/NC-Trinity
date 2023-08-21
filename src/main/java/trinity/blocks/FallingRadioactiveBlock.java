@@ -1,5 +1,7 @@
 package trinity.blocks;
 
+import java.util.Random;
+
 import nc.capability.radiation.source.IRadiationSource;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -13,72 +15,63 @@ import trinity.Global;
 import trinity.init.ModBlocks;
 import trinity.radiation.RadiationHandler;
 
-import java.util.Random;
-
 public class FallingRadioactiveBlock extends BlockFalling {
-
-public FallingRadioactiveBlock(String nameIn, Material material) {
-	super(material);
-	setTranslationKey(Global.MOD_ID + "." + nameIn);
-	setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
-//	setHarvestLevel("Pickaxe", 1);
-//	setSoundType(blockSoundType.GROUND);
-//	this.setHardness(2F);
-	this.setTickRandomly(true);
+	
+	public FallingRadioactiveBlock(String nameIn, Material material) {
+		super(material);
+		setTranslationKey(Global.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		// setHarvestLevel("Pickaxe", 1);
+		// setSoundType(blockSoundType.GROUND);
+		// this.setHardness(2F);
+		this.setTickRandomly(true);
 	}
-
+	
 	@SuppressWarnings("null")
 	@Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random rand)
-    {
+	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		super.updateTick(world, pos, state, rand);
 		Chunk chunk = world.getChunk(pos);
-		if(this==ModBlocks.salted_sand2)
-		{
-			if (chunk != null || chunk.hasCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null))
-			{
+		if (this == ModBlocks.salted_sand2) {
+			if (chunk != null || chunk.hasCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null)) {
 				IRadiationSource chunkRadation = chunk.getCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null);
-				if (chunkRadation != null)
-				{
+				if (chunkRadation != null) {
 					double radioactivity = RadiationHandler.HEAVY_SALTED_EARTH;
 					if (chunkRadation.getRadiationBuffer() < (radioactivity)) {
 						chunkRadation.setRadiationBuffer(radioactivity);
-					} else {
+					}
+					else {
 						chunkRadation.setRadiationBuffer(chunkRadation.getRadiationLevel() + radioactivity);
 					}
-				}		
+				}
 			}
-			if(rand.nextInt(5) == 0)
-			{
+			if (rand.nextInt(5) == 0) {
 				world.setBlockState(pos, ModBlocks.salted_sand.getDefaultState());
-			}	
+			}
 		}
-		if(this==ModBlocks.salted_sand)
-		{
-			if (chunk != null || chunk.hasCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null))
-			{
+		if (this == ModBlocks.salted_sand) {
+			if (chunk != null || chunk.hasCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null)) {
 				IRadiationSource chunkRadation = chunk.getCapability(IRadiationSource.CAPABILITY_RADIATION_SOURCE, null);
-				if (chunkRadation != null)
-				{
+				if (chunkRadation != null) {
 					double radioactivity = RadiationHandler.SALTED_EARTH;
 					if (chunkRadation.getRadiationBuffer() < (radioactivity)) {
 						chunkRadation.setRadiationBuffer(radioactivity);
-					} else {
+					}
+					else {
 						chunkRadation.setRadiationBuffer(chunkRadation.getRadiationLevel() + radioactivity);
 					}
-				}		
+				}
 			}
-			if(rand.nextInt(5) == 0)
-			{
+			if (rand.nextInt(5) == 0) {
 				world.setBlockState(pos, Blocks.SAND.getDefaultState());
-			}	
-		}   
-    }
-
+			}
+		}
+	}
+	
 	/*@Override
 	public void onBlockExploded(World world, BlockPos pos, Explosion explosion)
 	{
-    	world.setBlockToAir(pos);
-    	world.spawnEntity(EntityNukeExplosionMK4.statFac(world, 100, pos.getX() + 0.0, pos.getY() + 0.0, pos.getZ() + 0.0));
+		world.setBlockToAir(pos);
+		world.spawnEntity(EntityNukeExplosionMK4.statFac(world, 100, pos.getX() + 0.0, pos.getY() + 0.0, pos.getZ() + 0.0));
 	}*/
 }

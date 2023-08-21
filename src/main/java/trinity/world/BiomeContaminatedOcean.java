@@ -1,5 +1,8 @@
 package trinity.world;
 
+import java.util.List;
+import java.util.Random;
+
 import nc.init.NCBlocks;
 import nc.worldgen.biome.BiomeNuclearWasteland;
 import nc.worldgen.biome.NCBiome;
@@ -10,9 +13,6 @@ import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-import java.util.Random;
-
 public class BiomeContaminatedOcean extends NCBiome {
 	
 	public static final String BIOME_REGISTRY_NAME = "contaminated_ocean";
@@ -20,7 +20,7 @@ public class BiomeContaminatedOcean extends NCBiome {
 	
 	public BiomeContaminatedOcean() {
 		super(new BiomeProperties(BIOME_NAME).setBaseHeight(0.12F).setHeightVariation(0.02F).setTemperature(2F).setWaterColor(0x588492));
-				
+		
 		topBlock = NCBlocks.wasteland_earth.getDefaultState();
 		fillerBlock = Blocks.COBBLESTONE.getDefaultState();
 		
@@ -48,9 +48,7 @@ public class BiomeContaminatedOcean extends NCBiome {
 		return getModdedBiomeFoliageColor(0x994C00);
 	}
 	
-	/**
-	 * Allocate a new BiomeDecorator for this BiomeGenBase
-	 */
+	/** Allocate a new BiomeDecorator for this BiomeGenBase */
 	@Override
 	public BiomeDecorator createBiomeDecorator() {
 		BiomeDecorator biomeDecorator = new BiomeNuclearWasteland.Decorator();
@@ -79,9 +77,9 @@ public class BiomeContaminatedOcean extends NCBiome {
 	
 	private void addFlowers() {
 		flowers.clear();
-		//addFlower(NCBlocks.glowing_mushroom.getDefaultState(), 10);
+		// addFlower(NCBlocks.glowing_mushroom.getDefaultState(), 10);
 	}
-
+	
 	private void setSpawnables() {
 		spawnableCreatureList.clear();
 		spawnableMonsterList.clear();
@@ -93,63 +91,63 @@ public class BiomeContaminatedOcean extends NCBiome {
 	public void decorate(World worldIn, Random rand, BlockPos pos) {
 		
 	}
-
-/*	@Override
-	public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
-		int seaLevel = worldIn.getSeaLevel();
-		IBlockState topBlockState = topBlock;
-		IBlockState fillerBlockState = fillerBlock;
-		int heightCount = -1;
-		int noise = (int)(noiseVal / 3D + 3D + rand.nextDouble() * 0.25D);
-		int chunkPosX = x & 15;
-		int chunkPosZ = z & 15;
-		BlockPos.MutableBlockPos mutableblockpos = new BlockPos.MutableBlockPos();
-
-		for (int posY = 255; posY >= 0; --posY) {
-			if (posY <= rand.nextInt(5)) {
-				chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, BEDROCK);
-			} else {
-				IBlockState currentBlockState = chunkPrimerIn.getBlockState(chunkPosX, posY, chunkPosZ);
-
-				if (currentBlockState.getMaterial() == Material.AIR) heightCount = -1;
-				else if (currentBlockState.getBlock() == Blocks.STONE) {
-					if (heightCount == -1) {
-						if (noise <= 0) {
-							topBlockState = AIR;
-							fillerBlockState = STONE;
-						}
-						else if (posY >= seaLevel - 4 && posY <= seaLevel + 1) {
-							topBlockState = topBlock;
-							fillerBlockState = fillerBlock;
-						}
-
-						if (posY < seaLevel && (topBlockState == null || topBlockState.getMaterial() == Material.AIR)) {
-							if (this.getTemperature(mutableblockpos.setPos(x, posY, z)) < 0.15F) topBlockState = ICE;
-							else topBlockState = WATER;
-						}
-
-						heightCount = noise;
-
-						if (posY >= seaLevel - 1) {
-							chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, topBlockState);
-						} else if (posY < seaLevel - 7 - noise) {
-							topBlockState = AIR;
-							fillerBlockState = STONE;
-							chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, GRAVEL);
-						} else {
+	
+	/*	@Override
+		public void genTerrainBlocks(World worldIn, Random rand, ChunkPrimer chunkPrimerIn, int x, int z, double noiseVal) {
+			int seaLevel = worldIn.getSeaLevel();
+			IBlockState topBlockState = topBlock;
+			IBlockState fillerBlockState = fillerBlock;
+			int heightCount = -1;
+			int noise = (int)(noiseVal / 3D + 3D + rand.nextDouble() * 0.25D);
+			int chunkPosX = x & 15;
+			int chunkPosZ = z & 15;
+			BlockPos.MutableBlockPos mutableblockpos = new BlockPos.MutableBlockPos();
+	
+			for (int posY = 255; posY >= 0; --posY) {
+				if (posY <= rand.nextInt(5)) {
+					chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, BEDROCK);
+				} else {
+					IBlockState currentBlockState = chunkPrimerIn.getBlockState(chunkPosX, posY, chunkPosZ);
+	
+					if (currentBlockState.getMaterial() == Material.AIR) heightCount = -1;
+					else if (currentBlockState.getBlock() == Blocks.STONE) {
+						if (heightCount == -1) {
+							if (noise <= 0) {
+								topBlockState = AIR;
+								fillerBlockState = STONE;
+							}
+							else if (posY >= seaLevel - 4 && posY <= seaLevel + 1) {
+								topBlockState = topBlock;
+								fillerBlockState = fillerBlock;
+							}
+	
+							if (posY < seaLevel && (topBlockState == null || topBlockState.getMaterial() == Material.AIR)) {
+								if (this.getTemperature(mutableblockpos.setPos(x, posY, z)) < 0.15F) topBlockState = ICE;
+								else topBlockState = WATER;
+							}
+	
+							heightCount = noise;
+	
+							if (posY >= seaLevel - 1) {
+								chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, topBlockState);
+							} else if (posY < seaLevel - 7 - noise) {
+								topBlockState = AIR;
+								fillerBlockState = STONE;
+								chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, GRAVEL);
+							} else {
+								chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, fillerBlockState);
+							}
+						} else if (heightCount > 0) {
+							--heightCount;
 							chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, fillerBlockState);
-						}
-					} else if (heightCount > 0) {
-						--heightCount;
-						chunkPrimerIn.setBlockState(chunkPosX, posY, chunkPosZ, fillerBlockState);
-
-						if (heightCount == 0 && fillerBlockState == fillerBlock && noise > 1) {
-							heightCount = rand.nextInt(4) + Math.max(0, posY - 63);
-							fillerBlockState = topBlock;
+	
+							if (heightCount == 0 && fillerBlockState == fillerBlock && noise > 1) {
+								heightCount = rand.nextInt(4) + Math.max(0, posY - 63);
+								fillerBlockState = topBlock;
+							}
 						}
 					}
 				}
 			}
-		}
-	}*/
+		}*/
 }

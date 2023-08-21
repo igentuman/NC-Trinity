@@ -6,10 +6,10 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import trinity.entities.EntityFalloutRain;
 
 public class RenderFalloutRainFactory implements IRenderFactory<EntityFalloutRain> {
-
+	
 	@Override
 	public Render<? super EntityFalloutRain> createRenderFor(RenderManager manager) {
 		return new RenderFallout(manager);
 	}
-
+	
 }
