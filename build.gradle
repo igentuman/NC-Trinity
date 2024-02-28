@@ -110,7 +110,7 @@ dependencies {
 	deobfCompile "mcjty.theoneprobe:TheOneProbe-1.12:${top_version}"
 	deobfCompile "curse.maven:hwyla-253449:2568751"
 	deobfCompile "curse.maven:nuclearcraft-overhauled-336895:3862197"
-	deobfCompile "curse.maven:icbm-classic-244451:2918052"
+	deobfCompile "curse.maven:icbm-classic-244451:4813898"
 }
 
 processResources {
