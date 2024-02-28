@@ -1,6 +1,6 @@
 package trinity.entities;
 
-import icbm.classic.api.ExplosiveRefs;
+import icbm.classic.api.refs.ICBMExplosives;
 import icbm.classic.content.blast.BlastEMP;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
@@ -92,7 +92,7 @@ public class EntityThermonuclearBlast extends Entity {
 			this.world.spawnEntity(shock);
 			
 			if (Trinity.ICBMLoaded) {
-				new BlastEMP().setBlastWorld(this.world).setBlastSource(this).setBlastPosition(this.posX, this.posY, this.posZ).setBlastSize(getScale() * 2).setExplosiveData(ExplosiveRefs.EMP).buildBlast().runBlast();
+				new BlastEMP().setBlastWorld(this.world).setBlastSource(this).setBlastPosition(this.posX, this.posY, this.posZ).setBlastSize(getScale() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
 			}
 			
 			this.did = true;
