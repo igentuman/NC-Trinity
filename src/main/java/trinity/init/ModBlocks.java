@@ -12,6 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import trinity.blocks.BasicBlock;
 import trinity.blocks.DirtyBomb;
+import trinity.blocks.AntimatterBomb;
 import trinity.blocks.ExoticBomb;
 import trinity.blocks.ExplosiveCharge;
 import trinity.blocks.FallingRadioactiveBlock;
@@ -169,7 +170,7 @@ public class ModBlocks {
 		bomb_custom2 = new NuclearCore("bomb_custom_2", Material.IRON, TrinityConfig.custom_2_radius, false);
 		bomb_custom3 = new NuclearCore("bomb_custom_3", Material.IRON, TrinityConfig.custom_3_radius, false);
 		bomb_custom4 = new NuclearCore("bomb_custom_4", Material.IRON, TrinityConfig.custom_4_radius, false);
-		bomb_antimatter = new ExoticBomb("bomb_antimatter", Material.IRON, TrinityConfig.antimatter_radius);
+		bomb_antimatter = new AntimatterBomb("bomb_antimatter", Material.IRON, TrinityConfig.antimatter_radius);
 		// bomb_wormhole = new ExoticBomb("bomb_exotic", Material.IRON, TrinityConfig.antimatter_radius);
 		
 		salted_bomb_u233 = new NuclearCore("salted_bomb_u233", Material.IRON, TrinityConfig.u233_radius, true);
