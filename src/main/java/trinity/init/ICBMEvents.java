@@ -3,7 +3,7 @@ package trinity.init;
 import java.util.List;
 
 import icbm.classic.api.EnumTier;
-import icbm.classic.api.ExplosiveRefs;
+import icbm.classic.api.refs.ICBMExplosives;
 import icbm.classic.content.blast.BlastEMP;
 import icbm.classic.content.blast.threaded.BlastAntimatter;
 import icbm.classic.content.blast.threaded.BlastNuclear;
@@ -38,7 +38,7 @@ public class ICBMEvents {
 			ItemStack stack = event.getItemStack();
 			Item item = stack.getItem();
 			if (item instanceof ItemBlockExplosive || item instanceof ItemMissile) {
-				if (stack.getItemDamage() == ExplosiveRefs.NUCLEAR.getRegistryID()) {
+				if (stack.getItemDamage() == ICBMExplosives.NUCLEAR.getRegistryID()) {
 					addNukeTooltip(event.getToolTip(), stack);
 				}
 			}
@@ -67,7 +67,7 @@ public class ICBMEvents {
 				entity2.posZ = position.z;
 				world.spawnEntity(entity2);
 				// world.setBlockToAir(pos);
-				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ExplosiveRefs.EMP).buildBlast().runBlast();
+				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
 				ExplosionNukeGeneric.irradiate(world, (int) position.x, (int) position.y, (int) position.z, Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius) * 2);
 				world.spawnEntity(EntityNuclearExplosion.statFac(world, Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius), position.x, position.y, position.z));
 				// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
@@ -84,7 +84,7 @@ public class ICBMEvents {
 				// exp.world.setBlockToAir(pos);
 				ExplosionNukeGeneric.irradiate(world, (int) position.x, (int) position.y, (int) position.z, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 6);
 				world.spawnEntity(EntityNuclearExplosion.statFacAntimatter(world, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius), position.x, position.y, position.z));
-				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ExplosiveRefs.EMP).buildBlast().runBlast();
+				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
 				// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 			}
 		}
