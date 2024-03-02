@@ -85,10 +85,10 @@ public class NuclearCore extends Block {
 		Chunk chunk = world.getChunk(pos);
 		
 		if (ThermonuclearBomb.ThermonuclearCheck(world, pos) == true && TrinityConfig.thermonuclear) {
-			// System.out.println("This is sa thermonuclear bomb");
 			int X = pos.getX();
 			int Y = pos.getY();
 			int Z = pos.getZ();
+			System.out.println("Thermonuclear bomb triggered at =  X:"+X+"  Y:"+Y+"  Z:"+Z);
 			for (int x = X - 3; x <= X + 3; x++) {
 				for (int y = Y - 3; y <= Y + 3; y++) {
 					for (int z = Z - 3; z <= Z + 3; z++) {
@@ -102,7 +102,9 @@ public class NuclearCore extends Block {
 			}
 			double multiplier = ThermonuclearBomb.ThermonuclearMultiplier(world, pos, false);
 			int radius = (int) (Math.min(blastRadius, TrinityConfig.max_radius) * multiplier);
-			// System.out.println("Radius: "+radius+" Multiplier: "+multiplier);
+			
+			//System.out.println("Radius: "+radius+" Multiplier: "+multiplier+" Blast radius: "+blastRadius);
+			
 			int salt = (int) ThermonuclearBomb.ThermonuclearMultiplier(world, pos, true);
 			ExplosionNukeGeneric.irradiate(world, pos.getX(), pos.getY(), pos.getZ(), Math.min(radius, TrinityConfig.max_radius) * 2);
 			EntityNuclearCloud entity2 = new EntityNuclearCloud(world, 1000, (radius * 2) * 0.005F);
@@ -123,8 +125,8 @@ public class NuclearCore extends Block {
 			world.spawnEntity(blast);
 			
 			// world.spawnEntity(EntityNuclearExplosion.statFacThermo(world, radius, pos.getX() + 0.0, pos.getY() + 0.0, pos.getZ() + 0.0, salt));
-			// System.out.println("Radius: "+radius);
-			// System.out.println("Salt modifier: "+salt);
+			//System.out.println("Radius: "+radius);
+			//System.out.println("Salt modifier: "+salt);
 			return;
 		}
 		EntityNuclearCloud entity2 = new EntityNuclearCloud(world, 1000, (Math.min(blastRadius, TrinityConfig.max_radius) * 2) * 0.005F);
