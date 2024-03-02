@@ -1,4 +1,4 @@
-//Items
+	//Items
 item.trinity.u233_pit.name=Subcritical Uranium-233 Sphere
 item.trinity.u235_pit.name=Subcritical Uranium-235 Spheres
 item.trinity.np237_pit.name=Subcritical Neptunium-237 Sphere
@@ -111,28 +111,30 @@ itemGroup.Trinity_Tab=Trinity
 container.nuclear_pig.name=Nuclear Pig
 
 //Configs
-gui.config.nuke.u233_radius.comment=Uranium-233 Blast Radius
-gui.config.nuke.u235_radius.comment=Uranium-235 Blast Radius
-gui.config.nuke.np237_radius.comment=Neptunium-237 Blast Radius
-gui.config.nuke.pu239_radius.comment=Plutonium-239 Blast Radius
-gui.config.nuke.am242_radius.comment=Americium-242 Blast Radius
-gui.config.nuke.cm247_radius.comment=Curium-247 Blast Radius
-gui.config.nuke.bk248_radius.comment=Berkelium-248 Blast Radius
-gui.config.nuke.cf249_radius.comment=Californium-249 Blast Radius
-gui.config.nuke.cf251_radius.comment=Californium-251 Blast Radius
-gui.config.nuke.cust1_radius.comment=1st Custom Nuke Blast Radius
-gui.config.nuke.cust2_radius.comment=2nd Custom Nuke Blast Radius
-gui.config.nuke.cust3_radius.comment=3rd Custom Nuke Blast Radius
-gui.config.nuke.cust4_radius.comment=4th Custom Nuke Blast Radius
-gui.config.nuke.icbm_radius.comment=ICBM Nuclear Missile Blast Radius
-gui.config.nuke.antimatter_radius.comment=Antimatter Blast Radius
-gui.config.fallout.fallout_multiplier.comment=Fallout Radius Multiplier
-gui.config.fallout.fallout_rendering.comment=Enable Fallout Rendering
-gui.config.fallout.salted_burst.comment=Salted Bomb Initial Radiation Strength (Rads/t)
-gui.config.nuke.speed.comment=Fallout Block Update Speed
+gui.config.nuke.u233_radius.comment=Uranium-233 Blast Radius (default:65)
+gui.config.nuke.u235_radius.comment=Uranium-235 Blast Radius (default:54)
+gui.config.nuke.np237_radius.comment=Neptunium-237 Blast Radius (default:40)
+gui.config.nuke.pu239_radius.comment=Plutonium-239 Blast Radius (default:70)
+gui.config.nuke.am242_radius.comment=Americium-242 Blast Radius (default:86)
+gui.config.nuke.cm247_radius.comment=Curium-247 Blast Radius (default:62)
+gui.config.nuke.bk248_radius.comment=Berkelium-248 Blast Radius (default:61)
+gui.config.nuke.cf249_radius.comment=Californium-249 Blast Radius (default:97)
+gui.config.nuke.cf251_radius.comment=Californium-251 Blast Radius (default:101)
+gui.config.nuke.cust1_radius.comment=1st Custom Nuke Blast Radius (default:50)
+gui.config.nuke.cust2_radius.comment=2nd Custom Nuke Blast Radius (default:50)
+gui.config.nuke.cust3_radius.comment=3rd Custom Nuke Blast Radius (default:50)
+gui.config.nuke.cust4_radius.comment=4th Custom Nuke Blast Radius (default:50)
+gui.config.nuke.icbm_radius.comment=ICBM Nuclear Missile Blast Radius (default:50)
+gui.config.nuke.antimatter_radius.comment=Antimatter Blast Radius (default:25)
+gui.config.fallout.fallout_multiplier.comment=Fallout Radius Multiplier (Default:5)
+gui.config.fallout.fallout_rendering.comment=Enable Fallout Rendering (Default:true)
+gui.config.fallout.salted_burst.comment=Salted Bomb Initial Radiation Strength (Rads/t) (Default:50)
+gui.config.nuke.speed.comment=Fallout Block Update Speed (Default:512)
 gui.config.nuke.capacity.comment=Gold-198 Source Durability
-gui.config.nuke.thermonuclear.comment=Enable Thermonuclear Bombs
-gui.config.nuke.custom_nukes.comment=Enable Custom Nukes (Four differenr types available + salted versions of each type)
+gui.config.nuke.thermonuclear.comment=Enable Thermonuclear Bombs (Default:true)
+gui.config.nuke.custom_nukes.comment=Enable Custom Nukes (Four differenr types available + salted versions of each type) (Default:false)
+gui.config.fallout.lava_gen.comment=Generate Lava During Fallout Generation (CAUSES HEAVY LAGS WITH BIG EXPLOSIONS) (Default:true)
+gui.config.nuke.max_radius.comment=Maximum Radius Of Thermonuclear Explosion (Default:1000)
 
 //gui.config.fallout.fallout_rendering.comment=Enable fallout rendering?
 
