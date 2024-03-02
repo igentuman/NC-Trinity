@@ -1,29 +1,68 @@
 package trinity.entities;
 
+import java.util.List;
+
 import icbm.classic.api.refs.ICBMExplosives;
 import icbm.classic.content.blast.BlastEMP;
+// import icbm.classic.content.blast.threaded.BlastNuclear;
+import nc.init.NCBlocks;
+import nc.worldgen.biome.NCBiomes;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockBush;
+import net.minecraft.block.BlockCactus;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockLog;
+import net.minecraft.block.BlockSilverfish;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.boss.EntityWither;
+import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.BlockPos.MutableBlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeOcean;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+//import thaumcraft.api.aura.AuraHelper;
+//import thaumcraft.api.blocks.BlocksTC;
 import trinity.Trinity;
 import trinity.config.TrinityConfig;
 import trinity.explosion.ExplosionNukeGeneric;
 import trinity.explosion.ExplosionThermonuclear;
+//import net.minecraftforge.common.util.ForgeDirection;
+import trinity.handler.Vec3;
+import trinity.init.ModBlocks;
+import trinity.world.TrinityBiomes;
 
 public class EntityThermonuclearBlast extends Entity {
 	
+	boolean spawn = false;
+
 	private static final DataParameter<Integer> SCALE = EntityDataManager.<Integer>createKey(EntityThermonuclearBlast.class, DataSerializers.VARINT);
 	// private static final DataParameter<Boolean> SALTED = EntityDataManager.<Boolean>createKey(EntityThermonuclearBlast.class, DataSerializers.BOOLEAN);
 	// private static final DataParameter<Boolean> THERMONUCLEAR = EntityDataManager.<Boolean>createKey(EntityThermonuclearBlast.class, DataSerializers.BOOLEAN);
 	private static final DataParameter<Integer> INTENSITY = EntityDataManager.<Integer>createKey(EntityThermonuclearBlast.class, DataSerializers.VARINT);
 	
-	// public int revProgress;
-	// public int radProgress;
+	public int revProgress;
+	public int radProgress;
 	public ExplosionThermonuclear exp;
 	
 	public int age = 0;
@@ -33,100 +72,7 @@ public class EntityThermonuclearBlast extends Entity {
 	public int speed = 1;
 	public boolean did = false;
 	
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound nbt) {
-		age = nbt.getInteger("age");
-		destructionRange = nbt.getInteger("destructionRange");
-		falloutIntensity = nbt.getInteger("falloutIntensity");
-		speed = nbt.getInteger("speed");
-		did = nbt.getBoolean("did");
-		
-		exp = new ExplosionThermonuclear((int) this.posX, (int) this.posY, (int) this.posZ, this.world, this.destructionRange);
-		exp.readFromNbt(nbt, "exp_");
-		
-		this.did = true;
-		
-	}
-	
-	@Override
-	protected void writeEntityToNBT(NBTTagCompound nbt) {
-		nbt.setInteger("age", age);
-		nbt.setInteger("destructionRange", destructionRange);
-		nbt.setInteger("falloutIntensity", falloutIntensity);
-		nbt.setInteger("speed", speed);
-		nbt.setBoolean("did", did);
-		
-		if (exp != null)
-			exp.saveToNbt(nbt, "exp_");
-		
-	}
-	
-	public EntityThermonuclearBlast(World p_i1582_1_) {
-		super(p_i1582_1_);
-	}
-	
-	@Override
-	public void onUpdate() {
-		super.onUpdate();
-		
-		if (!this.did) {
-			// if(GeneralConfig.enableExtendedLogging && !world.isRemote)
-			// MainRegistry.logger.log(Level.INFO, "[NUKE] Initialized BF explosion at " + posX + " / " + posY + " / " + posZ + " with strength " + destructionRange + "!");
-			
-			exp = new ExplosionThermonuclear((int) this.posX, (int) this.posY, (int) this.posZ, this.world, getScale());
-			
-			EntityFalloutRain fallout = new EntityFalloutRain(this.world);
-			fallout.posX = this.posX;
-			fallout.posY = this.posY;
-			fallout.posZ = this.posZ;
-			fallout.setScale((int) (this.getScale() * TrinityConfig.fallout_multiplier));
-			fallout.setThermonuclear(true);
-			fallout.setIntensity(this.getIntensity());
-			this.world.spawnEntity(fallout);
-			
-			EntityShockwave shock = new EntityShockwave(this.world);
-			shock.posX = this.posX;
-			shock.posY = this.posY;
-			shock.posZ = this.posZ;
-			shock.setScale(this.getScale() * 2);
-			this.world.spawnEntity(shock);
-			
-			if (Trinity.ICBMLoaded) {
-				new BlastEMP().setBlastWorld(this.world).setBlastSource(this).setBlastPosition(this.posX, this.posY, this.posZ).setBlastSize(getScale() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
-			}
-			
-			this.did = true;
-		}
-		
-		speed += 1; // increase speed to keep up with expansion
-		
-		boolean shouldDie = false;
-		
-		for (int i = 0; i < this.speed; i++) {
-			shouldDie = exp.update();
-			
-			if (shouldDie) {
-				this.setDead();
-			}
-		}
-		
-		if (rand.nextInt(5) == 0)
-			this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-		
-		if (!shouldDie) {
-			this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.AMBIENT, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
-			ExplosionNukeGeneric.dealDamage(this.world, (int) this.posX, (int) this.posY, (int) this.posZ, this.destructionRange * 2);
-		}
-		
-		age++;
-	}
-	
-	@Override
-	protected void entityInit() {}
-	
-	/*	public int speed = 1;
-	//private boolean salted;
-	//private boolean thermonuclear;
+
 	
 	public EntityThermonuclearBlast(World p_i1582_1_) {
 		super(p_i1582_1_);
@@ -151,41 +97,58 @@ public class EntityThermonuclearBlast extends Entity {
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
-	public AxisAlignedBB getRenderBoundingBox()
-	{
-		double X = this.posX;
-		double X2 = MathHelper.floor(X - getScale() - 1.0D);
-		double X3 = MathHelper.floor(X + getScale() - 1.0D);
-		double Y = this.posY;
-		double Y2 = MathHelper.floor(Y - getScale() - 1.0D);
-		double Y3 = MathHelper.floor(Y + getScale() - 1.0D);
-		double Z = this.posZ;
-		double Z2 = MathHelper.floor(Z - getScale() - 1.0D);
-		double Z3 = MathHelper.floor(Z + getScale() - 1.0D);
-		AxisAlignedBB bb = new AxisAlignedBB(X2,Y2,Z2,X3,Y3,Z3);
-		return bb;
-	    //return this.getEntityBoundingBox();
-	}
-	
-	@Override
 	public void onUpdate() {
-		boolean spawn = false;
-	
-	    /*if (this.world.isRemote)
-	    {
-	        for (int x = (int) (this.posX-getScale()); this.posX < (int) (this.posX+getScale()); ++x)
-	        {
-	            for (int z = (int) (this.posZ-getScale()); this.posZ < (int) (this.posZ+getScale()); ++x)
-	            {
-	                for (int y = 0; this.posY < 256; ++x)
-	                {
-	                	this.world.spawnParticle(EnumParticleTypes.PORTAL, (double)x, (double)y, (double)z, x, y-0.5, z);
-	                }
-	            }
-	        }
-	    }
-	
+		super.onUpdate();
+		
+		if (!this.did) {
+			// if(GeneralConfig.enableExtendedLogging && !world.isRemote)
+			// MainRegistry.logger.log(Level.INFO, "[NUKE] Initialized BF explosion at " + posX + " / " + posY + " / " + posZ + " with strength " + destructionRange + "!");
+			
+			exp = new ExplosionThermonuclear((int) this.posX, (int) this.posY, (int) this.posZ, this.world, getScale());
+			
+		/*	EntityFalloutRain fallout = new EntityFalloutRain(this.world);
+			fallout.posX = this.posX;
+			fallout.posY = this.posY;
+			fallout.posZ = this.posZ;
+			fallout.setScale((int) (this.getScale() * TrinityConfig.fallout_multiplier));
+			fallout.setThermonuclear(true);
+			fallout.setIntensity(this.getIntensity());
+			this.world.spawnEntity(fallout);
+			
+			EntityShockwave shock = new EntityShockwave(this.world);
+			shock.posX = this.posX;
+			shock.posY = this.posY;
+			shock.posZ = this.posZ;
+			shock.setScale(this.getScale() * 2);
+			this.world.spawnEntity(shock);*/
+			
+			if (Trinity.ICBMLoaded) {
+				new BlastEMP().setBlastWorld(this.world).setBlastSource(this).setBlastPosition(this.posX, this.posY, this.posZ).setBlastSize(getScale() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
+			}
+			
+			this.did = true;
+		}
+		
+		speed += 1; // increase speed to keep up with expansion
+		
+		boolean shouldDie = false;
+		
+		for (int i = 0; i < this.speed; i++) {
+			shouldDie = exp.update();
+		}
+		
+		if (rand.nextInt(5) == 0 && !shouldDie)
+			this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.AMBIENT, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+		
+		if (!shouldDie) {
+			this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_LIGHTNING_THUNDER, SoundCategory.AMBIENT, 10000.0F, 0.8F + this.rand.nextFloat() * 0.2F);
+			ExplosionNukeGeneric.dealDamage(this.world, (int) this.posX, (int) this.posY, (int) this.posZ, this.destructionRange * 2);
+		}
+		
+		age++;
+
+//######################################################################################################################
+
 	    if(!world.isRemote) {
 	    	MutableBlockPos pos = new BlockPos.MutableBlockPos();
 	    	for(int i = 0; i < 512; i++) {
@@ -242,6 +205,47 @@ public class EntityThermonuclearBlast extends Entity {
 	    }
 	}
 	
+	
+	//private boolean salted;
+	//private boolean thermonuclear;
+	
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public AxisAlignedBB getRenderBoundingBox()
+	{
+		double X = this.posX;
+		double X2 = MathHelper.floor(X - getScale() - 1.0D);
+		double X3 = MathHelper.floor(X + getScale() - 1.0D);
+		double Y = this.posY;
+		double Y2 = MathHelper.floor(Y - getScale() - 1.0D);
+		double Y3 = MathHelper.floor(Y + getScale() - 1.0D);
+		double Z = this.posZ;
+		double Z2 = MathHelper.floor(Z - getScale() - 1.0D);
+		double Z3 = MathHelper.floor(Z + getScale() - 1.0D);
+		AxisAlignedBB bb = new AxisAlignedBB(X2,Y2,Z2,X3,Y3,Z3);
+		return bb;
+	    //return this.getEntityBoundingBox();
+	}
+	
+	
+	    /*if (this.world.isRemote)
+	    {
+	        for (int x = (int) (this.posX-getScale()); this.posX < (int) (this.posX+getScale()); ++x)
+	        {
+	            for (int z = (int) (this.posZ-getScale()); this.posZ < (int) (this.posZ+getScale()); ++x)
+	            {
+	                for (int y = 0; this.posY < 256; ++x)
+	                {
+	                	this.world.spawnParticle(EnumParticleTypes.PORTAL, (double)x, (double)y, (double)z, x, y-0.5, z);
+	                }
+	            }
+	        }
+	    }*/
+	
+
+
+	
 	private void contaminate(MutableBlockPos pos, double dist) {
 		
 		int depth = 0;
@@ -275,8 +279,8 @@ public class EntityThermonuclearBlast extends Entity {
 		this.dataManager.register(INTENSITY, Integer.valueOf(0));
 	}
 	
-	@Override
-	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
+/*	@Override
+	protected void readEntityFromNBT(NBTTagCompound nbt) {
 		setScale(p_70037_1_.getInteger("scale"));
 	//		setSalted(p_70037_1_.getBoolean("salted"));
 	//		setThermonuclear(p_70037_1_.getBoolean("thermonuclear"));
@@ -293,6 +297,38 @@ public class EntityThermonuclearBlast extends Entity {
 		p_70014_1_.setInteger("intensity", getIntensity());
 		p_70014_1_.setInteger("revProgress", revProgress);
 		p_70014_1_.setInteger("radProgress", radProgress);
+		
+	}*/
+	
+		@Override
+	protected void readEntityFromNBT(NBTTagCompound nbt) {
+		age = nbt.getInteger("age");
+		destructionRange = nbt.getInteger("destructionRange");
+		falloutIntensity = nbt.getInteger("falloutIntensity");
+		speed = nbt.getInteger("speed");
+		did = nbt.getBoolean("did");
+		revProgress = nbt.getInteger("revProgress");
+		radProgress = nbt.getInteger("radProgress");
+		
+		exp = new ExplosionThermonuclear((int) this.posX, (int) this.posY, (int) this.posZ, this.world, this.destructionRange);
+		exp.readFromNbt(nbt, "exp_");
+		
+		this.did = true;
+		
+	}
+	
+	@Override
+	protected void writeEntityToNBT(NBTTagCompound nbt) {
+		nbt.setInteger("age", age);
+		nbt.setInteger("destructionRange", destructionRange);
+		nbt.setInteger("falloutIntensity", falloutIntensity);
+		nbt.setInteger("speed", speed);
+		nbt.setBoolean("did", did);
+		nbt.setInteger("revProgress", revProgress);
+		nbt.setInteger("radProgress", radProgress);
+		
+		if (exp != null)
+			exp.saveToNbt(nbt, "exp_");
 		
 	}
 	
