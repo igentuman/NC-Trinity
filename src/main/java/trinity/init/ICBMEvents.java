@@ -74,7 +74,7 @@ public class ICBMEvents {
 			}
 		}
 		else if (exp instanceof BlastAntimatter) {
-			if (((BlastNuclear) exp).getExplosiveData().getTier() == EnumTier.THREE) {
+			if (((BlastAntimatter) exp).getExplosiveData().getTier() == EnumTier.FOUR) {
 				event.setCanceled(true);
 				EntityNuclearCloud entity2 = new EntityNuclearCloud(world, 1000, (Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 2) * 0.005F);
 				entity2.posX = position.x;
@@ -85,7 +85,7 @@ public class ICBMEvents {
 				ExplosionNukeGeneric.irradiate(world, (int) position.x, (int) position.y, (int) position.z, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 6);
 				world.spawnEntity(EntityNuclearExplosion.statFacAntimatter(world, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius), position.x, position.y, position.z));
 				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
-				// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
+				System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 			}
 		}
 	}
