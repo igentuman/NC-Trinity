@@ -45,6 +45,8 @@ public class TrinityConfig {
 	
 	private static boolean custom = false;
 	
+	private static boolean lava = true;
+	
 	public static final String CATEGORY_NAME_OTHER = "Nuclear Weapons";
 	
 	public static double salted_burst;
@@ -90,6 +92,8 @@ public class TrinityConfig {
 	public static boolean thermonuclear;
 	
 	public static boolean custom_nukes;
+	
+	public static boolean lava_gen;
 	
 	// public static int capacity;
 	
@@ -195,6 +199,9 @@ public class TrinityConfig {
 		Property propertySpeed = config.get(CATEGORY_NAME_OTHER, "speed", new Integer(speed), Lang.localise("gui.config.nuke.speed.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.speed");
 		
+		Property propertyLava = config.get(CATEGORY_NAME_OTHER, "lava_gen", new Boolean(lava), Lang.localise("gui.config.fallout.lava_gen.comment"));
+		propertyThermonuclear.setLanguageKey("gui.config.fallout.lava_gen");
+		
 		// Property propertyCapacity = config.get(CATEGORY_NAME_OTHER, "capacity", new Integer(cap), Lang.localise("gui.config.nuke.capacity.comment"), 1, Integer.MAX_VALUE);
 		// propertyU233Radius.setLanguageKey("gui.config.nuke.capacity");
 		
@@ -203,6 +210,7 @@ public class TrinityConfig {
 		
 		if (setFromConfig) {
 			custom_nukes = propertyCustom.getBoolean();
+			lava_gen = propertyLava.getBoolean();
 			thermonuclear = propertyThermonuclear.getBoolean();
 			fallout_rendering = propertyFalloutRender.getBoolean();
 			fallout_multiplier = propertyFalloutRadius.getDouble();
@@ -227,6 +235,7 @@ public class TrinityConfig {
 			// capacity = propertyCapacity.getInt();
 		}
 		propertyCustom.set(custom_nukes);
+		propertyLava.set(lava_gen);
 		propertyThermonuclear.set(thermonuclear);
 		propertyFalloutRender.set(fallout_rendering);
 		propertySaltedBurst.set(salted_burst);
