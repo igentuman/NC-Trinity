@@ -423,7 +423,7 @@ public class EntityFalloutRain extends Entity implements INuclearEffect {
 			}
 			
 			else if (b.getBlock() == Blocks.STONE && dist < (100 / TrinityConfig.fallout_multiplier) && getThermonuclear()) {
-				if (rand.nextInt((int) ((dist + 1) * 10)) <= 1)
+				if (rand.nextInt((int) ((dist + 1) * 10)) <= 1 && TrinityConfig.lava_gen)
 					world.setBlockState(pos, Blocks.LAVA.getDefaultState());
 				continue;
 			}
