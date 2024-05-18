@@ -1,25 +1,17 @@
 package trinity.blocks;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
+import com.blamejared.ctgui.reference.Reference;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.init.*;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import trinity.Global;
+import net.minecraft.world.*;
 import trinity.config.TrinityConfig;
 import trinity.entities.EntityDirtyBomb;
 import trinity.explosion.ExplosionNukeGeneric;
@@ -30,8 +22,8 @@ public class DirtyBomb extends Block {
 	
 	public DirtyBomb(String nameIn, Material mat, SoundType sound) {
 		super(mat);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		// this.setDefaultState(this.blockState.getBaseState().withProperty(EXPLODE, Boolean.valueOf(false)));
 		// this.setCreativeTab(CreativeTabs.REDSTONE);
 		this.setSoundType(sound);

@@ -1,7 +1,6 @@
 package trinity.blocks;
 
-import java.util.Random;
-
+import com.blamejared.ctgui.reference.Reference;
 import nc.capability.radiation.source.IRadiationSource;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.material.Material;
@@ -11,16 +10,17 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import trinity.Global;
 import trinity.init.ModBlocks;
 import trinity.radiation.RadiationHandler;
+
+import java.util.Random;
 
 public class FallingRadioactiveBlock extends BlockFalling {
 	
 	public FallingRadioactiveBlock(String nameIn, Material material) {
 		super(material);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		// setHarvestLevel("Pickaxe", 1);
 		// setSoundType(blockSoundType.GROUND);
 		// this.setHardness(2F);

@@ -1,39 +1,19 @@
 package trinity.explosion;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
-
 import nc.capability.radiation.entity.IEntityRads;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
 import nc.util.DamageSources;
 import net.minecraft.enchantment.EnchantmentProtection;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.*;
+import net.minecraft.entity.player.*;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import trinity.handler.Vec3;
 import trinity.init.ModDamageSources;
-// import net.minecraft.world.WorldSettings.GameType;
-// import net.minecraftforge.common.util.ForgeDirection;
 
-/* import com.hbm.blocks.ModBlocks; import com.hbm.blocks.generic.DecoBlockAlt; import com.hbm.entity.effect.EntityBlackHole; import com.hbm.entity.effect.EntityNukeCloudSmall; import com.hbm.entity.grenade.EntityGrenadeASchrab; import com.hbm.entity.grenade.EntityGrenadeNuclear; import com.hbm.entity.missile.EntityMIRV; import com.hbm.entity.projectile.EntityExplosiveBeam; import com.hbm.entity.projectile.EntityMiniMIRV; import com.hbm.entity.projectile.EntityMiniNuke; */
-// import com.hbm.interfaces.IConsumer;
-// import com.hbm.interfaces.ISource;
-// import com.hbm.items.ModItems;
-// import com.hbm.lib.Library;
-// import com.hbm.lib.ModDamageSource;
-// import com.hbm.tileentity.bomb.TileEntityTurretBase;
-// import com.hbm.tileentity.machine.TileEntityDummy;
-
-// import cofh.api.energy.IEnergyProvider;
+import java.util.*;
 
 public class ExplosionNukeGeneric {
 	

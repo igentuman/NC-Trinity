@@ -1,9 +1,7 @@
 package trinity.fluid;
 
-// import nc.fluid.FluidBase;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.*;
 
 public class FluidTrinity extends Fluid {
 	

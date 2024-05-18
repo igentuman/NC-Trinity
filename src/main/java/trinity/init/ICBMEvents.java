@@ -1,34 +1,28 @@
 package trinity.init;
 
-import java.util.List;
-
 import icbm.classic.api.EnumTier;
 import icbm.classic.api.refs.ICBMExplosives;
 import icbm.classic.content.blast.BlastEMP;
-import icbm.classic.content.blast.threaded.BlastAntimatter;
-import icbm.classic.content.blast.threaded.BlastNuclear;
+import icbm.classic.content.blast.threaded.*;
 import icbm.classic.content.blocks.explosive.ItemBlockExplosive;
 import icbm.classic.content.items.ItemMissile;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinity.Trinity;
+import net.minecraftforge.fml.relauncher.*;
+import trinity.*;
 import trinity.config.TrinityConfig;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
+import trinity.entities.*;
 import trinity.explosion.ExplosionNukeGeneric;
-import trinity.util.Reference;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ICBMEvents {
 	
 	@SubscribeEvent

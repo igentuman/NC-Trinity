@@ -1,32 +1,26 @@
 package trinity.render.entity;
 
-import java.util.Random;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.culling.ICamera;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.client.renderer.texture.DynamicTexture;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.client.IRenderHandler;
+import org.lwjgl.opengl.GL11;
+import trinity.Reference;
 import trinity.config.TrinityConfig;
 import trinity.entities.EntityFalloutRain;
 import trinity.handler.Vec3;
-import trinity.util.Reference;
+
+import java.util.Random;
 
 public class RenderFallout extends Render<EntityFalloutRain> {
 	
@@ -39,7 +33,7 @@ public class RenderFallout extends Render<EntityFalloutRain> {
 	private ResourceLocation locationLightMap;
 	long lastTime = System.nanoTime();
 	private static final ResourceLocation BLACK_RAIN_TEXTURES = new ResourceLocation("textures/environment/snow.png");
-	private static final ResourceLocation falloutTexture = new ResourceLocation(Reference.MODID, "textures/fallout.png");
+	private static final ResourceLocation falloutTexture = new ResourceLocation(Reference.MOD_ID, "textures/fallout.png");
 	private float previousPartialTicks = -1;
 	
 	public RenderFallout(RenderManager renderManager) {

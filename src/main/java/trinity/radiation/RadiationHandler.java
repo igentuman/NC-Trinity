@@ -1,9 +1,7 @@
 package trinity.radiation;
 
-import nc.radiation.RadBiomes;
-import nc.radiation.RadSources;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
+import nc.radiation.*;
+import trinity.init.*;
 import trinity.world.TrinityBiomes;
 
 public class RadiationHandler {

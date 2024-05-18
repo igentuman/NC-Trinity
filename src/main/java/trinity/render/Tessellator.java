@@ -1,19 +1,11 @@
 package trinity.render;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.nio.ShortBuffer;
-import java.util.Arrays;
-import java.util.PriorityQueue;
-
+import net.minecraft.client.renderer.*;
+import net.minecraftforge.fml.relauncher.*;
 import org.lwjgl.opengl.GL11;
 
-import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import java.nio.*;
+import java.util.*;
 
 @SideOnly(Side.CLIENT)
 public class Tessellator {
@@ -73,7 +65,7 @@ public class Tessellator {
 	private boolean isDrawing;
 	/** The size of the buffers used (in integers). */
 	private int bufferSize;
-	private static final String __OBFID = "CL_00000960";
+	//private static final String __OBFID = "CL_00000960";
 	
 	private Tessellator(int p_i1250_1_) {}
 	
@@ -164,7 +156,7 @@ public class Tessellator {
 	
 	public TesselatorVertexState getVertexState(float p_147564_1_, float p_147564_2_, float p_147564_3_) {
 		int[] aint = new int[this.rawBufferIndex];
-		PriorityQueue priorityqueue = new PriorityQueue(this.rawBufferIndex, new QuadComparator(this.rawBuffer, p_147564_1_ + (float) this.xOffset, p_147564_2_ + (float) this.yOffset, p_147564_3_ + (float) this.zOffset));
+		PriorityQueue<Integer> priorityqueue = new PriorityQueue<>(this.rawBufferIndex, new QuadComparator(this.rawBuffer, p_147564_1_ + (float) this.xOffset, p_147564_2_ + (float) this.yOffset, p_147564_3_ + (float) this.zOffset));
 		byte b0 = 32;
 		int i;
 		

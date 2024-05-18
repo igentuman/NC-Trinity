@@ -1,48 +1,30 @@
 package trinity.proxy;
 
-import java.util.List;
-
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.model.*;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.entity.Entity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import trinity.Global;
+import net.minecraftforge.fml.client.registry.*;
+import net.minecraftforge.fml.common.event.*;
+import net.minecraftforge.fml.common.eventhandler.*;
 import trinity.config.TrinityConfig;
-import trinity.entities.EntityBlackHole;
-import trinity.entities.EntityDirtyBomb;
-import trinity.entities.EntityFalloutRain;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityThermalBlast;
+import trinity.entities.*;
 import trinity.fluid.TrinityFluids;
 import trinity.handler.INuclearEffect;
-import trinity.init.ClientEvents;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
-import trinity.render.AdvancedModelLoader;
-import trinity.render.HmfModelLoader;
-import trinity.render.entity.RenderBlackHole;
-import trinity.render.entity.RenderFalloutRainFactory;
-import trinity.render.entity.RenderNuclearExplosion;
-import trinity.render.entity.RenderPrimedDirtyBomb;
-import trinity.render.entity.RenderThermalBlastFactory;
+import trinity.init.*;
+import trinity.render.*;
+import trinity.render.entity.*;
+
+import java.util.List;
 
 public class ClientProxy extends CommonProxy {
 	
@@ -151,7 +133,7 @@ public class ClientProxy extends CommonProxy {
 		public final ModelResourceLocation location;
 		
 		public FluidStateMapper(String name) {
-			location = new ModelResourceLocation(Global.MOD_ID + ":fluids", name);
+			location = new ModelResourceLocation(Reference.MOD_ID + ":fluids", name);
 		}
 		
 		@Override

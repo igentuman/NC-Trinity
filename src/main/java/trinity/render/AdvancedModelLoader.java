@@ -1,17 +1,14 @@
 package trinity.render;
 // TODO: Move this package to net.minecraftforge.model in 1.8
 
-import java.util.Collection;
-import java.util.Map;
-
 import com.google.common.collect.Maps;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.FMLLog;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
 
-/** Common interface for advanced model loading from files, based on file suffix Model support can be queried through the {@link #getSupportedSuffixes()} method. Instances can be created by calling {@link #loadModel(String)} with a class-loadable-path
+import java.util.*;
+
+/** Common interface for advanced model loading from files, based on file suffix Model support can be queried through the {@link #getSupportedSuffixes()} method. Instances can be created by calling loadModel(String) with a class-loadable-path
  *
  * @author cpw */
 @SideOnly(Side.CLIENT)
@@ -20,7 +17,7 @@ public class AdvancedModelLoader {
 	private static Map<String, IModelCustomLoader> instances = Maps.newHashMap();
 	
 	/** Register a new model handler
-	 * 
+	 *
 	 * @param modelHandler
 	 *            The model handler to register */
 	public static void registerModelHandler(IModelCustomLoader modelHandler) {
@@ -30,7 +27,7 @@ public class AdvancedModelLoader {
 	}
 	
 	/** Load the model from the supplied classpath resolvable resource name
-	 * 
+	 *
 	 * @param resource
 	 *            The resource name
 	 * @return A model

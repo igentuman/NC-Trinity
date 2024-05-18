@@ -1,11 +1,11 @@
 package trinity.tabs;
 
-import java.util.Comparator;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import trinity.init.ModBlocks;
+
+import java.util.Comparator;
 
 public class TrinityTab extends CreativeTabs {
 	

@@ -1,56 +1,21 @@
 package trinity.entities;
 
-import java.util.List;
-
 import icbm.classic.api.refs.ICBMExplosives;
 import icbm.classic.content.blast.BlastEMP;
-// import icbm.classic.content.blast.threaded.BlastNuclear;
-import nc.init.NCBlocks;
-import nc.worldgen.biome.NCBiomes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCactus;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockSilverfish;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.init.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.network.datasync.*;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeOcean;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-//import thaumcraft.api.aura.AuraHelper;
-//import thaumcraft.api.blocks.BlocksTC;
+import net.minecraftforge.fml.relauncher.*;
 import trinity.Trinity;
 import trinity.config.TrinityConfig;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.explosion.ExplosionThermonuclear;
-//import net.minecraftforge.common.util.ForgeDirection;
+import trinity.explosion.*;
 import trinity.handler.Vec3;
-import trinity.init.ModBlocks;
-import trinity.world.TrinityBiomes;
 
 public class EntityThermonuclearBlast extends Entity {
 	
@@ -182,7 +147,7 @@ public class EntityThermonuclearBlast extends Entity {
 	        	if(radProgress > getScale() * 2D) {
 					this.setDead();
 					if(!spawn)
-					{						
+					{
 						spawn=true;
 						EntityShockwave shock = new EntityShockwave(this.world);
 						shock.posX = this.posX;
@@ -190,7 +155,7 @@ public class EntityThermonuclearBlast extends Entity {
 						shock.posZ = this.posZ;
 						shock.setScale((int)(this.getScale() * 2) * 100 / 100);
 						this.world.spawnEntity(shock);
-	        		
+	     
 						EntityFalloutRain fallout = new EntityFalloutRain(this.world);
 						fallout.posX = this.posX;
 						fallout.posY = this.posY;

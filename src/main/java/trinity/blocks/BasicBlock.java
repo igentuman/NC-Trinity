@@ -1,24 +1,22 @@
 package trinity.blocks;
 
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
-import trinity.Global;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
+import trinity.init.*;
 
 public class BasicBlock extends Block {
 	
 	public BasicBlock(String nameIn, Material material) {
 		super(material);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 0);
 		// setSoundType(blockSoundType.GROUND);
 		this.setHardness(2F);

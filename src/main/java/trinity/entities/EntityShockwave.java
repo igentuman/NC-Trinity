@@ -1,48 +1,16 @@
 package trinity.entities;
 
-import java.util.List;
-
-import nc.init.NCBlocks;
-//import com.hbm.explosion.NukeEnvironmentalEffect;
-//import com.hbm.lib.Library;
-//import com.hbm.main.MainRegistry;
-//import com.hbm.potion.HbmPotion;
-//import com.hbm.saveddata.AuxSavedData;
-import nc.worldgen.biome.NCBiomes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCactus;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.item.EntityFallingBlock;
-import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.network.datasync.*;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-//import net.minecraft.util.AxisAlignedBB;
-//import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-//import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fml.relauncher.*;
 import trinity.handler.Vec3;
-import trinity.init.ModBlocks;
 
 public class EntityShockwave extends Entity {
 

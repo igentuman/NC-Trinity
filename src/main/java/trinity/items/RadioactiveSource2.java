@@ -1,30 +1,28 @@
 package trinity.items;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.blamejared.ctgui.reference.Reference;
 import nc.capability.radiation.source.IRadiationSource;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
 import nc.util.Lang;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import trinity.Global;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class RadioactiveSource2 extends Item {
 	
 	public double rads;
 	
-	private static final String RADIATION = Lang.localise("item.nuclearcraft.rads");
+	private static final String RADIATION = Lang.localize("item.nuclearcraft.rads");
 	
 	public RadioactiveSource2(String nameIn, double radioactivity) {
-		this.setTranslationKey(Global.MOD_ID + "." + nameIn);
+		this.setTranslationKey(Reference.MOD_ID + "." + nameIn);
 		this.rads = radioactivity;
-		this.setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		this.setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 	}
 	
 	@Override

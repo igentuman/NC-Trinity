@@ -1,28 +1,19 @@
 package trinity.proxy;
 
-import java.util.Locale;
-
 import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinity.Trinity;
 import trinity.fluid.TrinityFluids;
-import trinity.gui.GuiHandlerRegistry;
-import trinity.gui.GuiHandlerTrinity;
+import trinity.gui.*;
 import trinity.handler.OredictHandler;
-import trinity.init.CommonEvents;
-import trinity.init.ICBMEvents;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
-import trinity.init.TrinityEntities;
-import trinity.init.TrinityRecipes;
+import trinity.init.*;
 import trinity.radiation.RadiationHandler;
 import trinity.tiles.TileEntityShieldedContainer;
 import trinity.world.TrinityBiomes;
+
+import java.util.Locale;
 
 public class CommonProxy {
 	
@@ -45,7 +36,7 @@ public class CommonProxy {
 	}
 	
 	public void registerRenderInfo() {
-		
+	
 	}
 	
 	public void init(FMLInitializationEvent event) {
@@ -56,7 +47,7 @@ public class CommonProxy {
 	}
 	
 	public void postInit(FMLPostInitializationEvent postEvent) {
-		
+	
 	}
 	
 	public void onIdMapping(FMLModIdMappingEvent idMappingEvent) {
@@ -65,7 +56,7 @@ public class CommonProxy {
 	}
 	
 	public void registerRenders() {
-		
+	
 	}
 	
 	public void registerFluidBlockRendering(Block block, String name) {

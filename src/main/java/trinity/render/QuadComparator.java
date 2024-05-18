@@ -1,18 +1,17 @@
 package trinity.render;
 
+import net.minecraftforge.fml.relauncher.*;
+
 import java.util.Comparator;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 @SideOnly(Side.CLIENT)
-public class QuadComparator implements Comparator {
+public class QuadComparator implements Comparator<Integer> {
 	
 	private float field_147630_a;
 	private float field_147628_b;
 	private float field_147629_c;
 	private int[] field_147627_d;
-	private static final String __OBFID = "CL_00000958";
+	//private static final String __OBFID = "CL_00000958";
 	
 	public QuadComparator(int[] p_i45077_1_, float p_i45077_2_, float p_i45077_3_, float p_i45077_4_) {
 		this.field_147627_d = p_i45077_1_;
@@ -57,7 +56,7 @@ public class QuadComparator implements Comparator {
 		return Float.compare(f31, f30);
 	}
 	
-	public int compare(Object p_compare_1_, Object p_compare_2_) {
+	/*public int compare(Object p_compare_1_, Object p_compare_2_) {
 		return this.compare((Integer) p_compare_1_, (Integer) p_compare_2_);
-	}
+	}*/
 }

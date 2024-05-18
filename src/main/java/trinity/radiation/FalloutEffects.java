@@ -1,10 +1,9 @@
 package trinity.radiation;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import nc.init.NCBlocks;
 import nc.recipe.BasicRecipeHandler;
+
+import java.util.*;
 
 public class FalloutEffects extends BasicRecipeHandler {
 	
@@ -18,7 +17,7 @@ public class FalloutEffects extends BasicRecipeHandler {
 	}
 	
 	@Override
-	public List fixExtras(List extras) {
+	public List fixedExtras(List extras) {
 		List fixed = new ArrayList(1);
 		fixed.add(extras.size() > 0 && extras.get(0) instanceof Double ? (double) extras.get(0) : 0D);
 		return fixed;

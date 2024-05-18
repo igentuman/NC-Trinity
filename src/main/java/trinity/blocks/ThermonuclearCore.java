@@ -1,23 +1,20 @@
 package trinity.blocks;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.*;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import trinity.Global;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class ThermonuclearCore extends Block {
 	
@@ -25,8 +22,8 @@ public class ThermonuclearCore extends Block {
 	
 	public ThermonuclearCore(String nameIn, Material material) {
 		super(material);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 1);
 		setSoundType(blockSoundType.METAL);
 		this.setHardness(2F);
@@ -94,17 +91,17 @@ public class ThermonuclearCore extends Block {
 			if(state.getValue(FACING)==EnumFacing.NORTH)
 			{
 					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-					world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ()-2, 4, true);			
+					world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ()-2, 4, true);
 			}
 			if(state.getValue(FACING)==EnumFacing.SOUTH)
 			{
 					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-					world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ()+2, 4, true);		
+					world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ()+2, 4, true);
 			}
 			if(state.getValue(FACING)==EnumFacing.EAST)
 			{
 					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-					world.createExplosion(null, pos.getX()+2, pos.getY(), pos.getZ(), 4, true);				
+					world.createExplosion(null, pos.getX()+2, pos.getY(), pos.getZ(), 4, true);
 			}
 			if(state.getValue(FACING)==EnumFacing.WEST)
 			{
@@ -120,7 +117,7 @@ public class ThermonuclearCore extends Block {
 			if(state.getValue(FACING)==EnumFacing.DOWN)
 			{
 					world.setBlockState(pos, Blocks.AIR.getDefaultState());
-					world.createExplosion(null, pos.getX(), pos.getY()-2, pos.getZ(), 4, true);	
+					world.createExplosion(null, pos.getX(), pos.getY()-2, pos.getZ(), 4, true);
 			}
 	}
 		

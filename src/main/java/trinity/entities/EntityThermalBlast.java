@@ -1,57 +1,19 @@
 package trinity.entities;
 
-import java.util.List;
-
-//import nc.init.NCBlocks;
-//import com.hbm.explosion.NukeEnvironmentalEffect;
-//import com.hbm.lib.Library;
-//import com.hbm.main.MainRegistry;
-//import com.hbm.potion.HbmPotion;
-//import com.hbm.saveddata.AuxSavedData;
-import nc.worldgen.biome.NCBiomes;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockBush;
-import net.minecraft.block.BlockCactus;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockLog;
-import net.minecraft.block.BlockSilverfish;
+import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.network.datasync.*;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.Vec3d;
-//import net.minecraft.util.AxisAlignedBB;
-//import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeOcean;
-import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fluids.BlockFluidClassic;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-//import thaumcraft.api.aura.AuraHelper;
-//import thaumcraft.api.blocks.BlocksTC;
-import trinity.Trinity;
-import trinity.config.TrinityConfig;
-import trinity.handler.INuclearEffect;
-//import net.minecraftforge.common.util.ForgeDirection;
-import trinity.handler.Vec3;
-import trinity.init.ModBlocks;
-import trinity.world.TrinityBiomes;
+import net.minecraftforge.fml.relauncher.*;
+import trinity.handler.*;
 
 public class EntityThermalBlast extends Entity implements INuclearEffect {
 	
@@ -169,7 +131,7 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
     	for(int y = topBlock+35; y >= (topBlock-10); y--) {
     		pos.setY(y);
     		IBlockState b =  world.getBlockState(pos);
-    		//int meta = world.getBlockMetadata(x, y, z); 		
+    		//int meta = world.getBlockMetadata(x, y, z);
     		if(b.getMaterial() == Material.AIR)
     			continue;
 
@@ -196,7 +158,7 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
 				{
 					world.setBlockToAir(up);
 				}
-    			world.setBlockState(pos, Blocks.DIRT.getDefaultState());    			
+    			world.setBlockState(pos, Blocks.DIRT.getDefaultState());
     			return;
     			
     		} else if(b.getBlock() == Blocks.MYCELIUM) {
@@ -206,14 +168,14 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
     			depth++;
     			BlockPos up = pos.add(0, 1, 0);
     				world.setBlockState(pos, Blocks.DIRT.getDefaultState());
-    			if(depth < 2)    				
+    			if(depth < 2)
     				if(world.getBlockState(up).getMaterial()==Material.PLANTS)
     				{
     					world.setBlockToAir(up);
     				}
     			return;
     		}
-    		/*} else if(b.getBlock() == Blocks.SAND) {   					    			
+    		/*} else if(b.getBlock() == Blocks.SAND) {
     			if(dist<30)
     			{
     				BlockPos up = new BlockPos(pos.getX(),pos.getY()+1,pos.getZ());
@@ -277,7 +239,7 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
 				}
 			}*/
 			
-			else if (b.getMaterial()==Material.WOOD) {							
+			else if (b.getMaterial()==Material.WOOD) {
 				if(dist<65)
 				{
     				if(rand.nextInt(10) == 0)
@@ -296,7 +258,7 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
 				continue;
 			}
 
-			else if (b.getMaterial()==Material.CACTUS && dist<65) {							
+			else if (b.getMaterial()==Material.CACTUS && dist<65) {
 				world.setBlockState(pos, Blocks.FIRE.getDefaultState());
 				continue;
 			}
@@ -310,13 +272,13 @@ public class EntityThermalBlast extends Entity implements INuclearEffect {
 				else
 				{
 					world.setBlockToAir(pos);
-				}					
+				}
 			}
 			
-			else if (b.getBlock() instanceof BlockCactus && dist<65) {							
+			else if (b.getBlock() instanceof BlockCactus && dist<65) {
 				world.setBlockState(pos, Blocks.FIRE.getDefaultState());
 				continue;
-			}			
+			}
 			
 			else if (b.getBlock() == Blocks.BROWN_MUSHROOM_BLOCK || b.getBlock() == Blocks.RED_MUSHROOM_BLOCK) {
 				world.setBlockToAir(pos);

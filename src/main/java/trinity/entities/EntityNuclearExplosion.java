@@ -4,18 +4,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeChunkManager;
 import trinity.Trinity;
 import trinity.config.TrinityConfig;
-// import trinity.explosion.ExplosionHyperspace;
-// import com.hbm.explosion.ExplosionLarge;
-import trinity.explosion.ExplosionNukeGeneric;
-import trinity.explosion.ExplosionNukeRay;
-// import com.hbm.main.MainRegistry;
-// import com.hbm.saveddata.RadiationSavedData;
+import trinity.explosion.*;
 
 public class EntityNuclearExplosion extends Entity {
 	
@@ -163,17 +157,17 @@ public class EntityNuclearExplosion extends Entity {
 	
 	@Override
 	protected void entityInit() {
-		
+	
 	}
 	
 	@Override
 	protected void readEntityFromNBT(NBTTagCompound p_70037_1_) {
-		
+	
 	}
 	
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound p_70014_1_) {
-		
+	
 	}
 	
 	public static EntityNuclearExplosion statFac(World world, int r, double x, double y, double z) {

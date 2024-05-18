@@ -1,17 +1,14 @@
 package trinity.world;
 
-import java.util.List;
-import java.util.Random;
-
 import nc.init.NCBlocks;
-import nc.worldgen.biome.BiomeNuclearWasteland;
-import nc.worldgen.biome.NCBiome;
+import nc.worldgen.biome.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
+
+import java.util.*;
 
 public class BiomeContaminatedOcean extends NCBiome {
 	
@@ -89,7 +86,7 @@ public class BiomeContaminatedOcean extends NCBiome {
 	
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos) {
-		
+	
 	}
 	
 	/*	@Override

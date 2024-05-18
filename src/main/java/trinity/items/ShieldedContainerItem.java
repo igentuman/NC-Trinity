@@ -1,22 +1,20 @@
 package trinity.items;
 
-import java.util.List;
-
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
-import nc.util.Lang;
-import nc.util.NCMath;
+import nc.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.world.World;
 import trinity.blocks.ShieldedContainer;
+
+import java.util.List;
 
 public class ShieldedContainerItem extends ItemBlock {
 	
 	// public double rads;
-	private static final String RADIATION = Lang.localise("item.nuclearcraft.rads");
+	private static final String RADIATION = Lang.localize("item.nuclearcraft.rads");
 	
 	public ShieldedContainerItem(Block block) {
 		super(block);
@@ -41,7 +39,7 @@ public class ShieldedContainerItem extends ItemBlock {
 	
 	public void setRadioactivity(ItemStack stack, double radioactivity) {
 		if (stack.getTagCompound() == null) {
-			
+		
 		}
 	}
 	

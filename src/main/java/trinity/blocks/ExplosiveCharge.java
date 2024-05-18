@@ -1,19 +1,16 @@
 package trinity.blocks;
 
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.BlockStateContainer;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
-import trinity.Global;
+import net.minecraft.world.*;
 import trinity.init.ModBlocks;
 
 public class ExplosiveCharge extends Block {
@@ -22,8 +19,8 @@ public class ExplosiveCharge extends Block {
 	
 	public ExplosiveCharge(String nameIn, Material material) {
 		super(material);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 1);
 		setSoundType(blockSoundType.METAL);
 		this.setHardness(2F);
