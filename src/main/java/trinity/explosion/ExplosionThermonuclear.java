@@ -1,10 +1,10 @@
 package trinity.explosion;
 
-import java.util.Random;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class ExplosionThermonuclear {
 	

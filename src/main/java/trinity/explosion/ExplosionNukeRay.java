@@ -1,20 +1,16 @@
 package trinity.explosion;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import net.minecraft.init.Blocks;
-// import net.minecraft.util.Vec3;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-// import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import trinity.handler.Vec3;
 
+import java.util.*;
+
 public class ExplosionNukeRay {
 	
-	List<FloatTriplet> affectedBlocks = new ArrayList();
+	List<FloatTriplet> affectedBlocks = new ArrayList<>();
 	int posX;
 	int posY;
 	int posZ;

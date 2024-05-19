@@ -1,18 +1,14 @@
 package trinity.render.entity;
 
-import org.lwjgl.opengl.GL11;
-
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
-import trinity.Global;
+import org.lwjgl.opengl.GL11;
 import trinity.entities.EntityBlackHole;
-import trinity.render.AdvancedModelLoader;
-import trinity.render.IModelCustom;
-import trinity.render.Tessellator;
+import trinity.render.*;
 
 public class RenderBlackHole extends Render<EntityBlackHole> {
 	
@@ -20,7 +16,7 @@ public class RenderBlackHole extends Render<EntityBlackHole> {
 		return new RenderBlackHole(man);
 	};
 	
-	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */Global.MOD_ID, "models/Sphere.obj");
+	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */Reference.MOD_ID, "models/Sphere.obj");
 	private IModelCustom blastModel;
 	private ResourceLocation hole;
 	private ResourceLocation disk;
@@ -28,8 +24,8 @@ public class RenderBlackHole extends Render<EntityBlackHole> {
 	public RenderBlackHole(RenderManager renderManager) {
 		super(renderManager);
 		blastModel = AdvancedModelLoader.loadModel(objTesterModelRL);
-		hole = new ResourceLocation(Global.MOD_ID, "textures/models/black.png");
-		disk = new ResourceLocation(Global.MOD_ID, "textures/models/disk.png");
+		hole = new ResourceLocation(Reference.MOD_ID, "textures/models/black.png");
+		disk = new ResourceLocation(Reference.MOD_ID, "textures/models/disk.png");
 	}
 	
 	@Override

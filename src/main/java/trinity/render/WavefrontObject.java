@@ -1,20 +1,14 @@
 package trinity.render;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.IResource;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.*;
+import org.lwjgl.opengl.GL11;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.regex.*;
 
 /** Wavefront Object importer Based heavily off of the specifications found at http://en.wikipedia.org/wiki/Wavefront_.obj_file */
 public class WavefrontObject implements IModelCustom {
@@ -416,7 +410,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid vertex
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid vertex, false otherwise */
@@ -430,7 +424,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid vertex normal
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid vertex normal, false otherwise */
@@ -444,7 +438,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid texture coordinate
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid texture coordinate, false otherwise */
@@ -458,7 +452,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid face that is described by vertices, texture coordinates, and vertex normals
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid face that matches the format "f v1/vt1/vn1 ..." (with a minimum of 3 points in the face, and a maximum of 4), false otherwise */
@@ -472,7 +466,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid face that is described by vertices and texture coordinates
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid face that matches the format "f v1/vt1 ..." (with a minimum of 3 points in the face, and a maximum of 4), false otherwise */
@@ -486,7 +480,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid face that is described by vertices and vertex normals
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid face that matches the format "f v1//vn1 ..." (with a minimum of 3 points in the face, and a maximum of 4), false otherwise */
@@ -500,7 +494,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid face that is described by only vertices
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid face that matches the format "f v1 ..." (with a minimum of 3 points in the face, and a maximum of 4), false otherwise */
@@ -514,7 +508,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid face of any of the possible face formats
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid face that matches any of the valid face formats, false otherwise */
@@ -523,7 +517,7 @@ public class WavefrontObject implements IModelCustom {
 	}
 	
 	/*** Verifies that the given line from the model file is a valid group (or object)
-	 * 
+	 *
 	 * @param line
 	 *            the line being validated
 	 * @return true if the line is a valid group (or object), false otherwise */

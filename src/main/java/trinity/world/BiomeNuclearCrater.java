@@ -1,18 +1,14 @@
 package trinity.world;
 
-import java.util.List;
-import java.util.Random;
-
 import nc.init.NCBlocks;
-// import nc.worldgen.biome.BiomeDecoratorNuclearWasteland;
 import nc.worldgen.biome.BiomeNuclearWasteland;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeDecorator;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.world.biome.*;
+import net.minecraftforge.fml.relauncher.*;
+
+import java.util.*;
 
 public class BiomeNuclearCrater extends Biome {
 	
@@ -90,7 +86,7 @@ public class BiomeNuclearCrater extends Biome {
 	
 	@Override
 	public void decorate(World worldIn, Random rand, BlockPos pos) {
-		
+	
 	}
 	
 	/*	@Override

@@ -1,10 +1,6 @@
 package trinity.blocks;
 
-import java.util.List;
-import java.util.Random;
-
-import javax.annotation.Nullable;
-
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,14 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.Explosion;
-import net.minecraft.world.World;
+import net.minecraft.world.*;
 import net.minecraft.world.chunk.Chunk;
-import trinity.Global;
 import trinity.config.TrinityConfig;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
+import trinity.entities.*;
 import trinity.explosion.ExplosionNukeGeneric;
+
+import javax.annotation.Nullable;
+import java.util.*;
 
 public class AntimatterBomb extends Block {
 	
@@ -29,8 +25,8 @@ public class AntimatterBomb extends Block {
 	public AntimatterBomb(String nameIn, Material material, int blastRadius) {
 		super(material);
 		this.blastRadius = blastRadius;
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 1);
 		setSoundType(blockSoundType.METAL);
 		this.setHardness(2F);

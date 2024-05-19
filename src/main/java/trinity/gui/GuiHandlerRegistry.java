@@ -1,10 +1,10 @@
 package trinity.gui;
 
-import java.util.HashMap;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+
+import java.util.HashMap;
 
 /** User: brandon3055 Date: 06/01/2015
  *

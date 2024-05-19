@@ -1,23 +1,18 @@
 package trinity.fluid;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.tuple.Pair;
-
 import nc.block.fluid.NCBlockFluid;
 import nc.block.item.NCItemBlock;
 import nc.enumm.FluidType;
-import nc.util.ColorHelper;
-import nc.util.NCUtil;
+import nc.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import trinity.Global;
-import trinity.Trinity;
+import org.apache.commons.lang3.tuple.Pair;
+import trinity.*;
+
+import java.util.*;
 
 public class TrinityFluids {
 	
@@ -37,8 +32,8 @@ public class TrinityFluids {
 		// nitrogen_dioxide = new FluidTrinity("nitrogen_dioxide", new ResourceLocation(Global.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"), 0x381D05);
 		// nitric_acid = new FluidTrinity("nitric_acid", new ResourceLocation(Global.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"), 0x0A8375);
 		// barium_nitrate_solution = new FluidTrinity("barium_nitrate_solution", new ResourceLocation(Global.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"), 0x5b65be);
-		tnt = new FluidTrinity("tnt", new ResourceLocation(Global.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"), 0xFD2800);
-		baratol = new FluidTrinity("baratol", new ResourceLocation(Global.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Global.MOD_ID, "blocks/liquid_flow"), 0xFB8D56);
+		tnt = new FluidTrinity("tnt", new ResourceLocation(Reference.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Reference.MOD_ID, "blocks/liquid_flow"), 0xFD2800);
+		baratol = new FluidTrinity("baratol", new ResourceLocation(Reference.MOD_ID, "blocks/liquid_still"), new ResourceLocation(Reference.MOD_ID, "blocks/liquid_flow"), 0xFB8D56);
 		
 		// FluidRegistry.registerFluid(witherite_water);
 		// FluidRegistry.registerFluid(nitric_oxide);
@@ -51,8 +46,8 @@ public class TrinityFluids {
 	
 	private static <T extends Fluid, V extends NCBlockFluid> void addFluidPair(FluidType fluidType, Object... fluidArgs) {
 		try {
-			T fluid = NCUtil.newInstance(fluidType.getFluidClass(), fluidArgs);
-			V block = NCUtil.newInstance(fluidType.getBlockClass(), fluid);
+			T fluid = ReflectionHelper.newInstance(fluidType.getFluidClass(), fluidArgs);
+			V block = ReflectionHelper.newInstance(fluidType.getBlockClass(), fluid);
 			fluidPairList.add(Pair.of(fluid, block));
 		}
 		catch (Exception e) {
@@ -103,7 +98,7 @@ public class TrinityFluids {
 	}
 	
 	public static <T extends NCBlockFluid> Block withName(T block) {
-		return block.setTranslationKey(Global.MOD_ID + "." + block.name).setRegistryName(new ResourceLocation(Global.MOD_ID, block.name));
+		return block.setTranslationKey(Reference.MOD_ID + "." + block.name).setRegistryName(new ResourceLocation(Reference.MOD_ID, block.name));
 	}
 	
 	private static int waterBlend(int soluteColor, float blendRatio) {

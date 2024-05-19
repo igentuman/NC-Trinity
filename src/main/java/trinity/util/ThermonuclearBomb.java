@@ -1,20 +1,16 @@
 package trinity.util;
 
-import java.util.List;
-import java.util.Set;
-
 import com.google.common.collect.Sets;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
 import trinity.blocks.ThermonuclearCore;
+
+import java.util.*;
 
 public class ThermonuclearBomb {
 	

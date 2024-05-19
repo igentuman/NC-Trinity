@@ -1,7 +1,5 @@
 package trinity.tiles;
 
-import java.util.Arrays;
-
 import nc.capability.radiation.resistance.IRadiationResistance;
 import nc.capability.radiation.source.IRadiationSource;
 import nc.radiation.RadiationHelper;
@@ -10,15 +8,13 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+import net.minecraft.nbt.*;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.*;
 import trinity.blocks.ShieldedContainer;
-// import trinity.items.RadioactiveSource;
 import trinity.items.RadioactiveSource2;
+
+import java.util.Arrays;
 
 /** User: brandon3055 Date: 06/01/2015
  *
@@ -76,7 +72,7 @@ public class TileEntityShieldedContainer extends TileEntity implements IInventor
 	}
 	
 	/** Removes some of the units from itemstack in the given slot, and returns as a separate itemstack
-	 * 
+	 *
 	 * @param slotIndex
 	 *            the slot number to remove the items from
 	 * @param count
@@ -260,7 +256,7 @@ public class TileEntityShieldedContainer extends TileEntity implements IInventor
 	// The following methods are not needed for this example but are part of IInventory so they must be implemented
 	
 	/** This method removes the entire contents of the given slot and returns it. Used by containers such as crafting tables which return any items in their slots when you close the GUI
-	 * 
+	 *
 	 * @param slotIndex
 	 * @return */
 	@Override

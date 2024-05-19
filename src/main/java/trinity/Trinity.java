@@ -2,21 +2,15 @@ package trinity;
 
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLModIdMappingEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.*;
+import net.minecraftforge.fml.common.Mod.*;
+import net.minecraftforge.fml.common.event.*;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import trinity.config.TrinityConfig;
 import trinity.gui.GuiHandlerRegistry;
 import trinity.world.ChunkLoader;
 
-@Mod(modid = trinity.util.Reference.MODID, name = trinity.util.Reference.NAME, version = trinity.util.Reference.VERSION, dependencies = trinity.util.Reference.REQUIREMENT)
+@Mod(modid = Reference.MOD_ID, name = Reference.NAME, version = Reference.VERSION, dependencies = Reference.REQUIREMENT)
 
 public class Trinity {
 	

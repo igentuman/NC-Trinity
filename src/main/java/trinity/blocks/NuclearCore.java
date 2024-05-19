@@ -1,9 +1,6 @@
 package trinity.blocks;
 
-import java.util.List;
-
-import javax.annotation.Nullable;
-
+import com.blamejared.ctgui.reference.Reference;
 import nc.capability.radiation.source.IRadiationSource;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,13 +13,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
-import trinity.Global;
 import trinity.config.TrinityConfig;
-import trinity.entities.EntityNuclearCloud;
-import trinity.entities.EntityNuclearExplosion;
-import trinity.entities.EntityThermonuclearBlast;
+import trinity.entities.*;
 import trinity.explosion.ExplosionNukeGeneric;
 import trinity.util.ThermonuclearBomb;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class NuclearCore extends Block {
 	
@@ -34,8 +31,8 @@ public class NuclearCore extends Block {
 		super(material);
 		this.blastRadius = blastRadius;
 		this.salted = salted;
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 1);
 		setSoundType(blockSoundType.METAL);
 		this.setHardness(2F);

@@ -1,21 +1,15 @@
 package trinity.entities;
 
-// import trinity.util.IConstantRenderer;
-
-import javax.annotation.Nullable;
-
 import nc.capability.radiation.source.IRadiationSource;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.MoverType;
+import net.minecraft.entity.*;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.network.datasync.*;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
+
+import javax.annotation.Nullable;
 
 public class EntityDirtyBomb extends Entity {
 	

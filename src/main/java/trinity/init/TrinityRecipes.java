@@ -1,19 +1,16 @@
 package trinity.init;
 
 import com.google.common.collect.Lists;
-
 import nc.init.NCItems;
 import nc.recipe.NCRecipes;
 import nc.recipe.ingredient.FluidIngredient;
 import nc.recipe.vanilla.CraftingRecipeHandler;
-import nc.util.FluidRegHelper;
-import nc.util.FluidStackHelper;
+import nc.util.*;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import trinity.config.TrinityConfig;
 
@@ -165,9 +162,9 @@ public class TrinityRecipes {
 	}
 	//
 	/*public static void init() {
-		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.solid_trinitite, 1, 0), new Object[] {"TTT", "TTT", "TTT", 'T', ModItems.trinitite});		
+		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.solid_trinitite, 1, 0), new Object[] {"TTT", "TTT", "TTT", 'T', ModItems.trinitite});
 		
-		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.detonator, 1, 0), new Object[] {"TP ", "PBP", " P ", 'T', Blocks.REDSTONE_TORCH, 'P', "ingotPlutonium242", 'B', Blocks.STONE_BUTTON});		
+		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.detonator, 1, 0), new Object[] {"TP ", "PBP", " P ", 'T', Blocks.REDSTONE_TORCH, 'P', "ingotPlutonium242", 'B', Blocks.STONE_BUTTON});
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.compression_charge, 1, 0), new Object[] {"STB", "TB ", "STB", 'S', "ingotLead", 'T', Blocks.TNT, 'B', ModBlocks.baratol});
 		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.neutron_initiator, 1, 0), new Object[] {" B ", "BPB", " B ", 'P', "dustPolonium", 'B', "ingotBeryllium"});

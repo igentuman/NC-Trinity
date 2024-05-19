@@ -1,32 +1,24 @@
 package trinity.init;
 
-import java.util.List;
-
 import nc.capability.radiation.entity.IEntityRads;
 import nc.config.NCConfig;
-import nc.network.PacketHandler;
 import nc.network.radiation.PlayerRadsUpdatePacket;
-import nc.radiation.RadSources;
-import nc.radiation.RadiationHelper;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import nc.radiation.*;
+import net.minecraft.entity.player.*;
+import net.minecraft.item.*;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.eventhandler.*;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import trinity.items.RadioactiveSource2;
-import trinity.items.ShieldedContainerItem;
+import net.minecraftforge.fml.relauncher.*;
+import trinity.Reference;
+import trinity.items.*;
 import trinity.radiation.FalloutSavedData;
 import trinity.tiles.TileEntityShieldedContainer;
-import trinity.util.Reference;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
+import java.util.List;
+
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class CommonEvents {
 	
 	public static String Pu_238 = "c95fdfd3-bea7-4255-a44b-d21bc3df95e3";
@@ -115,7 +107,7 @@ public class CommonEvents {
 			playerRads.setRadiationLevel(playerRads.getRadiationLevel() + appliedRads);
 			// System.out.println("Radiation: "+playerRads.getRadiationLevel()+" Rad/t");
 			// System.out.println("Adjusted Radiation: "+playerRads.getRadiationLevel()/3+" Rad/t");
-			PacketHandler.instance.sendTo(new PlayerRadsUpdatePacket(playerRads), player);
+			new PlayerRadsUpdatePacket(playerRads).sendTo(player);
 		}
 	}
 }

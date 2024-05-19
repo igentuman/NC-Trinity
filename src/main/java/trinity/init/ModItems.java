@@ -5,17 +5,12 @@ import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import trinity.items.BasicItem;
-import trinity.items.ItemDetonator;
-// import trinity.items.RadioactiveSource;
-import trinity.items.RadioactiveSource2;
-import trinity.items.ShieldedContainer;
+import trinity.Reference;
+import trinity.items.*;
 import trinity.radiation.RadiationHandler;
-// import trinity.items.RadioactiveSource;
 import trinity.tabs.TrinityTab;
-import trinity.util.Reference;
 
-@Mod.EventBusSubscriber(modid = Reference.MODID)
+@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ModItems {
 	
 	public static Item gem_witherite;

@@ -1,18 +1,15 @@
 package trinity.config;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import nc.util.Lang;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
+import net.minecraftforge.common.config.*;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import trinity.util.Reference;
+import net.minecraftforge.fml.common.eventhandler.*;
+import trinity.Reference;
+
+import java.io.File;
+import java.util.*;
 
 public class TrinityConfig {
 	
@@ -133,76 +130,76 @@ public class TrinityConfig {
 		if (loadFromFile)
 			config.load();
 		
-		Property propertyCustom = config.get(CATEGORY_NAME_OTHER, "custom_nukes", new Boolean(custom), Lang.localise("gui.config.nuke.custom_nukes.comment"));
+		Property propertyCustom = config.get(CATEGORY_NAME_OTHER, "custom_nukes", (custom), Lang.localize("gui.config.nuke.custom_nukes.comment"));
 		propertyCustom.setLanguageKey("gui.config.nuke.custom_nukes");
 		
-		Property propertyThermonuclear = config.get(CATEGORY_NAME_OTHER, "thermonuclear", new Boolean(thermo), Lang.localise("gui.config.nuke.thermonuclear.comment"));
+		Property propertyThermonuclear = config.get(CATEGORY_NAME_OTHER, "thermonuclear", (thermo), Lang.localize("gui.config.nuke.thermonuclear.comment"));
 		propertyThermonuclear.setLanguageKey("gui.config.nuke.thermonuclear");
 		
-		Property propertyFalloutRender = config.get(CATEGORY_NAME_OTHER, "fallout_rendering", new Boolean(render), Lang.localise("gui.config.fallout.fallout_rendering.comment"));
+		Property propertyFalloutRender = config.get(CATEGORY_NAME_OTHER, "fallout_rendering", (render), Lang.localize("gui.config.fallout.fallout_rendering.comment"));
 		propertyFalloutRender.setLanguageKey("gui.config.fallout.fallout_rendering");
 		
-		Property propertySaltedBurst = config.get(CATEGORY_NAME_OTHER, "salted_burst", new Double(salted), Lang.localise("gui.config.fallout.salted_burst.comment"), 1, Double.MAX_VALUE);
+		Property propertySaltedBurst = config.get(CATEGORY_NAME_OTHER, "salted_burst", (salted), Lang.localize("gui.config.fallout.salted_burst.comment"), 1, Double.MAX_VALUE);
 		propertySaltedBurst.setLanguageKey("gui.config.fallout.salted_burst");
 		
-		Property propertyFalloutRadius = config.get(CATEGORY_NAME_OTHER, "fallout_multiplier", new Double(multiplier), Lang.localise("gui.config.fallout.fallout_multiplier.comment"), 1, Double.MAX_VALUE);
+		Property propertyFalloutRadius = config.get(CATEGORY_NAME_OTHER, "fallout_multiplier", (multiplier), Lang.localize("gui.config.fallout.fallout_multiplier.comment"), 1, Double.MAX_VALUE);
 		propertyFalloutRadius.setLanguageKey("gui.config.fallout.fallout_multiplier");
 		
-		Property propertyU233Radius = config.get(CATEGORY_NAME_OTHER, "u233_radius", new Integer(u233), Lang.localise("gui.config.nuke.u233_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyU233Radius = config.get(CATEGORY_NAME_OTHER, "u233_radius", (u233), Lang.localize("gui.config.nuke.u233_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.u233_radius");
 		
-		Property propertyU235Radius = config.get(CATEGORY_NAME_OTHER, "u235_radius", new Integer(u235), Lang.localise("gui.config.nuke.u235_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyU235Radius = config.get(CATEGORY_NAME_OTHER, "u235_radius", (u235), Lang.localize("gui.config.nuke.u235_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.u235_radius");
 		
-		Property propertyNp237Radius = config.get(CATEGORY_NAME_OTHER, "np237_radius", new Integer(np237), Lang.localise("gui.config.nuke.np237_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyNp237Radius = config.get(CATEGORY_NAME_OTHER, "np237_radius", (np237), Lang.localize("gui.config.nuke.np237_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyNp237Radius.setLanguageKey("gui.config.nuke.np237_radius");
 		
-		Property propertyPu239Radius = config.get(CATEGORY_NAME_OTHER, "pu239_radius", new Integer(pu239), Lang.localise("gui.config.nuke.pu239_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyPu239Radius = config.get(CATEGORY_NAME_OTHER, "pu239_radius", (pu239), Lang.localize("gui.config.nuke.pu239_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyPu239Radius.setLanguageKey("gui.config.nuke.pu239_radius");
 		
-		Property propertyAm242Radius = config.get(CATEGORY_NAME_OTHER, "am242_radius", new Integer(am242), Lang.localise("gui.config.nuke.am242_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyAm242Radius = config.get(CATEGORY_NAME_OTHER, "am242_radius", (am242), Lang.localize("gui.config.nuke.am242_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyPu239Radius.setLanguageKey("gui.config.nuke.am242_radius");
 		
-		Property propertyCm247Radius = config.get(CATEGORY_NAME_OTHER, "cm247_radius", new Integer(cm247), Lang.localise("gui.config.nuke.cm247_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCm247Radius = config.get(CATEGORY_NAME_OTHER, "cm247_radius", (cm247), Lang.localize("gui.config.nuke.cm247_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCm247Radius.setLanguageKey("gui.config.nuke.cm247_radius");
 		
-		Property propertyBk248Radius = config.get(CATEGORY_NAME_OTHER, "bk248_radius", new Integer(bk248), Lang.localise("gui.config.nuke.bk248_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyBk248Radius = config.get(CATEGORY_NAME_OTHER, "bk248_radius", (bk248), Lang.localize("gui.config.nuke.bk248_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyBk248Radius.setLanguageKey("gui.config.nuke.bk248_radius");
 		
-		Property propertyCf249Radius = config.get(CATEGORY_NAME_OTHER, "cf249_radius", new Integer(cf249), Lang.localise("gui.config.nuke.cf249_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCf249Radius = config.get(CATEGORY_NAME_OTHER, "cf249_radius", (cf249), Lang.localize("gui.config.nuke.cf249_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCf249Radius.setLanguageKey("gui.config.nuke.cf249_radius");
 		
-		Property propertyCf251Radius = config.get(CATEGORY_NAME_OTHER, "cf251_radius", new Integer(cf251), Lang.localise("gui.config.nuke.cf251_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCf251Radius = config.get(CATEGORY_NAME_OTHER, "cf251_radius", (cf251), Lang.localize("gui.config.nuke.cf251_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCf251Radius.setLanguageKey("gui.config.nuke.cf251_radius");
 		
-		Property propertyCustom1Radius = config.get(CATEGORY_NAME_OTHER, "custom1_radius", new Integer(cust1), Lang.localise("gui.config.nuke.cust1_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCustom1Radius = config.get(CATEGORY_NAME_OTHER, "custom1_radius", (cust1), Lang.localize("gui.config.nuke.cust1_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom1Radius.setLanguageKey("gui.config.nuke.cust1_radius");
 		
-		Property propertyCustom2Radius = config.get(CATEGORY_NAME_OTHER, "custom2_radius", new Integer(cust2), Lang.localise("gui.config.nuke.cust2_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCustom2Radius = config.get(CATEGORY_NAME_OTHER, "custom2_radius", (cust2), Lang.localize("gui.config.nuke.cust2_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom2Radius.setLanguageKey("gui.config.nuke.cust2_radius");
 		
-		Property propertyCustom3Radius = config.get(CATEGORY_NAME_OTHER, "custom3_radius", new Integer(cust3), Lang.localise("gui.config.nuke.cust3_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCustom3Radius = config.get(CATEGORY_NAME_OTHER, "custom3_radius", (cust3), Lang.localize("gui.config.nuke.cust3_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom3Radius.setLanguageKey("gui.config.nuke.cust3_radius");
 		
-		Property propertyCustom4Radius = config.get(CATEGORY_NAME_OTHER, "custom4_radius", new Integer(cust4), Lang.localise("gui.config.nuke.cust4_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyCustom4Radius = config.get(CATEGORY_NAME_OTHER, "custom4_radius", (cust4), Lang.localize("gui.config.nuke.cust4_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyCustom4Radius.setLanguageKey("gui.config.nuke.cust4_radius");
 		
-		Property propertyICBMRadius = config.get(CATEGORY_NAME_OTHER, "icbm_radius", new Integer(icbm), Lang.localise("gui.config.nuke.icbm_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyICBMRadius = config.get(CATEGORY_NAME_OTHER, "icbm_radius", (icbm), Lang.localize("gui.config.nuke.icbm_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyICBMRadius.setLanguageKey("gui.config.nuke.icbm_radius");
 		
-		Property propertyAntimatterRadius = config.get(CATEGORY_NAME_OTHER, "antimatter_radius", new Integer(anti), Lang.localise("gui.config.nuke.antimatter_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyAntimatterRadius = config.get(CATEGORY_NAME_OTHER, "antimatter_radius", (anti), Lang.localize("gui.config.nuke.antimatter_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyAntimatterRadius.setLanguageKey("gui.config.nuke.antimatter_radius");
 		
-		Property propertyMaxRadius = config.get(CATEGORY_NAME_OTHER, "max_radius", new Integer(max), Lang.localise("gui.config.nuke.max_radius.comment"), 1, Integer.MAX_VALUE);
+		Property propertyMaxRadius = config.get(CATEGORY_NAME_OTHER, "max_radius", (max), Lang.localize("gui.config.nuke.max_radius.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.max_radius");
 		
-		Property propertySpeed = config.get(CATEGORY_NAME_OTHER, "speed", new Integer(speed), Lang.localise("gui.config.nuke.speed.comment"), 1, Integer.MAX_VALUE);
+		Property propertySpeed = config.get(CATEGORY_NAME_OTHER, "speed", (speed), Lang.localize("gui.config.nuke.speed.comment"), 1, Integer.MAX_VALUE);
 		propertyU233Radius.setLanguageKey("gui.config.nuke.speed");
 		
-		Property propertyLava = config.get(CATEGORY_NAME_OTHER, "lava_gen", new Boolean(lava), Lang.localise("gui.config.fallout.lava_gen.comment"));
+		Property propertyLava = config.get(CATEGORY_NAME_OTHER, "lava_gen", (lava), Lang.localize("gui.config.fallout.lava_gen.comment"));
 		propertyThermonuclear.setLanguageKey("gui.config.fallout.lava_gen");
 		
-		// Property propertyCapacity = config.get(CATEGORY_NAME_OTHER, "capacity", new Integer(cap), Lang.localise("gui.config.nuke.capacity.comment"), 1, Integer.MAX_VALUE);
+		// Property propertyCapacity = config.get(CATEGORY_NAME_OTHER, "capacity", (cap), Lang.localize("gui.config.nuke.capacity.comment"), 1, Integer.MAX_VALUE);
 		// propertyU233Radius.setLanguageKey("gui.config.nuke.capacity");
 		
 		List<String> propertyOrderOther = new ArrayList<String>();
@@ -291,7 +288,7 @@ public class TrinityConfig {
 		
 		@SubscribeEvent(priority = EventPriority.LOWEST)
 		public void onEvent(ConfigChangedEvent.OnConfigChangedEvent event) {
-			if (event.getModID().equals(Reference.MODID)) {
+			if (event.getModID().equals(Reference.MOD_ID)) {
 				syncFromGui();
 				
 			}

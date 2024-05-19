@@ -2,10 +2,8 @@ package trinity.gui;
 
 import nc.capability.radiation.source.IRadiationSource;
 import nc.radiation.RadiationHelper;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Slot;
+import net.minecraft.inventory.*;
 import net.minecraft.item.ItemStack;
-// import trinity.items.RadioactiveSource;
 import trinity.items.RadioactiveSource2;
 
 /** User: brandon3055 Date: 06/01/2015

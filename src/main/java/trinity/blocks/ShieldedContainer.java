@@ -7,18 +7,13 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import trinity.Global;
-import trinity.Trinity;
+import trinity.*;
 import trinity.gui.GuiHandlerTrinity;
 import trinity.tiles.TileEntityShieldedContainer;
 
@@ -26,12 +21,12 @@ public class ShieldedContainer extends BlockContainer {
 	
 	public double shielding;
 	public static double rads;
-	private static final String RADIATION = Lang.localise("item.nuclearcraft.rads");
+	private static final String RADIATION = Lang.localize("item.nuclearcraft.rads");
 	
 	public ShieldedContainer(String nameIn, Material material, double shielding) {
 		super(material);
-		setTranslationKey(Global.MOD_ID + "." + nameIn);
-		setRegistryName(new ResourceLocation(Global.MOD_ID, nameIn));
+		setTranslationKey(Reference.MOD_ID + "." + nameIn);
+		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
 		setHarvestLevel("Pickaxe", 1);
 		this.shielding = shielding * 8;
 		// setSoundType(blockSoundType.GROUND);
@@ -109,9 +104,9 @@ public class ShieldedContainer extends BlockContainer {
 	/*@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
 	{
-	//		tooltip.add("Light Shielding: "+NCConfig.radiation_shielding_level[0]);	
+	//		tooltip.add("Light Shielding: "+NCConfig.radiation_shielding_level[0]);
 	//		tooltip.add("Medium Shielding: "+NCConfig.radiation_shielding_level[1]);
-	//		tooltip.add("Heavy Shielding: "+NCConfig.radiation_shielding_level[2]);	
+	//		tooltip.add("Heavy Shielding: "+NCConfig.radiation_shielding_level[2]);
 		rads = stack.getTagCompound().getDouble("Radioactivity");
 		tooltip.add(RadiationHelper.getRadiationTextColor(this.rads*stack.getCount()) + RADIATION + " " + RadiationHelper.radsPrefix(this.rads*stack.getCount(), true));
 	}*/

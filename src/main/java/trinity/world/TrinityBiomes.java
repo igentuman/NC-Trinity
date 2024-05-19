@@ -1,5 +1,6 @@
 package trinity.world;
 
+import com.blamejared.ctgui.reference.Reference;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
@@ -7,23 +8,22 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 import net.minecraftforge.registries.IForgeRegistry;
-import trinity.Global;
 
-@ObjectHolder(Global.MOD_ID)
+@ObjectHolder(Reference.MOD_ID)
 public class TrinityBiomes {
 	
 	public final static BiomeNuclearCrater NUCLEAR_CRATER = new BiomeNuclearCrater();
 	
 	public final static BiomeContaminatedOcean CONTAMINATED_OCEAN = new BiomeContaminatedOcean();
 	
-	@Mod.EventBusSubscriber(modid = Global.MOD_ID)
+	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 	public static class RegistrationHandler {
 		
 		@SubscribeEvent
 		public static void onEvent(final RegistryEvent.Register<Biome> event) {
 			final IForgeRegistry<Biome> registry = event.getRegistry();
-			registry.register(new BiomeNuclearCrater().setRegistryName(Global.MOD_ID, BiomeNuclearCrater.BIOME_REGISTRY_NAME));
-			registry.register(new BiomeContaminatedOcean().setRegistryName(Global.MOD_ID, BiomeContaminatedOcean.BIOME_REGISTRY_NAME));
+			registry.register(new BiomeNuclearCrater().setRegistryName(Reference.MOD_ID, BiomeNuclearCrater.BIOME_REGISTRY_NAME));
+			registry.register(new BiomeContaminatedOcean().setRegistryName(Reference.MOD_ID, BiomeContaminatedOcean.BIOME_REGISTRY_NAME));
 		}
 	}
 	

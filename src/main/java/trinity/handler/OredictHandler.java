@@ -2,8 +2,7 @@ package trinity.handler;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import trinity.init.ModBlocks;
-import trinity.init.ModItems;
+import trinity.init.*;
 
 public class OredictHandler {
 	
