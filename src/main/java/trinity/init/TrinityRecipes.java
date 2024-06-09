@@ -44,7 +44,7 @@ public class TrinityRecipes {
 		NCRecipes.crystallizer.addRecipe(fluidStack("barium_nitrate_solution", FluidStackHelper.GEM_VOLUME), "dustBariumNitrate", 1D, 1D);
 		NCRecipes.crystallizer.addRecipe(fluidStack("witherite_water", FluidStackHelper.GEM_VOLUME), "dustWitherite", 1D, 1D);
 		NCRecipes.ingot_former.addRecipe(fluidStack("baratol", FluidStackHelper.BUCKET_VOLUME), ModBlocks.baratol, 1D, 1D);
-		NCRecipes.fission_irradiator.addRecipe(Lists.newArrayList("ingotGold", "dustGold"), "dustGold198", 1600000, 0, 0);
+		NCRecipes.fission_irradiator.addRecipe(Lists.newArrayList("ingotGold", "dustGold"), "dustGold198", 1600000L, 0, 0);
 		NCRecipes.salt_mixer.addRecipe(fluidStack("deuterium", FluidStackHelper.BUCKET_VOLUME / 2), fluidStack("tritium", FluidStackHelper.BUCKET_VOLUME / 2), fluidStack("deuterium-tritium_mixture", FluidStackHelper.BUCKET_VOLUME), 0.5D, 0.5D);
 		
 		CraftingRecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.light_container, 1, 0), new Object[] {"SSS", "SCS", "SSS", 'S', new ItemStack(NCItems.rad_shielding, 1, 0), 'C', Blocks.CHEST});

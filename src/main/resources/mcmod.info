@@ -3,7 +3,7 @@
   "modid": "trinity",
   "name": "Trinity",
   "description": "A nuclear weapons addon for NuclearCraft",
-  "version": "1.5",
+  "version": "1.5.d",
   "mcversion": "1.12.2",
   "url": "",
   "updateUrl": "",
@@ -11,7 +11,6 @@
   "credits": "HBM for the explosion algorithm, and the mushroom cloud rendering",
   "logoFile": "",
   "screenshots": [],
-  "dependencies": []
+  "dependencies": ["nuclearcraft", "nclegacy"],
 }
 ]
-

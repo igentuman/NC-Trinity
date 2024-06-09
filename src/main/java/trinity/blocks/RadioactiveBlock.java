@@ -1,6 +1,6 @@
 package trinity.blocks;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import nc.capability.radiation.source.IRadiationSource;
 import nc.init.NCBlocks;
 import net.minecraft.block.Block;

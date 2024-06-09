@@ -1,6 +1,6 @@
 package trinity.items;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.*;
