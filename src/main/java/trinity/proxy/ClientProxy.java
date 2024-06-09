@@ -1,6 +1,6 @@
 package trinity.proxy;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;

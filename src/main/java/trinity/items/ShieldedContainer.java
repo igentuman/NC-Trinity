@@ -1,6 +1,6 @@
 package trinity.items;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import nc.config.NCConfig;
 import nc.radiation.RadiationHelper;
 import nc.util.Lang;

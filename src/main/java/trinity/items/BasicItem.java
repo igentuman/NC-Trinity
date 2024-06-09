@@ -1,6 +1,6 @@
 package trinity.items;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 

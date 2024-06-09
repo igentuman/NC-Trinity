@@ -1,6 +1,6 @@
 package trinity.blocks;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

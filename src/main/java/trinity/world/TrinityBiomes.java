@@ -1,6 +1,6 @@
 package trinity.world;
 
-import com.blamejared.ctgui.reference.Reference;
+import trinity.Reference;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.event.RegistryEvent;
