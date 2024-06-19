@@ -1,7 +1,9 @@
 package trinity.entities;
 
-import icbm.classic.api.refs.ICBMExplosives;
-import icbm.classic.content.blast.BlastEMP;
+import icbm.classic.api.actions.data.ActionFields;
+import icbm.classic.content.actions.emp.ActionDataEmpArea;
+import icbm.classic.lib.actions.PotentialActionKnown;
+import icbm.classic.lib.actions.fields.ActionFieldProvider;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.*;
@@ -88,7 +90,7 @@ public class EntityThermonuclearBlast extends Entity {
 			this.world.spawnEntity(shock);*/
 			
 			if (Trinity.ICBMLoaded) {
-				new BlastEMP().setBlastWorld(this.world).setBlastSource(this).setBlastPosition(this.posX, this.posY, this.posZ).setBlastSize(getScale() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
+				new PotentialActionKnown(ActionDataEmpArea.REG_NAME).withProvider(new ActionFieldProvider().field(ActionFields.AREA_SIZE, () -> getScale() * 2F)).doAction(world, getPosition(), null);
 			}
 			
 			this.did = true;

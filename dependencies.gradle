@@ -64,7 +64,7 @@ dependencies {
 	implementation rfg.deobf("curse.maven:hwyla-253449:2568751")
 	implementation rfg.deobf("curse.maven:nuclearcraft-overhauled-336895:5353004")
 	implementation rfg.deobf("curse.maven:nco-java-legacy-lib-1032769:5409681")
-	implementation rfg.deobf("curse.maven:icbm-244451:4813898")
+	implementation rfg.deobf("curse.maven:icbm-244451:5429119")
 }
 
 configurations {
