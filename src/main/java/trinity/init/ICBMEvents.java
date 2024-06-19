@@ -1,13 +1,15 @@
 package trinity.init;
 
-import icbm.classic.api.EnumTier;
+import icbm.classic.api.actions.data.ActionFields;
 import icbm.classic.api.refs.ICBMExplosives;
-import icbm.classic.content.blast.BlastEMP;
+import icbm.classic.content.actions.emp.ActionDataEmpArea;
 import icbm.classic.content.blast.threaded.*;
 import icbm.classic.content.blocks.explosive.ItemBlockExplosive;
 import icbm.classic.content.items.ItemMissile;
+import icbm.classic.lib.actions.PotentialActionKnown;
+import icbm.classic.lib.actions.fields.ActionFieldProvider;
 import net.minecraft.item.*;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -32,55 +34,51 @@ public class ICBMEvents {
 			ItemStack stack = event.getItemStack();
 			Item item = stack.getItem();
 			if (item instanceof ItemBlockExplosive || item instanceof ItemMissile) {
-				if (stack.getItemDamage() == ICBMExplosives.NUCLEAR.getRegistryID()) {
-					addNukeTooltip(event.getToolTip(), stack);
+				int damage = stack.getItemDamage();
+				if (damage == ICBMExplosives.NUCLEAR.getRegistryID()) {
+					event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM nuclear explosives cause Trinity's explosions instead of ICBM's!");
+				}
+				else if (damage == ICBMExplosives.ANTIMATTER.getRegistryID()) {
+					event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM antimatter explosives cause Trinity's explosions instead of ICBM's!");
 				}
 			}
 		}
-		
-	}
-	
-	@SideOnly(Side.CLIENT)
-	private static void addNukeTooltip(List<String> tooltip, ItemStack stack) {
-		tooltip.add(TextFormatting.RED + "Warning: Trinity installed. ICBM nuclear explosives cause Trinity's explosions instead of ICBM's");
 	}
 	
 	@SubscribeEvent
 	// @SideOnly(Side.SERVER)
 	public void explosion(ExplosionEvent.Start event) {
 		World world = event.getWorld();
-		Explosion exp = event.getExplosion();
-		Vec3d position = exp.getPosition();
+		Explosion explosion = event.getExplosion();
+		Vec3d vec3d = explosion.getPosition();
 		
-		if (exp instanceof BlastNuclear) {
-			if (((BlastNuclear) exp).getExplosiveData().getTier() == EnumTier.THREE) {
-				event.setCanceled(true);
-				EntityNuclearCloud entity2 = new EntityNuclearCloud(world, 1000, (Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius) * 2) * 0.005F);
-				entity2.posX = position.x;
-				entity2.posY = position.y;
-				entity2.posZ = position.z;
-				world.spawnEntity(entity2);
-				// world.setBlockToAir(pos);
-				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
-				ExplosionNukeGeneric.irradiate(world, (int) position.x, (int) position.y, (int) position.z, Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius) * 2);
-				world.spawnEntity(EntityNuclearExplosion.statFac(world, Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius), position.x, position.y, position.z));
-				// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
-			}
+		if (explosion instanceof BlastNuclear blastNuclear) {
+			event.setCanceled(true);
+			EntityNuclearCloud entity = new EntityNuclearCloud(world, 1000, (Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius) * 2) * 0.005F);
+			entity.posX = vec3d.x;
+			entity.posY = vec3d.y;
+			entity.posZ = vec3d.z;
+			world.spawnEntity(entity);
+			BlockPos pos = blastNuclear.getPos();
+			// world.setBlockToAir(pos);
+			new PotentialActionKnown(ActionDataEmpArea.REG_NAME).withProvider(new ActionFieldProvider().field(ActionFields.AREA_SIZE, () -> blastNuclear.getBlastRadius() * 2)).doAction(world, pos, null);
+			ExplosionNukeGeneric.irradiate(world, pos.getX(), pos.getY(), pos.getZ(), Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius) * 2);
+			world.spawnEntity(EntityNuclearExplosion.statFac(world, Math.min(TrinityConfig.icbm_radius, TrinityConfig.max_radius), vec3d.x, vec3d.y, vec3d.z));
+			// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 		}
-		else if (exp instanceof BlastAntimatter) {
-			if (((BlastAntimatter) exp).getExplosiveData().getTier() == EnumTier.FOUR) {
-				event.setCanceled(true);
-				EntityNuclearCloud entity2 = new EntityNuclearCloud(world, 1000, (Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 2) * 0.005F);
-				entity2.posX = position.x;
-				entity2.posY = position.y;
-				entity2.posZ = position.z;
-				world.spawnEntity(entity2);
-				// exp.world.setBlockToAir(pos);
-				ExplosionNukeGeneric.irradiate(world, (int) position.x, (int) position.y, (int) position.z, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 6);
-				world.spawnEntity(EntityNuclearExplosion.statFacAntimatter(world, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius), position.x, position.y, position.z));
-				new BlastEMP().setBlastWorld(event.getWorld()).setBlastSource(exp.getExplosivePlacedBy()).setBlastPosition(((BlastNuclear) exp).location.x(), ((BlastNuclear) exp).location.y(), ((BlastNuclear) exp).location.z()).setBlastSize(((BlastNuclear) exp).getBlastRadius() * 2).setExplosiveData(ICBMExplosives.EMP).buildBlast().runBlast();
-				//System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
-			}
+		else if (explosion instanceof BlastAntimatter blastAntimatter) {
+			event.setCanceled(true);
+			EntityNuclearCloud entity = new EntityNuclearCloud(world, 1000, (Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 2) * 0.005F);
+			entity.posX = vec3d.x;
+			entity.posY = vec3d.y;
+			entity.posZ = vec3d.z;
+			world.spawnEntity(entity);
+			BlockPos pos = blastAntimatter.getPos();
+			// world.setBlockToAir(pos);
+			new PotentialActionKnown(ActionDataEmpArea.REG_NAME).withProvider(new ActionFieldProvider().field(ActionFields.AREA_SIZE, () -> blastAntimatter.getBlastRadius() * 2)).doAction(world, pos, null);
+			ExplosionNukeGeneric.irradiate(world, pos.getX(), pos.getY(), pos.getZ(), Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius) * 6);
+			world.spawnEntity(EntityNuclearExplosion.statFacAntimatter(world, Math.min(TrinityConfig.antimatter_radius, TrinityConfig.max_radius), vec3d.x, vec3d.y, vec3d.z));
+			// System.out.println("If you are seeing this line, this means your blast detector is at least partially working.");
 		}
 	}
 }
