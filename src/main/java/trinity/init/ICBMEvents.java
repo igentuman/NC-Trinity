@@ -14,15 +14,13 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.*;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
-import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.*;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.*;
 import trinity.*;
 import trinity.config.TrinityConfig;
 import trinity.entities.*;
 import trinity.explosion.ExplosionNukeGeneric;
-
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = Reference.MOD_ID)
 public class ICBMEvents {
@@ -31,23 +29,36 @@ public class ICBMEvents {
 	@SideOnly(Side.CLIENT)
 	public void addAdditionalTooltips(ItemTooltipEvent event) {
 		if (Trinity.ICBMLoaded) {
-			ItemStack stack = event.getItemStack();
-			Item item = stack.getItem();
-			if (item instanceof ItemBlockExplosive || item instanceof ItemMissile) {
-				int damage = stack.getItemDamage();
-				if (damage == ICBMExplosives.NUCLEAR.getRegistryID()) {
-					event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM nuclear explosives cause Trinity's explosions instead of ICBM's!");
-				}
-				else if (damage == ICBMExplosives.ANTIMATTER.getRegistryID()) {
-					event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM antimatter explosives cause Trinity's explosions instead of ICBM's!");
-				}
+			addAdditionalTrinityTooltips(event);
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Optional.Method(modid = "icbmclassic")
+	public void addAdditionalTrinityTooltips(ItemTooltipEvent event) {
+		ItemStack stack = event.getItemStack();
+		Item item = stack.getItem();
+		
+		if (item instanceof ItemBlockExplosive || item instanceof ItemMissile) {
+			int damage = stack.getItemDamage();
+			if (damage == ICBMExplosives.NUCLEAR.getRegistryID()) {
+				event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM nuclear explosives cause Trinity's explosions instead of ICBM's!");
+			}
+			else if (damage == ICBMExplosives.ANTIMATTER.getRegistryID()) {
+				event.getToolTip().add(TextFormatting.RED + "Warning! Trinity installed - ICBM antimatter explosives cause Trinity's explosions instead of ICBM's!");
 			}
 		}
 	}
 	
 	@SubscribeEvent
-	// @SideOnly(Side.SERVER)
-	public void explosion(ExplosionEvent.Start event) {
+	public void onExplosion(ExplosionEvent.Start event) {
+		if (Trinity.ICBMLoaded) {
+			onTrinityExplosion(event);
+		}
+	}
+	
+	@Optional.Method(modid = "icbmclassic")
+	public void onTrinityExplosion(ExplosionEvent.Start event) {
 		World world = event.getWorld();
 		Explosion explosion = event.getExplosion();
 		Vec3d vec3d = explosion.getPosition();
