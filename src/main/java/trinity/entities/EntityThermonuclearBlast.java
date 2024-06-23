@@ -13,6 +13,7 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.relauncher.*;
 import trinity.Trinity;
 import trinity.config.TrinityConfig;
@@ -90,7 +91,7 @@ public class EntityThermonuclearBlast extends Entity {
 			this.world.spawnEntity(shock);*/
 			
 			if (Trinity.ICBMLoaded) {
-				new PotentialActionKnown(ActionDataEmpArea.REG_NAME).withProvider(new ActionFieldProvider().field(ActionFields.AREA_SIZE, () -> getScale() * 2F)).doAction(world, getPosition(), null);
+				icbmEMPBlast();
 			}
 			
 			this.did = true;
@@ -170,6 +171,11 @@ public class EntityThermonuclearBlast extends Entity {
 	        	}
 	    	}
 	    }
+	}
+	
+	@Optional.Method(modid = "icbmclassic")
+	protected void icbmEMPBlast() {
+		new PotentialActionKnown(ActionDataEmpArea.REG_NAME).withProvider(new ActionFieldProvider().field(ActionFields.AREA_SIZE, () -> getScale() * 2F)).doAction(world, getPosition(), null);
 	}
 	
 	
