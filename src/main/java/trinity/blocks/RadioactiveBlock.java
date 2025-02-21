@@ -21,7 +21,7 @@ public class RadioactiveBlock extends Block {
 		super(material);
 		setTranslationKey(Reference.MOD_ID + "." + nameIn);
 		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
-		// setHarvestLevel("Pickaxe", 1);
+		// setHarvestLevel("pickaxe", 1);
 		// setSoundType(blockSoundType.GROUND);
 		this.setHardness(2F);
 		this.setTickRandomly(true);

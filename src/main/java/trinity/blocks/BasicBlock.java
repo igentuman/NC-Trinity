@@ -17,7 +17,7 @@ public class BasicBlock extends Block {
 		super(material);
 		setTranslationKey(Reference.MOD_ID + "." + nameIn);
 		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
-		setHarvestLevel("Pickaxe", 0);
+		setHarvestLevel("pickaxe", 0);
 		// setSoundType(blockSoundType.GROUND);
 		this.setHardness(2F);
 		// this.setTickRandomly(true);

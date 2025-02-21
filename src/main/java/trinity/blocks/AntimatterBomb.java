@@ -27,7 +27,7 @@ public class AntimatterBomb extends Block {
 		this.blastRadius = blastRadius;
 		setTranslationKey(Reference.MOD_ID + "." + nameIn);
 		setRegistryName(new ResourceLocation(Reference.MOD_ID, nameIn));
-		setHarvestLevel("Pickaxe", 1);
+		setHarvestLevel("pickaxe", 1);
 		setSoundType(blockSoundType.METAL);
 		this.setHardness(2F);
 	}
